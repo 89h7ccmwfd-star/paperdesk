@@ -7,3 +7,4 @@ index-vor-*.html
 setup.sh
 __pycache__/
 *.tmp
+*.plist.aus
