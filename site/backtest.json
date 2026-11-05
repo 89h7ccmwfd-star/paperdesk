@@ -1,0 +1,30 @@
+{
+ "at": "2026-11-04T17:28:47-05:00",
+ "from": "2026-09-02",
+ "to": "2026-11-03",
+ "days": 44,
+ "first": {
+  "pnl": 382,
+  "trades": 29,
+  "win": 0.31,
+  "avgR": 0.263,
+  "maxDD": -204
+ },
+ "second": {
+  "pnl": 190,
+  "trades": 25,
+  "win": 0.44,
+  "avgR": 0.152,
+  "maxDD": -50
+ },
+ "all": {
+  "pnl": 572,
+  "trades": 54,
+  "win": 0.37,
+  "avgR": 0.212,
+  "maxDD": -222
+ },
+ "spyPct": -1.0,
+ "oldRulePnl": -1592,
+ "oldRuleTrades": 177
+}

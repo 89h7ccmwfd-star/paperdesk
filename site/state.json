@@ -1,0 +1,75 @@
+{
+ "currency": "USD",
+ "updatedAt": "2026-11-04T17:10:41-05:00",
+ "status": "Markt geschlossen.",
+ "accounts": {
+  "day": {
+   "startingCash": 10000,
+   "cash": 10032.62,
+   "equity": 10032.62,
+   "realizedPnl": 32.62,
+   "positions": [],
+   "journal": [
+    {
+     "timestamp": "2026-11-04T11:40:38-05:00",
+     "action": "BUY",
+     "symbol": "V",
+     "qty": 6,
+     "price": 430.89,
+     "stop": 423.28,
+     "target": 438.51,
+     "fee": 1.0,
+     "plannedRisk": 45.66,
+     "source": "Yahoo 5m",
+     "reason": "Opening-Range-Ausbruch ueber 429.59, Replay 6 Setups avgR 0.07; Suche ergab keine aktuellen News (unverifiziert), Quartalszahlen i.d.R. Ende Okt schon durch"
+    },
+    {
+     "timestamp": "2026-11-04T16:45:14-05:00",
+     "action": "SELL",
+     "symbol": "V",
+     "qty": 6,
+     "price": 436.66,
+     "fee": 1.0,
+     "pnl": 32.62,
+     "source": "Yahoo 5m",
+     "reason": "Tagesschluss"
+    }
+   ]
+  },
+  "swing": {
+   "startingCash": 10000,
+   "cash": 9949.89,
+   "equity": 9949.89,
+   "realizedPnl": -50.11,
+   "positions": [],
+   "journal": [
+    {
+     "timestamp": "2026-11-04T11:40:38-05:00",
+     "action": "BUY",
+     "symbol": "XOM",
+     "qty": 17,
+     "price": 177.46,
+     "stop": 174.63,
+     "target": 183.12,
+     "fee": 1.0,
+     "plannedRisk": 48.11,
+     "source": "Yahoo 1d",
+     "reason": "Swing-Kandidat, Q3 am 30.10. schon berichtet (über Erwartung, Dividende erhöht), keine Quartalszahlen in 2 Tagen, keine Negativmeldung gefunden",
+     "note": "Fehlbuchung durch einen inzwischen behobenen Fehler: Kurs vom Vortag statt Marktkurs."
+    },
+    {
+     "timestamp": "2026-11-04T12:03:42-05:00",
+     "action": "SELL",
+     "symbol": "XOM",
+     "qty": 17,
+     "price": 174.63,
+     "fee": 1.0,
+     "pnl": -50.11,
+     "source": "Yahoo 5m",
+     "reason": "Stop",
+     "note": "Fehlbuchung durch einen inzwischen behobenen Fehler: Kurs vom Vortag statt Marktkurs."
+    }
+   ]
+  }
+ }
+}

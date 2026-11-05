@@ -1,0 +1,9 @@
+cache/
+tick.log
+.wrangler/
+.lock
+.publish-enabled
+index-vor-*.html
+setup.sh
+__pycache__/
+*.tmp
