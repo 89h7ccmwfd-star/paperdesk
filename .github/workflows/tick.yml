@@ -1,8 +1,8 @@
 name: tick
-# Alle 30 Minuten startet ein Lauf, der bis zu 28 Minuten alle 5 Minuten handelt. Zeiten in UTC, deckt Sommer und Winter ab.
+# GitHub startet geplante Laeufe oft spaet oder gar nicht. Deshalb viele Startversuche ab vor Boersenstart; der erste, der laeuft, bleibt bis Boersenschluss. Zeiten in UTC, Sommer und Winter.
 on:
   schedule:
-    - cron: "*/30 13-21 * * 1-5"
+    - cron: "*/15 12-20 * * 1-5"
   workflow_dispatch:
     inputs:
       replay:
@@ -16,7 +16,7 @@ permissions:
 jobs:
   tick:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 358
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
