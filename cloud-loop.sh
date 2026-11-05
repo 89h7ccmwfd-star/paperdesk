@@ -21,7 +21,7 @@ while :; do
   [ $code -ne 0 ] && exit $code
   case "$out" in *"Markt geschlossen"*)
     wait=$(python3 -c "import paper, time; s = paper.session(); print(int(s['start'] - time.time()) if s['start'] > time.time() else -1)" 2>/dev/null || echo -1)
-    if [ "$wait" -gt 0 ] && [ "$wait" -lt 7200 ]; then echo "Warte $wait s auf Boersenstart"; sleep "$wait"; continue; fi
+    if [ "$wait" -gt 0 ] && [ "$wait" -lt 7200 ]; then echo "Warte $wait s auf Boersenstart"; sleep "$wait"; end=$(( $(date +%s) + 350 * 60 )); continue; fi
     exit 0;;
   esac
   now=$(date +%s)
