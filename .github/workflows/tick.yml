@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: "*/30 13-21 * * 1-5"
   workflow_dispatch:
+    inputs:
+      replay:
+        description: "Nur Test: Tag JJJJ-MM-TT nachspielen, ohne zu speichern"
+        required: false
 concurrency:
   group: tick
   cancel-in-progress: false
@@ -18,7 +22,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Test
+        if: ${{ inputs.replay != '' }}
+        env:
+          DAY: ${{ inputs.replay }}
+        run: |
+          T=$(mktemp -d); mkdir -p "$T/site"
+          python3 -c "import json,sys; d=json.load(open('site/state.json')); [a.update(cash=10000,equity=10000,realizedPnl=0,positions=[],journal=[]) for a in d['accounts'].values()]; d.pop('decisions',0); d.pop('inPlay',0); json.dump(d,open(sys.argv[1]+'/site/state.json','w'))" "$T"
+          for w in 09:36 09:41 10:01 10:36 15:56; do PAPER_HOME="$T" PAPER_NOW="$DAY $w" python3 paper.py tick --no-publish; done
+          python3 -c "import json,sys; d=json.load(open(sys.argv[1]+'/site/state.json')); print(d.get('inPlay',{}).get('scanned'), d.get('inPlay',{}).get('matches')); print([(j['action'],j['symbol'],j['price'],j.get('pnl')) for a in d['accounts'].values() for j in a['journal']]); print([x['detail'][:70] for x in d.get('decisions',[])][-5:])" "$T"
       - name: Handeln
+        if: ${{ inputs.replay == '' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

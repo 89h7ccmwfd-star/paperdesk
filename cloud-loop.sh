@@ -8,8 +8,13 @@ while :; do
   git pull --rebase --quiet || true
   out=$(python3 paper.py tick 2>&1); code=$?
   echo "$out"
-  if ! git diff --quiet -- site/state.json config.json; then
-    git add site/state.json config.json 2>/dev/null
+  case "$out" in
+    *"Markt geschlossen"*changed*) ;;
+    *"Markt geschlossen"*) git checkout -- site/state.json; exit "$code";;
+  esac
+  git add site/state.json
+  [ -f config.json ] && git add config.json
+  if ! git diff --cached --quiet; then
     git commit --quiet -m "Stand $(date -u +%H:%M)" && { git push --quiet || { git pull --rebase --quiet && git push --quiet; }; }
   fi
   [ $code -ne 0 ] && exit $code
