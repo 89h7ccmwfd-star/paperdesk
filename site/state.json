@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-05T15:28:59-05:00",
- "status": "Markt offen. In Play heute: HD, CVS, AXP, LOW, TGT.",
+ "updatedAt": "2026-11-05T15:31:00-05:00",
+ "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
    "startingCash": 10000,
