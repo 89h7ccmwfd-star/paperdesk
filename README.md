@@ -2,7 +2,7 @@
 
 Nur Simulation mit je 10.000 USD virtuell (Daytrading und Swing). Keine Broker-Verbindung, keine echten Orders.
 
-- `paper.py`: Scan, Entry, Exit, Time Machine, News, Budget, Risk nach der Doku des Trader-Skills, eigener Code
+- `paper.py`: Kommandozeile (`tick`, `stats`, `review`, `set`, `resume`, `publish`); der Code liegt im Paket `paperdesk/` (siehe AUDIT.md, Schritt 5)
 - `site/`: Dashboard und `state.json`; `config.json`: Parameter (die Analyse darf nur innerhalb von `BOUNDS` verstellen)
 - Läufe: GitHub Actions (`.github/workflows/tick.yml`, `cloud-loop.sh`) zur Börsenzeit alle 5 Minuten, unabhängig von einem Rechner. Der Stand liegt in `site/state.json` im Repo.
 - Dashboard: paperdesk-sim.pages.dev (Cloudflare Pages). Die Seite liest `site/state.json` direkt aus diesem Repo, GitHub cacht bis zu 5 Minuten. Nur Änderungen an der Seite selbst brauchen einen Upload.

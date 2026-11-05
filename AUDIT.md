@@ -53,7 +53,7 @@ Vorher: Phasen 2 bis 12 des Auftrags: Datenversionierung, Börsenkalender, Order
 
 | Bereich | Note | Grund |
 |---|---|---|
-| Softwarequalität | 5/10 | eine Datei, jetzt mit Tests für die gefundenen Fehler, keine Modulstruktur |
+| Softwarequalität | 7/10 | Paket `paperdesk` mit getrennten Schichten, Typangaben, strukturierte Logs, 42 Tests; Daten bleiben dicts statt Klassen |
 | Datenqualität | 5/10 | Lücken- und Aktualitätsprüfung sperrt Entscheidungen, Abrufprotokoll, Tagesdaten archiviert (`data/`); Quelle bleibt kostenlos und inoffiziell |
 | Backtest-Qualität | 5/10 | jetzt gleiche Regeln und Kasse wie live, aber Survivorship Bias und kurze Historie |
 | Statistische Validität | 4/10 | Methodik jetzt vorhanden (Walk-Forward, Reality Check, Variantenprotokoll, eingefrorene Regel); Ergebnis: kein belegter Vorteil, siehe RESEARCH.md |
@@ -82,3 +82,23 @@ Vorher: Phasen 2 bis 12 des Auftrags: Datenversionierung, Börsenkalender, Order
 - Neu gerechnet mit den Kosten: Rückblick +685 USD (45 Trades), Walk-Forward −34 USD, Reality Check p = 0,097, Zufallseinstieg −409 USD.
 - Tests: 41 bestanden (neu: Volumengrenze, Spread, Order-Protokoll, Ablehnung, Kennzahlen mit Handrechnung).
 - Nicht modelliert: Teilausführungen beim Verkauf (Stops gelten als voll ausgeführt), echte Geld-Brief-Spannen, Marktauswirkung über die Slippage hinaus.
+
+## Code aufgeteilt (Schritt 5)
+
+`paper.py` war eine Datei mit 880 Zeilen. Jetzt:
+
+| Modul | Aufgabe |
+|---|---|
+| `paperdesk/config.py` | Konstanten, Limits, Kosten, Größenregel, Konfigurationsprüfung |
+| `paperdesk/clock.py` | Zeit und Börsenkalender |
+| `paperdesk/data.py` | Abruf mit Protokoll, Kerzenprüfung, Archiv |
+| `paperdesk/strategy.py` | Tagesliste, Auslöser, Stop und Größe, Swing, News, Time Machine |
+| `paperdesk/risk_engine.py` | Risikoprüfung, Tagesergebnis |
+| `paperdesk/execution.py` | Kauf und Verkauf buchen |
+| `paperdesk/ledger.py` | Zustand laden, speichern, prüfen, Protokolle |
+| `paperdesk/engine.py` | Ablauf eines Laufs |
+| `paperdesk/publishing.py` | Upload zu Cloudflare |
+| `paperdesk/logs.py`, `types.py` | JSON-Logs auf stderr, gemeinsame Typen |
+| `paper.py` | Kommandozeile, reicht alle Namen für ältere Importe weiter |
+
+Nachweis ohne Verhaltensänderung: derselbe nachgespielte Handelstag (05.11.2026, fünf Läufe) ergibt mit altem und neuem Code einen identischen Zustand. Dabei gefunden und behoben: der Projektordner zeigte nach dem Umzug auf `paperdesk/` (neuer Test `test_home_is_project_root`). `cloud-loop.sh` liest nur noch stdout, damit Logs die Statuserkennung nicht stören.

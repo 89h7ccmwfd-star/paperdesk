@@ -8,7 +8,8 @@ end=$(( $(date +%s) + 350 * 60 ))
 fails=0
 while :; do
   git pull --rebase --quiet || git rebase --abort 2>/dev/null || true
-  out=$(python3 paper.py tick 2>&1); code=$?
+  # Statuszeile kommt auf stdout, die strukturierten Logs (stderr) gehen direkt ins Actions-Protokoll.
+  out=$(python3 paper.py tick); code=$?
   echo "$out"
   case "$out" in
     *"Markt geschlossen"*changed*) ;;

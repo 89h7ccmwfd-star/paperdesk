@@ -63,7 +63,7 @@ class DataCheckTests(Base):
                         "symbols": [{"symbol": "X", "rv": 2, "gap": 0.01, "atr": 2, "high": 11, "done": False}]}
         spy = chart([bar(i, 100, 101, 99, 100.5) for i in range(6)])
         x = chart([bar(i, 10.5, 11.5, 10.4, 11.4) for i in (0, 1, 3, 4, 5)])
-        with mock.patch.object(paper, "fetch", side_effect=lambda s, i, r: spy if s == "SPY" else x):
+        with mock.patch.object(paper.data, "fetch", side_effect=lambda s, i, r: spy if s == "SPY" else x):
             paper.try_day(st, self.s, self.c)
         item = st["inPlay"]["symbols"][0]
         self.assertFalse(item["done"])
@@ -86,13 +86,22 @@ class StateTests(Base):
         path = os.path.join(self.dir, "state.json")
         with open(path, "w") as f:
             json.dump(st, f)
-        with mock.patch.object(paper, "STATE", path), mock.patch.object(paper, "fetch") as fetch:
+        with mock.patch.object(paper.ledger, "STATE", path), mock.patch.object(paper.data, "fetch") as fetch:
             paper.tick(do_publish=False)
             fetch.assert_not_called()
         with open(path) as f:
             saved = json.load(f)
         self.assertIn("Not-Aus", saved["status"])
         self.assertTrue(saved["halt"]["reasons"])
+
+
+class LayoutTests(unittest.TestCase):
+    def test_home_is_project_root(self):
+        if os.environ.get("PAPER_HOME"):
+            self.skipTest("PAPER_HOME gesetzt")
+        root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.assertEqual(os.path.realpath(paper.HOME), os.path.realpath(root))
+        self.assertTrue(paper.ledger.STATE.startswith(paper.HOME))
 
 
 if __name__ == "__main__":

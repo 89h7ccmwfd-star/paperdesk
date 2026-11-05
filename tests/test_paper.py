@@ -74,7 +74,7 @@ class ConfigTests(Base):
             path = os.path.join(self.dir, "config.json")
             with open(path, "w") as f:
                 json.dump(bad, f)
-            with mock.patch.object(paper, "CONFIG", path), self.assertRaises(SystemExit):
+            with mock.patch.object(paper.config, "CONFIG", path), self.assertRaises(SystemExit):
                 paper.cfg()
 
 
@@ -97,7 +97,7 @@ class RiskTests(Base):
         acc["cash"] = 5000
         acc["positions"] = [{"symbol": "X", "qty": 100, "entry": 50, "stop": 40, "target": None, "entryFee": 1,
                              "openedAt": paper.iso(START + 600), "last": 50}]
-        with mock.patch.object(paper, "fetch", return_value=chart([bar(5, 45, 45.5, 44, 44.5)])):
+        with mock.patch.object(paper.data, "fetch", return_value=chart([bar(5, 45, 45.5, 44, 44.5)])):
             paper.manage(st, self.s, self.c)
         self.assertEqual(acc["positions"], [])
         self.assertEqual(acc["journal"][-1]["reason"], "Tagesverlustgrenze erreicht")
@@ -109,7 +109,7 @@ class ExecutionTests(Base):
         acc = st["accounts"]["day"]
         acc["positions"] = [{"symbol": "X", "qty": 10, "entry": 100, "stop": 99, "target": None, "entryFee": 1,
                              "openedAt": paper.iso(START + 11 * 60), "last": 100}]
-        with mock.patch.object(paper, "fetch", return_value=chart([bar(2, 100, 100.2, 98.5, 99.4)])):
+        with mock.patch.object(paper.data, "fetch", return_value=chart([bar(2, 100, 100.2, 98.5, 99.4)])):
             paper.manage(st, self.s, self.c)
         self.assertEqual(acc["journal"][-1]["reason"], "Stop")
 
@@ -130,7 +130,7 @@ class ExecutionTests(Base):
             if symbol == "SPY":
                 return spy
             raise RuntimeError("Yahoo antwortet nicht")
-        with mock.patch.object(paper, "fetch", side_effect=fetch):
+        with mock.patch.object(paper.data, "fetch", side_effect=fetch):
             paper.try_day(st, self.s, self.c)
         self.assertEqual(st["errors"][-1]["where"], "X")
         self.assertFalse(st["inPlay"]["symbols"][0]["done"])
@@ -160,7 +160,7 @@ class OrderTests(Base):
                         "symbols": [{"symbol": "X", "rv": 2, "gap": 0.01, "atr": 2, "high": 11, "done": False}]}
         spy = chart([bar(i, 100, 110, 99, 100.5 + i) for i in range(6)])
         x = chart([bar(i, 10.5, 10.95 if i else 11, 10.4, 10.9, 10) for i in range(5)] + [bar(5, 10.9, 11.5, 10.8, 11.4, 10)])
-        with mock.patch.object(paper, "fetch", side_effect=lambda s, i, r: spy if s == "SPY" else x):
+        with mock.patch.object(paper.data, "fetch", side_effect=lambda s, i, r: spy if s == "SPY" else x):
             paper.try_day(st, self.s, self.c)
         self.assertEqual(st["orders"][-1]["status"], "rejected")
         self.assertEqual(st["accounts"]["day"]["positions"], [])
