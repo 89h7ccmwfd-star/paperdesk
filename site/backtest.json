@@ -33,5 +33,13 @@
   "max_day_loss": 500.0,
   "max_day_trades": 3,
   "slippage": 0.0004
+ },
+ "walkForward": {
+  "days": 24,
+  "pnl": -2.9,
+  "shareAtOrBelowZero": 0.5106,
+  "realityCheckP": 0.0755,
+  "variants": 72,
+  "randomEntryPnl": -276.6
  }
 }

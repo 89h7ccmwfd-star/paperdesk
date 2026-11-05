@@ -1,0 +1,8 @@
+{
+ "version": "inplay-1",
+ "frozenAt": "2026-11-05",
+ "holdoutStart": "2026-11-06",
+ "params": {"rv": 1.0, "gap": 0.005, "top": 5, "atr": 0.25, "window": 12, "target": null, "spyFilter": true},
+ "rule": "Diese Regel ist eingefroren. Jede Aenderung an Regel oder Parametern braucht eine neue Version; der Papierhandel ab holdoutStart zaehlt nur fuer die Version, mit der er gehandelt wurde.",
+ "why": "Die Regel wurde an den Tagen 03.09. bis 04.11.2026 ausgewaehlt. Der einzige unberuehrte Test ist der Papierhandel danach."
+}

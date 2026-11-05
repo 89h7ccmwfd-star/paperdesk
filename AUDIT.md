@@ -45,7 +45,9 @@ Nachgespielt am 05.11.2026 mit dem neuen Code: Tagesliste HD, CVS, AXP, LOW, TGT
 
 ## Noch offen
 
-Fund 9 (vollständig), 10, 11, 14 und die Phasen 2 bis 12 des Auftrags: Datenversionierung, Börsenkalender, Order-Objekte mit Teilfüllungen und Ablehnungen, Walk-Forward-Pipeline mit Variantenprotokoll, Kennzahlen wie Sharpe und Sortino, Modulstruktur, Dashboard-Kennzeichnung von Rückblick und Papierhandel.
+Fund 9 (vollständig), 10, 14 und die Phasen 2, 3 (teilweise), 5 bis 12. Fund 11 (Mehrfachtests) ist mit research.py und dem eingefrorenen Holdout ab 06.11.2026 adressiert, rückwirkend aber nicht heilbar.
+
+Vorher: Phasen 2 bis 12 des Auftrags: Datenversionierung, Börsenkalender, Order-Objekte mit Teilfüllungen und Ablehnungen, Walk-Forward-Pipeline mit Variantenprotokoll, Kennzahlen wie Sharpe und Sortino, Modulstruktur, Dashboard-Kennzeichnung von Rückblick und Papierhandel.
 
 ## Bewertung (ehrlich, Stand jetzt)
 
@@ -54,7 +56,7 @@ Fund 9 (vollständig), 10, 11, 14 und die Phasen 2 bis 12 des Auftrags: Datenver
 | Softwarequalität | 5/10 | eine Datei, jetzt mit Tests für die gefundenen Fehler, keine Modulstruktur |
 | Datenqualität | 4/10 | kostenlose, inoffizielle Quelle, nachträgliche Korrekturen, keine Versionierung |
 | Backtest-Qualität | 5/10 | jetzt gleiche Regeln und Kasse wie live, aber Survivorship Bias und kurze Historie |
-| Statistische Validität | 2/10 | über 900 Varianten an denselben 44 Tagen, kein unberührter Testzeitraum |
+| Statistische Validität | 4/10 | Methodik jetzt vorhanden (Walk-Forward, Reality Check, Variantenprotokoll, eingefrorene Regel); Ergebnis: kein belegter Vorteil, siehe RESEARCH.md |
 | Risikomanagement | 6/10 | Tagesverlust mit offenem Risiko, Kasse, Limits geprüft; keine Korrelationen |
 | Paper-Execution | 4/10 | Slippage und Gebühren, aber keine Spreads, Teilfüllungen oder Orderobjekte |
 | Operative Zuverlässigkeit | 4/10 | GitHub startet geplante Läufe unzuverlässig, Fehler beenden den Lauf nicht mehr sofort |

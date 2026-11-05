@@ -173,10 +173,10 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
     </div></section>
 
     <section class="card cyan s2 btn"><div class="face" aria-hidden="true"></div><div class="in">
-      <div class="title"><h2>Rückblick der Regel</h2><span class="small" id="btDays"></span></div>
+      <div class="title"><h2>Rückblick und Statistik</h2><span class="small" id="btDays"></span></div>
       <b class="n" id="btPnl">–</b>
       <ul class="bars" id="bars"></ul>
-      <p class="note">Mit alten Kursen gerechnet, zu optimistisch, keine Prognose.</p>
+      <p class="note" id="btNote">Mit alten Kursen gerechnet, zu optimistisch, keine Prognose.</p>
     </div></section>
 
     <section class="card fuchsia s2"><div class="face" aria-hidden="true"></div><div class="in">
@@ -337,8 +337,8 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
   function renderBt(){
     if(!bt)return;
     $('btPnl').textContent=signed(bt.all.pnl);$('btDays').textContent=bt.days+' Tage · '+bt.all.trades+' Trades';
-    const rows=[['Hälfte 1',bt.first.pnl],['Hälfte 2',bt.second.pnl],['Alte Regel',bt.oldRulePnl]],max=Math.max(...rows.map(r=>Math.abs(r[1])),1);
-    $('bars').innerHTML=rows.map(r=>'<li><span>'+esc(r[0])+'</span><span><i class="'+(r[1]<0?'neg':'')+'" style="width:'+Math.max(Math.abs(r[1])/max*100,4)+'%"></i></span><u>'+signed(Math.round(r[1]))+'</u></li>').join('');
+    const rows=[['Hälfte 1',bt.first.pnl],['Hälfte 2',bt.second.pnl],['Alte Regel',bt.oldRulePnl]].concat(bt.walkForward?[['Walk-Forward',bt.walkForward.pnl],['Zufallseinstieg',bt.walkForward.randomEntryPnl]]:[]),max=Math.max(...rows.map(r=>Math.abs(r[1])),1);
+    if(bt.walkForward)$('btNote').textContent='Rückblick: Regel an denselben Tagen ausgewählt, zu optimistisch. Walk-Forward: Auswahl nur aus der Vergangenheit, '+bt.walkForward.days+' Testtage. Reality Check über '+bt.walkForward.variants+' Varianten: p = '+num(bt.walkForward.realityCheckP)+', also kein belegter Vorteil. Der echte Test ist der Papierhandel ab 06.11.';$('bars').innerHTML=rows.map(r=>'<li><span>'+esc(r[0])+'</span><span><i class="'+(r[1]<0?'neg':'')+'" style="width:'+Math.max(Math.abs(r[1])/max*100,4)+'%"></i></span><u>'+signed(Math.round(r[1]))+'</u></li>').join('');
   }
 
   function render(){

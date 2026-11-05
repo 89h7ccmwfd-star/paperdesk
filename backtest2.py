@@ -4,6 +4,7 @@ import datetime as dt
 import itertools
 import json
 import os
+import random
 import sys
 import time
 
@@ -75,7 +76,12 @@ def in_play(data, spy, v, day, alldays, dailies, c=None):
     trades = []
     for rv, s, a in ranked[:v["top"]]:
         bars = data[s][day]
-        pos = paper.find_trigger(bars, bars[0]["h"], start, v["window"])
+        if v.get("random") is not None:
+            # Vergleich: Einstieg zu einem zufaelligen Balken der ersten Stunde statt beim Ausbruch.
+            k = random.Random(f"{day}:{s}:{v['random']}").randint(1, v["window"])
+            pos = next((n for n, x in enumerate(bars) if paper.bar_index(x, start) == k), None)
+        else:
+            pos = paper.find_trigger(bars, bars[0]["h"], start, v["window"])
         if pos is None or pos + 1 >= len(bars):
             continue
         trig = bars[pos]

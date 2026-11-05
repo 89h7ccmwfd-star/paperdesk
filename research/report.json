@@ -1,0 +1,204 @@
+{
+ "at": "2026-11-05T17:22:44-05:00",
+ "days": [
+  "2026-09-03",
+  "2026-11-04",
+  44
+ ],
+ "gridSize": 72,
+ "note": "Aktienliste von heute (Survivorship Bias). Die eingefrorene Regel wurde vor dieser Studie an denselben Tagen ausgewaehlt; ihre Zahlen hier sind daher kein unabhaengiger Test. Unabhaengig ist nur Walk-Forward (Auswahl je Abschnitt nur aus der Vergangenheit) und der Papierhandel ab holdoutStart.",
+ "frozen": {
+  "params": {
+   "rv": 1.0,
+   "gap": 0.005,
+   "top": 5,
+   "atr": 0.25,
+   "r": 0,
+   "mkt": true,
+   "window": 12,
+   "max": 3,
+   "next": true
+  },
+  "pnl": 750.51,
+  "trades": 45,
+  "dayCI": {
+   "mean": 17.057004278969625,
+   "low": -5.976879423889107,
+   "high": 44.636796681035996,
+   "n": 44,
+   "shareAtOrBelowZero": 0.0821
+  },
+  "tradeRCI": {
+   "mean": 0.40631322285008953,
+   "low": -0.17667409501841508,
+   "high": 1.077401578829625,
+   "n": 45,
+   "shareAtOrBelowZero": 0.0939
+  }
+ },
+ "walkForward": {
+  "train": 20,
+  "test": 6,
+  "folds": [
+   {
+    "train": [
+     "2026-09-03",
+     "2026-10-01"
+    ],
+    "test": [
+     "2026-10-02",
+     "2026-10-09"
+    ],
+    "chosen": {
+     "atr": 0.25,
+     "gap": 0.003,
+     "max": 3,
+     "mkt": true,
+     "next": true,
+     "r": 0,
+     "rv": 1.25,
+     "top": 3,
+     "window": 12
+    },
+    "trainMean": 46.7,
+    "testPnl": -90.02
+   },
+   {
+    "train": [
+     "2026-09-14",
+     "2026-10-09"
+    ],
+    "test": [
+     "2026-10-12",
+     "2026-10-19"
+    ],
+    "chosen": {
+     "atr": 0.25,
+     "gap": 0.003,
+     "max": 3,
+     "mkt": true,
+     "next": true,
+     "r": 0,
+     "rv": 1.25,
+     "top": 3,
+     "window": 12
+    },
+    "trainMean": 32.76,
+    "testPnl": 50.1
+   },
+   {
+    "train": [
+     "2026-09-22",
+     "2026-10-19"
+    ],
+    "test": [
+     "2026-10-20",
+     "2026-10-27"
+    ],
+    "chosen": {
+     "atr": 0.2,
+     "gap": 0.003,
+     "max": 3,
+     "mkt": true,
+     "next": true,
+     "r": 0,
+     "rv": 1.25,
+     "top": 3,
+     "window": 12
+    },
+    "trainMean": -3.28,
+    "testPnl": 31.16
+   },
+   {
+    "train": [
+     "2026-09-30",
+     "2026-10-27"
+    ],
+    "test": [
+     "2026-10-28",
+     "2026-11-04"
+    ],
+    "chosen": {
+     "atr": 0.2,
+     "gap": 0.005,
+     "max": 3,
+     "mkt": true,
+     "next": true,
+     "r": 0,
+     "rv": 1.0,
+     "top": 5,
+     "window": 12
+    },
+    "trainMean": 11.28,
+    "testPnl": 5.86
+   }
+  ],
+  "oosDays": 24,
+  "oosPnl": -2.9,
+  "oosDayCI": {
+   "mean": -0.1208716845751437,
+   "low": -17.72273418484466,
+   "high": 18.34738494885276,
+   "n": 24,
+   "shareAtOrBelowZero": 0.5106
+  },
+  "frozenSameDaysPnl": 323.02
+ },
+ "realityCheck": {
+  "variants": 72,
+  "bestMean": 23.171177364173356,
+  "p": 0.0755
+ },
+ "benchmarks": {
+  "randomEntryPnl": -276.6,
+  "randomEntryTrades": 63,
+  "spyOpenToClosePnl": -318.04,
+  "spyNotional": 5000.0
+ },
+ "regimes": {
+  "spyUp": {
+   "days": 21,
+   "pnl": 824.2,
+   "trades": 24,
+   "avgR": 0.78
+  },
+  "spyDown": {
+   "days": 23,
+   "pnl": -73.7,
+   "trades": 21,
+   "avgR": -0.02
+  }
+ },
+ "sensitivity": [
+  {
+   "change": "top=3",
+   "pnl": 969.87
+  },
+  {
+   "change": "top=8",
+   "pnl": 274.84
+  },
+  {
+   "change": "atr=0.2",
+   "pnl": 771.77
+  },
+  {
+   "change": "atr=0.3",
+   "pnl": 571.1
+  },
+  {
+   "change": "rv=1.25",
+   "pnl": 617.12
+  },
+  {
+   "change": "gap=0.003",
+   "pnl": 686.82
+  },
+  {
+   "change": "r=1.0",
+   "pnl": 61.53
+  }
+ ],
+ "variantsLogged": 73,
+ "variantsBeforeLog": "etwa 940 nicht einzeln protokolliert (480 + 288 + 144 + 32), siehe AUDIT.md Fund 11"
+}

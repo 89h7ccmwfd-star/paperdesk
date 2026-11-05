@@ -137,6 +137,15 @@ def find_trigger(bars, high, start, window):
     return None
 
 
+def strategy_version():
+    """Version der eingefrorenen Regel (research/freeze.json), wird an jeden Kauf gehaengt."""
+    try:
+        with open(os.path.join(HOME, "research", "freeze.json"), encoding="utf-8") as f:
+            return json.load(f)["version"]
+    except (OSError, ValueError, KeyError):
+        return "unbekannt"
+
+
 def note_error(state, where, err):
     state.setdefault("errors", []).append({"timestamp": iso(), "where": where, "message": str(err)[:160]})
     del state["errors"][:-MAX_ERRORS]
@@ -531,6 +540,7 @@ def try_day(state, s, c):
                   f"Stop {c['atr']} ATR, kein festes Ziel. {info}News: {news['recent']} Meldungen, keine schwere.")
         buy(state, "day", symbol, p, "Yahoo 5m", reason)
         state["accounts"]["day"]["journal"][-1]["trigger"] = round(x["high"], 2)
+        state["accounts"]["day"]["journal"][-1]["strategy"] = strategy_version()
         x["status"], x["why"] = "gekauft", f"Gekauft zu {p['entry']}"
         decide(state, symbol, "gekauft", reason)
     return changed
@@ -563,6 +573,7 @@ def try_swing(state, s, c):
             continue
         reason = f"Tages-Setup {p['setup']}, Stop am 10-Tage-Tief, Ziel 2R. News: {news['recent']} Meldungen, keine schwere."
         buy(state, "swing", symbol, p, "Yahoo 5m", reason)
+        state["accounts"]["swing"]["journal"][-1]["strategy"] = "swing-reclaim-1"
         decide(state, symbol, "gekauft", reason)
         return True
     return changed
