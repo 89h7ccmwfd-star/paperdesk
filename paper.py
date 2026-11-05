@@ -391,46 +391,60 @@ def try_day(state, s, c):
     changed = False
     inplay = rank_in_play(state, c)
     spy = session_bars(fetch("SPY", "5m", "1d"))
+    if spy:
+        inplay["spyChangePct"] = round((spy[-1]["c"] / spy[0]["o"] - 1) * 100, 2)
+    inplay["windowEnd"] = iso(s["start"] + (1 + c["window"]) * BAR)
+
+    def skip(x, why):
+        x["status"], x["why"] = "aussortiert", why
+        decide(state, x["symbol"], "aussortiert", why)
+
     for x in inplay["symbols"]:
         if x["done"]:
             continue
         symbol = x["symbol"]
         result = fetch(symbol, "5m", "1d")
         bars = session_bars(result)
+        if bars:
+            x["last"] = round(bars[-1]["c"], 2)
+            x["distPct"] = round((bars[-1]["c"] / x["high"] - 1) * 100, 2)
         idx = next((i for i in range(1, min(len(bars), 1 + c["window"])) if bars[i]["c"] > x["high"]), None)
         if idx is None:
+            x["status"], x["why"] = "wartet", "Noch kein 5-Minuten-Schluss über dem Auslöser"
+            changed = True
             if len(bars) > c["window"]:
                 x["done"] = True
-                decide(state, symbol, "aussortiert", "Kein Ausbruch in der ersten Stunde")
-                changed = True
+                skip(x, "Kein Ausbruch in der ersten Stunde")
             continue
         x["done"] = True
         changed = True
         if idx >= len(spy) or spy[idx]["c"] <= spy[0]["o"]:
-            decide(state, symbol, "aussortiert", "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung")
+            skip(x, "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung")
             continue
         if len(bars) - 1 - idx > 1:
-            decide(state, symbol, "aussortiert", "Ausbruch verpasst, Bot lief zu spaet")
+            skip(x, "Ausbruch verpasst, Bot lief zu spaet")
             continue
         last = bars[-1]["c"]
         p, why = plan(last, x["atr"], c)
         if not p:
-            decide(state, symbol, "aussortiert", why)
+            skip(x, why)
             continue
         block = risk_block(state, "day", symbol, p["qty"], p["entry"], p["stop"], p["target"], last, s, c)
         if block:
-            decide(state, symbol, "aussortiert", block)
+            skip(x, block)
             continue
         meta = result.get("meta", {})
         news = news_check(symbol, meta.get("longName") or meta.get("shortName") or "")
         if news["flagged"]:
-            decide(state, symbol, "aussortiert", "News: " + news["flagged"][0])
+            skip(x, "News: " + news["flagged"][0])
             continue
         tm = time_machine(symbol, p, len(bars) - 1)
         info = f"Time Machine: Stop zuerst {tm['stopFirst']:.0%}, Schnitt {tm['avgR']}R, Seed {tm['seed']}. " if tm else ""
         reason = (f"In Play: Volumen {x['rv']}x, Gap {x['gap']:.1%}, Ausbruch ueber {round(x['high'], 2)}, SPY im Plus. "
                   f"Stop {c['atr']} ATR, kein festes Ziel. {info}News: {news['recent']} Meldungen, keine schwere.")
         buy(state, "day", symbol, p, "Yahoo 5m", reason)
+        state["accounts"]["day"]["journal"][-1]["trigger"] = round(x["high"], 2)
+        x["status"], x["why"] = "gekauft", f"Gekauft zu {p['entry']}"
         decide(state, symbol, "gekauft", reason)
     return changed
 
@@ -495,6 +509,9 @@ def tick(do_publish=True):
         if state["accounts"]["day"]["positions"]:
             changed |= manage(state, s)
         state["status"] = "Markt geschlossen."
+    if s["open"]:
+        remember_bars(state, s)
+    describe(state, s, c)
     recalc(state)
     last = state.get("publishedAt", 0)
     due = do_publish and (changed or (s["open"] and now_ts() - last >= PUBLISH_EVERY))
@@ -505,6 +522,59 @@ def tick(do_publish=True):
         ok, out = publish()
         print("publish", ok, "" if ok else out)
     print(iso(), state["status"], "changed" if changed else "")
+
+
+def remember_bars(state, s):
+    """Kurse der Aktien mit Trades fuer die Ansicht im Dashboard: Tag in 5 Minuten, Swing in Tagen."""
+    store = state.setdefault("bars", {})
+    today = ny().date().isoformat()
+    day_syms = {p["symbol"] for p in state["accounts"]["day"]["positions"]}
+    day_syms |= {j["symbol"] for j in state["accounts"]["day"]["journal"] if j["timestamp"][:10] == today}
+    for symbol in day_syms:
+        try:
+            bars = session_bars(fetch(symbol, "5m", "1d"))
+        except (RuntimeError, ValueError, KeyError, subprocess.CalledProcessError):
+            continue
+        if bars:
+            store[f"{ny(bars[-1]['t']).date().isoformat()}:{symbol}"] = [[b["t"], round(b["c"], 2)] for b in bars]
+    swing_syms = {p["symbol"] for p in state["accounts"]["swing"]["positions"]}
+    swing_syms |= {j["symbol"] for j in state["accounts"]["swing"]["journal"][-6:]}
+    for symbol in swing_syms:
+        try:
+            bars = rows(fetch(symbol, "1d", "6mo"), bar=86400)
+        except (RuntimeError, ValueError, KeyError, subprocess.CalledProcessError):
+            continue
+        store[f"D:{symbol}"] = [[b["t"], round(b["c"], 2)] for b in bars]
+    for key in sorted(k for k in store if not k.startswith("D:"))[:-30]:
+        del store[key]
+
+
+def describe(state, s, c):
+    """Was der Bot gerade tut und wann er das naechste Mal kaufen kann, fuer das Dashboard."""
+    now = now_ts()
+    window_end = s["start"] + (1 + c["window"]) * BAR
+    ip = state.get("inPlay", {})
+    today = ny().date().isoformat()
+    waiting = [x["symbol"] for x in ip.get("symbols", []) if ip.get("date") == today and not x["done"]]
+    buys = sum(1 for j in today_entries(state["accounts"]["day"]) if j["action"] == "BUY")
+    if not s["open"] and now < s["start"]:
+        phase, text, nxt = "vorher", "Börse noch zu. Nach dem ersten 5-Minuten-Balken wählt der Bot die Tagesliste.", s["noEntryBefore"]
+    elif not s["open"]:
+        phase, text, nxt = "zu", "Börse zu. Morgen wählt der Bot nach dem ersten 5-Minuten-Balken die neue Tagesliste.", None
+    elif now < s["noEntryBefore"]:
+        phase, text, nxt = "start", "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.", s["noEntryBefore"]
+    elif now < window_end and buys < c["max_day_trades"] and waiting:
+        phase, nxt = "fenster", window_end
+        text = (f"Beobachtet {', '.join(waiting)}. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, "
+                f"wenn der Gesamtmarkt (SPY) im Plus ist.")
+    else:
+        open_day = state["accounts"]["day"]["positions"]
+        phase, nxt = "verwalten", s["flatBy"] if open_day else None
+        text = ("Keine neuen Daytrades mehr heute. " +
+                ("Offene Daytrades werden am Stop oder spätestens 15:55 Uhr New York verkauft." if open_day
+                 else "Der Bot wartet auf den nächsten Handelstag."))
+    state["plan"] = {"phase": phase, "text": text, "next": iso(nxt) if nxt else None,
+                     "windowEnd": iso(window_end), "dayBuys": buys, "maxDayTrades": c["max_day_trades"]}
 
 
 def stats():
