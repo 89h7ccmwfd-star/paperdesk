@@ -111,6 +111,9 @@ td.why{min-width:220px;color:var(--muted)}
 .bars i{display:block;height:6px;border-radius:3px;background:rgba(var(--cyan),.75)}.bars i.neg{background:rgba(var(--rose),.75)}
 .bars u{text-decoration:none;color:var(--body)}
 .review{margin:0;white-space:pre-wrap;line-height:1.6}
+.holdout{margin:0 0 16px;padding:16px;border:1px solid rgba(var(--emerald),.35);border-radius:16px;background:rgba(var(--emerald),.06)}
+.holdout b{color:#fff;font-weight:600}.holdout p{margin:0 0 10px;font-size:14px;color:var(--body)}
+.holdout .track{height:8px}.holdout .track i{background:rgba(var(--emerald),.9)}
 .mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
 .mgrid div{padding:12px;border:1px solid var(--line);border-radius:14px}
 .mgrid span{display:block;color:var(--faint);font-size:12px}
@@ -167,6 +170,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
 
     <section class="card emerald s4" id="metrics"><div class="face" aria-hidden="true"></div><div class="in">
       <div class="title"><h2 id="mTitle">Kennzahlen · Papierhandel</h2><span class="small" id="mNote"></span></div>
+      <div class="holdout" id="holdout"></div>
       <div class="mgrid" id="mgrid"></div>
       <p class="note">Nur echte Papier-Trades, keine Rückblick-Zahlen. Als Fehlbuchung markierte Trades sind herausgerechnet. Unter 40 Trades sind diese Zahlen Zufall nahe, das Intervall zeigt die Spannweite.</p>
     </div></section>
@@ -341,7 +345,10 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
   }
 
   function renderMetrics(){
-    const m=(state.metrics||{})[mode],a=m&&m.all;$('mTitle').textContent='Kennzahlen · Papierhandel · '+(mode==='day'?'Daytrading':'Swing');
+    const m=(state.metrics||{})[mode],a=m&&m.all;
+    const ver=mode==='day'?'inplay-1':'swing-reclaim-1',h=(m&&m.byStrategy||{})[ver]||{trades:0},goal=40,n=h.trades||0;
+    const verdict=n<goal?'Noch zu wenige Trades für eine Aussage.':(h.expectancyCI&&h.expectancyCI.low>0?'Erwartung über 0, auch am unteren Rand des Intervalls.':'Kein belegter Vorteil: Das Intervall schließt 0 oder weniger ein.');
+    $('holdout').innerHTML='<p><b>Ehrlicher Test seit 06.11.</b> · Regel '+esc(ver)+', eingefroren · <b>'+n+' von '+goal+'</b> Trades'+(n?' · Ergebnis <b class="'+cls(h.netPnl)+'">'+signed(h.netPnl)+'</b>'+(h.expectancyCI?' · je Trade '+usd(h.expectancyCI.low)+' bis '+usd(h.expectancyCI.high):''):'')+'</p><span class="track" style="display:block"><i style="width:'+Math.min(100,n/goal*100)+'%"></i></span><p style="margin:10px 0 0;color:var(--muted)">'+esc(verdict)+'</p>';$('mTitle').textContent='Kennzahlen · Papierhandel · '+(mode==='day'?'Daytrading':'Swing');
     if(!a||!a.trades){$('mgrid').innerHTML='<div class="empty" style="grid-column:1/-1">Noch keine abgeschlossenen Papier-Trades. Kennzahlen erscheinen nach dem ersten Verkauf.</div>';$('mNote').textContent='';return}
     $('mNote').textContent=a.trades+' Trades an '+a.days+' Tagen · Versionen: '+Object.keys(m.byStrategy||{}).join(', ');
     const f=(v,suf='')=>v==null?'–':num(v,2)+suf,ci=a.expectancyCI;

@@ -1,0 +1,28 @@
+name: watchdog
+# Prueft zur Boersenzeit, ob der Bot laeuft. Steht er, wird ein Lauf angestossen und ein Issue geoeffnet (GitHub mailt das).
+on:
+  schedule:
+    - cron: "10,40 13-20 * * 1-5"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: write
+  issues: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pruefen
+        id: check
+        run: python3 watchdog.py >> "$GITHUB_OUTPUT"
+      - name: Lauf anstossen und melden
+        if: steps.check.outputs.stale != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AGE: ${{ steps.check.outputs.stale }}
+        run: |
+          gh workflow run tick.yml --ref main || true
+          open=$(gh issue list --state open --search "Bot steht in:title" --json number -q '.[0].number')
+          msg="Seit $AGE Minuten kein neuer Stand zur Boersenzeit. Ein neuer Lauf wurde angestossen."
+          if [ -n "$open" ]; then gh issue comment "$open" --body "$msg"; else gh issue create --title "Bot steht" --body "$msg"; fi

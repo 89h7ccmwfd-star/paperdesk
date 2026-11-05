@@ -14,6 +14,7 @@ concurrency:
 permissions:
   contents: write
   actions: write
+  issues: write
 jobs:
   tick:
     runs-on: ubuntu-latest
@@ -39,3 +40,9 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           GH_TOKEN: ${{ github.token }}
         run: bash cloud-loop.sh
+      - name: Fehler melden
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --title "Bot-Lauf fehlgeschlagen" --body "Lauf ${{ github.run_id }} ist mit Fehler beendet: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" || true

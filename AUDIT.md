@@ -59,7 +59,7 @@ Vorher: Phasen 2 bis 12 des Auftrags: Datenversionierung, Börsenkalender, Order
 | Statistische Validität | 4/10 | Methodik jetzt vorhanden (Walk-Forward, Reality Check, Variantenprotokoll, eingefrorene Regel); Ergebnis: kein belegter Vorteil, siehe RESEARCH.md |
 | Risikomanagement | 6/10 | Tagesverlust mit offenem Risiko, Kasse, Limits geprüft; keine Korrelationen |
 | Paper-Execution | 6/10 | Order-Protokoll mit Zeitpunkten, Referenz- und Ausführungspreis, Kosten und Status; Spread (Annahme 0,04 %), Slippage, Gebühren, Volumengrenze 1 % der Kerze mit Teilausführung, Ablehnungen; keine echten Geld-Brief-Kurse, Limit-Orders nicht genutzt |
-| Operative Zuverlässigkeit | 5/10 | eigener Börsenkalender (Feiertage, Halbtage) bis Ende 2027, Folgeläufe stoßen sich selbst an, Not-Aus bei kaputtem Zustand; der erste Start am Tag hängt weiter an GitHubs Zeitplan |
+| Operative Zuverlässigkeit | 6/10 | Börsenkalender bis Ende 2027, Folgeläufe stoßen sich selbst an, Not-Aus, Wachhund stößt stehende Läufe an und meldet per Issue (GitHub-Mail), fehlgeschlagene Läufe öffnen ein Issue; alles hängt weiter an GitHub Actions |
 
 ## Betrieb und Daten (Schritt 3)
 
@@ -102,3 +102,11 @@ Vorher: Phasen 2 bis 12 des Auftrags: Datenversionierung, Börsenkalender, Order
 | `paper.py` | Kommandozeile, reicht alle Namen für ältere Importe weiter |
 
 Nachweis ohne Verhaltensänderung: derselbe nachgespielte Handelstag (05.11.2026, fünf Läufe) ergibt mit altem und neuem Code einen identischen Zustand. Dabei gefunden und behoben: der Projektordner zeigte nach dem Umzug auf `paperdesk/` (neuer Test `test_home_is_project_root`). `cloud-loop.sh` liest nur noch stdout, damit Logs die Statuserkennung nicht stören.
+
+## Wachhund und ehrlicher Test (Schritt 6)
+
+- `watchdog.py` und `.github/workflows/watchdog.yml`: zweimal pro Stunde zur Börsenzeit; ist der Stand älter als 25 Minuten, wird ein Lauf angestoßen und das Issue „Bot steht“ geöffnet oder kommentiert. GitHub schickt dazu eine Mail.
+- `tick.yml`: ein fehlgeschlagener Lauf öffnet das Issue „Bot-Lauf fehlgeschlagen“.
+- Dashboard: Fortschritt des ehrlichen Tests (Trades der eingefrorenen Regel seit 06.11.2026, Ziel 40) mit Ergebnis, Intervall und nüchternem Urteil.
+- Bewusst nicht geändert: Strategie, Risikoregeln, Kosten. Jede Änderung daran würde den laufenden Test entwerten.
+- Tests: 45 bestanden. Ungetestet: der Wachhund in GitHub selbst.
