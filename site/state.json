@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-05T15:36:01-05:00",
+ "updatedAt": "2026-11-05T15:41:01-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -39,7 +39,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 9258.15,
-   "equity": 9950.13,
+   "equity": 9948.93,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -52,7 +52,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 345.99
+     "last": 345.39
     }
    ],
    "journal": [
