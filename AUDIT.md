@@ -54,9 +54,20 @@ Vorher: Phasen 2 bis 12 des Auftrags: Datenversionierung, Börsenkalender, Order
 | Bereich | Note | Grund |
 |---|---|---|
 | Softwarequalität | 5/10 | eine Datei, jetzt mit Tests für die gefundenen Fehler, keine Modulstruktur |
-| Datenqualität | 4/10 | kostenlose, inoffizielle Quelle, nachträgliche Korrekturen, keine Versionierung |
+| Datenqualität | 5/10 | Lücken- und Aktualitätsprüfung sperrt Entscheidungen, Abrufprotokoll, Tagesdaten archiviert (`data/`); Quelle bleibt kostenlos und inoffiziell |
 | Backtest-Qualität | 5/10 | jetzt gleiche Regeln und Kasse wie live, aber Survivorship Bias und kurze Historie |
 | Statistische Validität | 4/10 | Methodik jetzt vorhanden (Walk-Forward, Reality Check, Variantenprotokoll, eingefrorene Regel); Ergebnis: kein belegter Vorteil, siehe RESEARCH.md |
 | Risikomanagement | 6/10 | Tagesverlust mit offenem Risiko, Kasse, Limits geprüft; keine Korrelationen |
 | Paper-Execution | 4/10 | Slippage und Gebühren, aber keine Spreads, Teilfüllungen oder Orderobjekte |
-| Operative Zuverlässigkeit | 4/10 | GitHub startet geplante Läufe unzuverlässig, Fehler beenden den Lauf nicht mehr sofort |
+| Operative Zuverlässigkeit | 5/10 | eigener Börsenkalender (Feiertage, Halbtage) bis Ende 2027, Folgeläufe stoßen sich selbst an, Not-Aus bei kaputtem Zustand; der erste Start am Tag hängt weiter an GitHubs Zeitplan |
+
+## Betrieb und Daten (Schritt 3)
+
+- Börsenkalender in `paper.py` (`HOLIDAYS`, `EARLY_CLOSE`, laut nyse.com, gelesen 13.10.2026), gilt bis 31.12.2027 und bricht danach bewusst ab. Ersetzt die Sitzungszeiten von Yahoo.
+- `check_bars`: fehlende oder mehr als eine Kerze verspätete Daten sperren die Entscheidung für diese Aktie und werden in `errors` protokolliert. Fehlt SPY, gibt es in diesem Lauf keine Daytrades.
+- `dataQuality` im Zustand: Abrufe, Fehlschläge, betroffene Aktien, Probleme des Tages; das Dashboard zeigt es.
+- `data/JJJJ-MM-TT.json`: Eingangsdaten der Tagesliste (Kontext je Aktie, Erstbalken, Auswahl) im Repo.
+- `validate_state` und Not-Aus: Ist der Zustand ungültig, handelt der Bot nicht mehr und meldet den Grund, bis `paper.py resume` nach Prüfung aufgerufen wird.
+- `cloud-loop.sh` stößt kurz vor Ende seiner Laufzeit selbst einen Folgelauf an (`gh workflow run`), wenn die Börse noch offen ist; wartet vor Börsenstart bis zu 3 Stunden, aber nur an Handelstagen.
+- Tests: `tests/test_operations.py` (Kalender, Lücken, Verspätung, Sperre, Not-Aus), insgesamt 31 Tests bestanden.
+- Ungetestet: der Folgelauf über `gh workflow run` in GitHub selbst, Halbtage im Live-Betrieb.

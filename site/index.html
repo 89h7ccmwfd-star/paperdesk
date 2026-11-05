@@ -233,11 +233,13 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
     chips.push('<span class="chip"><span class="dotl '+(stale?'warn':open?'live':'')+'"></span>'+(stale?'Bot verspätet':open?'Markt offen':'Markt zu')+'</span>');
     if(next)chips.push('<span class="chip">Nächster Schritt <b>'+esc(clock(next))+'</b> '+esc(until(next))+'</span>');
     if(open&&ip.spyChangePct!=null)chips.push('<span class="chip">SPY seit Eröffnung <b class="'+cls(ip.spyChangePct)+'">'+esc((ip.spyChangePct>0?'+':'')+num(ip.spyChangePct))+' %</b></span>');
+    const dq=state.dataQuality;if(dq)chips.push('<span class="chip">Daten <b class="'+(dq.failed?'neg':'pos')+'">'+(dq.failed?dq.failed+' von '+dq.requests+' Abrufen fehlgeschlagen':'ok')+'</b></span>');
     if(plan.maxDayTrades)chips.push('<span class="chip">Daytrades heute <b>'+esc(plan.dayBuys)+'/'+esc(plan.maxDayTrades)+'</b></span>');
     $('nowChips').innerHTML=chips.join('');
     const order=['start','liste','fenster','verwalten'],cur={vorher:-1,zu:-1,start:0,fenster:2,verwalten:3}[phase]??-1;
     document.querySelectorAll('#steps li').forEach((li,i)=>{li.className=i===cur?'cur':(cur>i?'done':'')});
     const base=new Date();$('localTimes').textContent=[[9,30],[9,35],[10,35],[15,55]].map(([h,m])=>nyAt(base,h,m).toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})).join(', ');
+    if(state.halt){$('alert').className='alert on';$('alert').textContent='Not-Aus: '+state.halt.reasons.join('; ')+'. Der Bot handelt nicht, bis das geprüft ist.';return}
     $('alert').className='alert'+(stale?' on':'');
     $('alert').textContent=stale?'Seit '+Math.round(age)+' Minuten kein neuer Stand. Der Lauf bei GitHub ist vermutlich verspätet, bis dahin kauft und verkauft der Bot nichts.':'';
   }

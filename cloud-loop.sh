@@ -15,6 +15,7 @@ while :; do
     *"Markt geschlossen"*) git checkout -- site/state.json; exit "$code";;
   esac
   git add site/state.json
+  [ -d data ] && git add data
   [ -f config.json ] && git add config.json
   if ! git diff --cached --quiet; then
     git commit --quiet -m "Stand $(date -u +%H:%M)" && { git push --quiet || { git pull --rebase --quiet && git push --quiet; }; }
@@ -22,12 +23,16 @@ while :; do
   # Datenfehler beenden den Lauf nicht sofort; erst sechs Fehler in Folge.
   if [ $code -ne 0 ]; then fails=$((fails + 1)); [ $fails -ge 6 ] && exit $code; else fails=0; fi
   case "$out" in *"Markt geschlossen"*)
-    wait=$(python3 -c "import paper, time; s = paper.session(); print(int(s['start'] - time.time()) if s['start'] > time.time() else -1)" 2>/dev/null || echo -1)
-    if [ "$wait" -gt 0 ] && [ "$wait" -lt 7200 ]; then echo "Warte $wait s auf Boersenstart"; sleep "$wait"; end=$(( $(date +%s) + 350 * 60 )); continue; fi
+    wait=$(python3 -c "import paper, time; s = paper.session(); print(int(s['start'] - time.time()) if s['trading'] and s['start'] > time.time() else -1)" 2>/dev/null || echo -1)
+    if [ "$wait" -gt 0 ] && [ "$wait" -lt 10800 ]; then echo "Warte $wait s auf Boersenstart"; sleep "$wait"; end=$(( $(date +%s) + 350 * 60 )); continue; fi
     exit 0;;
   esac
   now=$(date +%s)
   next=$(( now - now % 300 + 360 ))
-  [ $next -ge $end ] && exit 0
+  if [ $next -ge $end ]; then
+    # Laufzeit fast aufgebraucht, Boerse noch offen: Folgelauf selbst anstossen statt auf GitHubs Zeitplan zu warten.
+    gh workflow run tick.yml --ref main && echo "Folgelauf angestossen"
+    exit 0
+  fi
   sleep $(( next - now ))
 done

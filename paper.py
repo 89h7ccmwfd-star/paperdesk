@@ -38,6 +38,14 @@ SCHEMA = {"rv": (0.5, 5), "gap": (0, 0.1), "top": (1, 20), "atr": (0.05, 2), "wi
           "max_swing_new": (0, 10), "slippage": (0, 0.01)}
 DATA_ERRORS = (RuntimeError, ValueError, KeyError, IndexError, TypeError, subprocess.CalledProcessError, ET.ParseError)
 MAX_ERRORS = 20
+
+# NYSE-Kalender laut nyse.com/markets/hours-calendars (gelesen 13.10.2026). Danach bricht der Bot bewusst ab.
+HOLIDAYS = {"2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25", "2026-06-19", "2026-07-03",
+            "2026-09-07", "2026-11-26", "2026-12-25", "2027-01-01", "2027-01-18", "2027-02-15", "2027-03-26",
+            "2027-05-31", "2027-06-18", "2027-07-05", "2027-09-06", "2027-11-25", "2027-12-24"}
+EARLY_CLOSE = {"2026-11-27", "2026-12-24", "2027-11-26"}
+CALENDAR_UNTIL = "2027-12-31"
+FETCH_LOG = []
 BOUNDS = {"rv": (1.0, 1.25), "gap": (0.003, 0.005), "atr": (0.2, 0.3)}
 SWING_MAX_DAYS = 56
 
@@ -91,10 +99,13 @@ def curl(url):
 
 
 def fetch(symbol, interval, range_):
+    entry = {"symbol": symbol, "interval": interval, "at": time.time(), "ok": False}
+    FETCH_LOG.append(entry)
     chart = json.loads(curl(f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"
                             f"?interval={interval}&range={range_}"))["chart"]
     if chart.get("error") or not chart.get("result"):
         raise RuntimeError(f"Keine Kursdaten fuer {symbol}")
+    entry["ok"] = True
     return chart["result"][0]
 
 
@@ -146,6 +157,43 @@ def strategy_version():
         return "unbekannt"
 
 
+def check_bars(bars, start, now):
+    """Luecken und Verspaetung pruefen. Gibt den Grund zurueck oder None, wenn die Daten taugen.
+    Eine Kerze Verspaetung ist erlaubt (Yahoo braucht nach Kerzenschluss manchmal etwas)."""
+    if not bars:
+        return "keine Kerzen"
+    have = {bar_index(b, start) for b in bars}
+    last = max(have)
+    missing = [i for i in range(0, last + 1) if i not in have]
+    if missing:
+        return f"{len(missing)} fehlende Kerze(n), erste Nr. {missing[0]}"
+    expected = min(int((now - start) // BAR) - 1, 77)
+    if expected - last > 1:
+        return f"Daten {expected - last} Kerzen alt"
+    return None
+
+
+def validate_state(state):
+    """Zustand vor dem Handeln pruefen; jede Abweichung stoppt neue Kaeufe (Not-Aus)."""
+    problems = []
+    for name in ("day", "swing"):
+        acc = state.get("accounts", {}).get(name)
+        if not isinstance(acc, dict):
+            problems.append(f"Konto {name} fehlt")
+            continue
+        for k in ("startingCash", "cash", "equity", "realizedPnl"):
+            if not isinstance(acc.get(k), (int, float)):
+                problems.append(f"{name}.{k} fehlt")
+        if isinstance(acc.get("cash"), (int, float)) and acc["cash"] < 0:
+            problems.append(f"{name}: Bargeld negativ")
+        for p in acc.get("positions", []):
+            if not (isinstance(p.get("qty"), int) and p["qty"] > 0 and p.get("entry", 0) > 0 and p.get("stop", 0) > 0):
+                problems.append(f"{name}: Position {p.get('symbol')} ungueltig")
+        if not isinstance(acc.get("journal"), list):
+            problems.append(f"{name}.journal fehlt")
+    return problems
+
+
 def note_error(state, where, err):
     state.setdefault("errors", []).append({"timestamp": iso(), "where": where, "message": str(err)[:160]})
     del state["errors"][:-MAX_ERRORS]
@@ -161,13 +209,17 @@ def session_bars(result):
 
 
 def session():
-    p = fetch("AAPL", "5m", "1d")["meta"]["currentTradingPeriod"]["regular"]
+    """Handelszeiten aus dem eigenen Boersenkalender: Wochenende, Feiertage, Halbtage bis 13:00 New York."""
+    day = ny().date()
+    key = day.isoformat()
+    if key > CALENDAR_UNTIL:
+        raise RuntimeError(f"Boersenkalender reicht nur bis {CALENDAR_UNTIL}, bitte ergaenzen")
+    start = dt.datetime.combine(day, dt.time(9, 30), NY).timestamp()
+    end = start + (12600 if key in EARLY_CLOSE else 23400)
+    trading = day.weekday() < 5 and key not in HOLIDAYS
     now = now_ts()
-    if os.environ.get("PAPER_NOW"):
-        day = ny().replace(hour=9, minute=30, second=0).timestamp()
-        p = {"start": day, "end": day + 23400}
-    return {"start": p["start"], "end": p["end"], "open": p["start"] <= now < p["end"],
-            "noEntryBefore": p["start"] + 300, "swingAfter": p["start"] + 900, "noEntryAfter": p["end"] - 1800, "flatBy": p["end"] - 300}
+    return {"date": key, "trading": trading, "start": start, "end": end, "open": trading and start <= now < end,
+            "noEntryBefore": start + 300, "swingAfter": start + 900, "noEntryAfter": end - 1800, "flatBy": end - 300}
 
 
 def day_context():
@@ -206,7 +258,7 @@ def rank_in_play(state, c, s):
     if state.get("inPlay", {}).get("date") == today:
         return state["inPlay"]
     ctx = day_context()
-    ranked = []
+    ranked, first_bars = [], {}
     for symbol, x in ctx.items():
         try:
             bars = session_bars(fetch(symbol, "5m", "1d"))
@@ -215,6 +267,7 @@ def rank_in_play(state, c, s):
         first = first_bar(bars, s["start"])
         if not first:
             continue
+        first_bars[symbol] = first
         rv = first["v"] / x["avgFirst"] if x["avgFirst"] else 0
         gap = first["o"] / x["prevClose"] - 1
         if rv >= c["rv"] and first["c"] > first["o"] and gap >= c["gap"]:
@@ -222,7 +275,23 @@ def rank_in_play(state, c, s):
                            "high": first["h"], "done": False})
     ranked.sort(key=lambda r: -r["rv"])
     state["inPlay"] = {"date": today, "scanned": len(ctx), "matches": len(ranked), "symbols": ranked[:c["top"]]}
+    archive(today, {"rankedAt": iso(), "source": "Yahoo chart v8, 5m", "config": {k: c[k] for k in ("rv", "gap", "top")},
+                    "context": ctx, "firstBars": first_bars, "inPlay": state["inPlay"]})
     return state["inPlay"]
+
+
+def archive(day, payload):
+    """Eingangsdaten eines Tages im Repo ablegen, damit jede Entscheidung nachrechenbar bleibt."""
+    path = os.path.join(HOME, "data", f"{day}.json")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    old = {}
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            old = json.load(f)
+    old.update(payload)
+    with open(path + ".tmp", "w", encoding="utf-8") as f:
+        json.dump(old, f, ensure_ascii=False)
+    os.replace(path + ".tmp", path)
 
 
 def plan(entry, atr_value, c):
@@ -467,6 +536,10 @@ def try_day(state, s, c):
     except DATA_ERRORS as e:
         note_error(state, "SPY", e)
         return changed
+    bad = check_bars(spy, s["start"], now_ts())
+    if bad:
+        note_error(state, "SPY", f"Daten: {bad}")
+        return changed
     spy_open = first_bar(spy, s["start"])
     spy_at = {b["t"]: b for b in spy}
     if spy and spy_open:
@@ -491,6 +564,16 @@ def try_day(state, s, c):
         if bars:
             x["last"] = round(bars[-1]["c"], 2)
             x["distPct"] = round((bars[-1]["c"] / x["high"] - 1) * 100, 2)
+        bad = check_bars(bars, s["start"], now_ts())
+        if bad:
+            # Keine Entscheidung auf unvollstaendigen Daten; naechster Lauf versucht es wieder.
+            x["status"], x["why"] = "wartet", f"Daten unvollständig: {bad}"
+            note_error(state, symbol, f"Daten: {bad}")
+            changed = True
+            if now_ts() >= window_end + 2 * BAR:
+                x["done"] = True
+                skip(x, f"Daten unvollständig: {bad}")
+            continue
         pos = find_trigger(bars, x["high"], s["start"], c["window"])
         if pos is None:
             x["status"], x["why"] = "wartet", "Noch kein 5-Minuten-Schluss über dem Auslöser"
@@ -595,6 +678,15 @@ def tick(do_publish=True):
     c = cfg()
     s = session()
     changed = False
+    del FETCH_LOG[:]
+    problems = validate_state(state)
+    if problems and not state.get("halt"):
+        state["halt"] = {"at": iso(), "reasons": problems}
+    if state.get("halt"):
+        state["status"] = "Not-Aus: " + "; ".join(state["halt"]["reasons"]) + ". Weiter erst nach Pruefung (paper.py resume)."
+        save(state)
+        print(iso(), state["status"])
+        return
     if s["open"]:
         changed |= manage(state, s, c)
         if s["noEntryBefore"] <= now_ts() < s["noEntryAfter"]:
@@ -614,6 +706,10 @@ def tick(do_publish=True):
     if s["open"]:
         remember_bars(state, s)
     describe(state, s, c)
+    failed = [f["symbol"] for f in FETCH_LOG if not f["ok"]]
+    state["dataQuality"] = {"at": iso(), "source": "Yahoo chart v8", "requests": len(FETCH_LOG), "failed": len(failed),
+                            "failedSymbols": sorted(set(failed))[:10],
+                            "issues": [e for e in state.get("errors", []) if e["timestamp"][:10] == s["date"]][-5:]}
     recalc(state)
     last = state.get("publishedAt", 0)
     due = do_publish and (changed or (s["open"] and now_ts() - last >= PUBLISH_EVERY))
@@ -673,7 +769,7 @@ def describe(state, s, c):
         open_day = state["accounts"]["day"]["positions"]
         phase, nxt = "verwalten", s["flatBy"] if open_day else None
         text = ("Keine neuen Daytrades mehr heute. " +
-                ("Offene Daytrades werden am Stop oder spätestens 15:55 Uhr New York verkauft." if open_day
+                (f"Offene Daytrades werden am Stop oder spätestens {ny(s['flatBy']).strftime('%H:%M')} Uhr New York verkauft." if open_day
                  else "Der Bot wartet auf den nächsten Handelstag."))
     state["plan"] = {"phase": phase, "text": text, "next": iso(nxt) if nxt else None,
                      "windowEnd": iso(window_end), "dayBuys": buys, "maxDayTrades": c["max_day_trades"]}
@@ -717,10 +813,18 @@ def main():
             c[key] = value
             with open(CONFIG, "w", encoding="utf-8") as f:
                 json.dump(c, f, indent=1)
+        elif cmd == "resume":
+            state = load()
+            problems = validate_state(state)
+            if problems:
+                raise SystemExit("Zustand weiter ungueltig: " + "; ".join(problems))
+            state.pop("halt", None)
+            save(state)
+            print("Not-Aus aufgehoben")
         elif cmd == "publish":
             print(publish())
         else:
-            raise SystemExit("Befehle: tick stats review set publish")
+            raise SystemExit("Befehle: tick stats review set resume publish")
 
 
 if __name__ == "__main__":
