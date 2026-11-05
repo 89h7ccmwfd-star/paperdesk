@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-04T17:10:41-05:00",
- "status": "Markt geschlossen.",
+ "updatedAt": "2026-11-05T15:28:59-05:00",
+ "status": "Markt offen. In Play heute: HD, CVS, AXP, LOW, TGT.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -38,10 +38,23 @@
   },
   "swing": {
    "startingCash": 10000,
-   "cash": 9949.89,
-   "equity": 9949.89,
+   "cash": 9258.15,
+   "equity": 9948.89,
    "realizedPnl": -50.11,
-   "positions": [],
+   "positions": [
+    {
+     "symbol": "AAPL",
+     "side": "Long",
+     "qty": 2,
+     "entry": 345.37,
+     "stop": 325.32,
+     "target": 385.47,
+     "entryFee": 1.0,
+     "openedAt": "2026-11-05T15:28:37-05:00",
+     "source": "Yahoo 5m",
+     "last": 345.37
+    }
+   ],
    "journal": [
     {
      "timestamp": "2026-11-04T11:40:38-05:00",
@@ -68,8 +81,107 @@
      "source": "Yahoo 5m",
      "reason": "Stop",
      "note": "Fehlbuchung durch einen inzwischen behobenen Fehler: Kurs vom Vortag statt Marktkurs."
+    },
+    {
+     "timestamp": "2026-11-05T15:28:37-05:00",
+     "action": "BUY",
+     "symbol": "AAPL",
+     "qty": 2,
+     "price": 345.37,
+     "stop": 325.32,
+     "target": 385.47,
+     "fee": 1.0,
+     "plannedRisk": 40.1,
+     "source": "Yahoo 5m",
+     "reason": "Tages-Setup reclaim_ma20, Stop am 10-Tage-Tief, Ziel 2R. News: 18 Meldungen, keine schwere."
     }
    ]
   }
- }
+ },
+ "decisions": [
+  {
+   "timestamp": "2026-11-05T15:28:37-05:00",
+   "symbol": "AAPL",
+   "outcome": "gekauft",
+   "detail": "Tages-Setup reclaim_ma20, Stop am 10-Tage-Tief, Ziel 2R. News: 18 Meldungen, keine schwere."
+  },
+  {
+   "timestamp": "2026-11-05T15:28:59-05:00",
+   "symbol": "HD",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-05T15:28:59-05:00",
+   "symbol": "CVS",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-05T15:28:59-05:00",
+   "symbol": "AXP",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-05T15:28:59-05:00",
+   "symbol": "LOW",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-05T15:28:59-05:00",
+   "symbol": "TGT",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  }
+ ],
+ "inPlay": {
+  "date": "2026-11-05",
+  "scanned": 98,
+  "matches": 9,
+  "symbols": [
+   {
+    "symbol": "HD",
+    "rv": 4.65,
+    "gap": 0.0146,
+    "atr": 9.0311,
+    "high": 362.3500061035156,
+    "done": true
+   },
+   {
+    "symbol": "CVS",
+    "rv": 3.07,
+    "gap": 0.0206,
+    "atr": 3.0226,
+    "high": 83.38990020751953,
+    "done": true
+   },
+   {
+    "symbol": "AXP",
+    "rv": 1.87,
+    "gap": 0.0208,
+    "atr": 7.5763,
+    "high": 343.885009765625,
+    "done": true
+   },
+   {
+    "symbol": "LOW",
+    "rv": 1.47,
+    "gap": 0.0175,
+    "atr": 6.1543,
+    "high": 234.3300018310547,
+    "done": true
+   },
+   {
+    "symbol": "TGT",
+    "rv": 1.41,
+    "gap": 0.0144,
+    "atr": 5.0038,
+    "high": 166.49000549316406,
+    "done": true
+   }
+  ]
+ },
+ "publishedAt": 1793910539.6750412
 }
