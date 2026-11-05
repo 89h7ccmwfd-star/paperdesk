@@ -358,11 +358,11 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
   }
 
   function renderHealth(){
-    const age=(Date.now()-Date.parse(state.updatedAt))/6e4,open=/offen/i.test(state.status||''),stale=open&&age>70;
+    const age=(Date.now()-Date.parse(state.updatedAt))/6e4,open=/offen/i.test(state.status||''),stale=open&&age>45;
     $('live').className='live'+(open&&!stale?'':' off');
     $('liveText').textContent=open?(stale?'Veraltet':'Markt offen'):'Markt zu';
     $('alert').className='alert'+(stale?' on':'');
-    $('alert').textContent=stale?'Seit '+Math.round(age)+' Minuten kein neuer Stand. Vermutlich schläft der Mac, dann pausiert der Bot.':'';
+    $('alert').textContent=stale?'Seit '+Math.round(age)+' Minuten kein neuer Stand. Der Lauf bei GitHub ist vermutlich verspätet.':'';
   }
 
   let symKey='';
@@ -402,11 +402,16 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
     $('dayBtn').setAttribute('aria-pressed',mode==='day');$('swingBtn').setAttribute('aria-pressed',mode==='swing');
     renderHealth();renderEquity(a);renderLog();renderRings(a);renderBt();renderInPlay();renderTables(a);fillSymbols();loadChart();
   }
+  // Der Bot sichert seinen Stand im oeffentlichen Repo, die Seite liest ihn dort direkt. Rueckfall: mitgelieferte Kopie.
+  const REPO='https://raw.githubusercontent.com/89h7ccmwfd-star/paperdesk/main/site/';
+  async function getJson(name){
+    try{const r=await fetch(REPO+name+'?t='+Math.floor(Date.now()/6e4));if(r.ok)return await r.json()}catch(e){}
+    const r=await fetch('./'+name,{cache:'no-store'});if(!r.ok)throw 0;return r.json();
+  }
   async function refresh(){
     try{
-      const r=await fetch('./state.json?t='+Date.now(),{cache:'no-store'});
-      if(!r.ok)throw 0;state=await r.json();
-      try{const q=await fetch('./backtest.json',{cache:'no-store'});if(q.ok)bt=await q.json()}catch(e){}
+      state=await getJson('state.json');
+      try{bt=await getJson('backtest.json')}catch(e){}
       render();
     }catch(e){$('alert').className='alert on';$('alert').textContent='Der Stand konnte gerade nicht geladen werden.'}
   }
