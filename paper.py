@@ -31,7 +31,13 @@ MAX_DECISIONS = 60
 
 # Grenzen fuer die abendliche Analyse: sie darf nur innerhalb dieser Werte verstellen.
 DEFAULTS = {"rv": 1.0, "gap": 0.005, "top": 5, "atr": 0.25, "window": 12, "max_risk": 50.0, "max_position": 3000.0,
-            "max_day_loss": 100.0, "max_day_trades": 3, "max_swing_open": 2, "max_swing_new": 1}
+            "max_day_loss": 100.0, "max_day_trades": 3, "max_swing_open": 2, "max_swing_new": 1, "slippage": 0.0004}
+# Erlaubte Bereiche je Schluessel; alles andere in config.json ist ein Fehler.
+SCHEMA = {"rv": (0.5, 5), "gap": (0, 0.1), "top": (1, 20), "atr": (0.05, 2), "window": (1, 77), "max_risk": (1, 5000),
+          "max_position": (100, 100000), "max_day_loss": (1, 10000), "max_day_trades": (1, 20), "max_swing_open": (0, 10),
+          "max_swing_new": (0, 10), "slippage": (0, 0.01)}
+DATA_ERRORS = (RuntimeError, ValueError, KeyError, IndexError, TypeError, subprocess.CalledProcessError, ET.ParseError)
+MAX_ERRORS = 20
 BOUNDS = {"rv": (1.0, 1.25), "gap": (0.003, 0.005), "atr": (0.2, 0.3)}
 SWING_MAX_DAYS = 56
 
@@ -71,6 +77,11 @@ def cfg():
     if os.path.exists(CONFIG):
         with open(CONFIG, encoding="utf-8") as f:
             c.update(json.load(f))
+    bad = [k for k in c if k not in SCHEMA]
+    bad += [k for k, (lo, hi) in SCHEMA.items()
+            if isinstance(c.get(k), bool) or not isinstance(c.get(k), (int, float)) or not lo <= c[k] <= hi]
+    if bad:
+        raise SystemExit(f"Konfiguration ungueltig: {', '.join(sorted(set(bad)))}")
     return c
 
 
@@ -91,13 +102,44 @@ def rows(result, bar=BAR):
     """Nur abgeschlossene Kerzen: laufende und leere werden verworfen."""
     now = now_ts()
     q = result["indicators"]["quote"][0]
-    out = []
+    out, seen = [], set()
     for i, t in enumerate(result.get("timestamp") or []):
         vals = [q[k][i] for k in ("open", "high", "low", "close", "volume")]
-        if None in vals or (bar == BAR and t % BAR) or t + bar > now:
+        if None in vals or (bar == BAR and t % BAR) or t + bar > now or t in seen:
             continue
-        out.append({"t": t, "o": vals[0], "h": vals[1], "l": vals[2], "c": vals[3], "v": vals[4]})
+        o, h, l, c, v = vals
+        # Unplausible Kerzen nicht verwenden: Tief ueber Eroeffnung/Schluss, Hoch darunter, Preis oder Volumen negativ.
+        if not (0 < l <= min(o, c) and h >= max(o, c) and v >= 0):
+            continue
+        seen.add(t)
+        out.append({"t": t, "o": o, "h": h, "l": l, "c": c, "v": v})
     return out
+
+
+def bar_index(b, start):
+    """Nummer des 5-Minuten-Balkens seit Boersenstart, aus der Zeit statt aus der Listenposition."""
+    return int((b["t"] - start) // BAR)
+
+
+def first_bar(bars, start):
+    """Der Erstbalken gilt nur, wenn er wirklich um Boersenstart beginnt."""
+    return bars[0] if bars and bars[0]["t"] == start else None
+
+
+def find_trigger(bars, high, start, window):
+    """Position des ersten Balkens 1..window, der ueber dem Hoch des Erstbalkens schliesst. Gilt live und im Rueckblick."""
+    for pos, b in enumerate(bars):
+        i = bar_index(b, start)
+        if i > window:
+            break
+        if i >= 1 and b["c"] > high:
+            return pos
+    return None
+
+
+def note_error(state, where, err):
+    state.setdefault("errors", []).append({"timestamp": iso(), "where": where, "message": str(err)[:160]})
+    del state["errors"][:-MAX_ERRORS]
 
 
 def session_bars(result):
@@ -132,7 +174,7 @@ def day_context():
             days = {}
             for b in session_bars(fetch(symbol, "5m", "1mo")):
                 days.setdefault(ny(b["t"]).date().isoformat(), []).append(b)
-        except (RuntimeError, ValueError, KeyError, subprocess.CalledProcessError):
+        except DATA_ERRORS:
             continue
         hist = [days[d] for d in sorted(days) if d < today and len(days[d]) >= 70][-15:]
         if len(hist) < 15:
@@ -149,7 +191,7 @@ def day_context():
     return out
 
 
-def rank_in_play(state, c):
+def rank_in_play(state, c, s):
     """Nach dem ersten Balken: ungewoehnliches Volumen, gruener Balken, Gap nach oben. Die Top-Liste gilt den Tag."""
     today = ny().date().isoformat()
     if state.get("inPlay", {}).get("date") == today:
@@ -159,11 +201,11 @@ def rank_in_play(state, c):
     for symbol, x in ctx.items():
         try:
             bars = session_bars(fetch(symbol, "5m", "1d"))
-        except (RuntimeError, ValueError, KeyError, subprocess.CalledProcessError):
+        except DATA_ERRORS:
             continue
-        if not bars or ny(bars[0]["t"]).date().isoformat() != today:
+        first = first_bar(bars, s["start"])
+        if not first:
             continue
-        first = bars[0]
         rv = first["v"] / x["avgFirst"] if x["avgFirst"] else 0
         gap = first["o"] / x["prevClose"] - 1
         if rv >= c["rv"] and first["c"] > first["o"] and gap >= c["gap"]:
@@ -315,8 +357,10 @@ def risk_block(state, account, symbol, qty, price, stop, target, market, s, c):
     if account == "day":
         if buys >= c["max_day_trades"]:
             return "Tageslimit Trades erreicht"
-        if -sum(j.get("pnl", 0) for j in entries) >= c["max_day_loss"]:
-            return "Tagesverlustgrenze erreicht"
+        realized = sum(j.get("pnl", 0) for j in entries if j["action"] == "SELL")
+        open_risk = sum(max(p["entry"] - p["stop"], 0) * p["qty"] for p in acc["positions"])
+        if -realized + open_risk + max(price - stop, 0) * qty > c["max_day_loss"]:
+            return "Tagesverlustgrenze: gebuchte Verluste plus offenes Risiko zu hoch"
         if not s["noEntryBefore"] <= now_ts() < s["noEntryAfter"]:
             return "ausserhalb der Einstiegszeit"
     else:
@@ -346,7 +390,8 @@ def buy(state, account, symbol, p, source, reason):
     recalc(state)
 
 
-def sell(state, account, pos, price, reason):
+def sell(state, account, pos, price, reason, slip=0.0):
+    price = round(price * (1 - slip), 2)
     acc = state["accounts"][account]
     f = fee(pos["qty"])
     pnl = round((price - pos["entry"]) * pos["qty"] - pos["entryFee"] - f, 2)
@@ -358,19 +403,32 @@ def sell(state, account, pos, price, reason):
     recalc(state)
 
 
-def manage(state, s):
-    """Stop vor Ziel; oeffnet eine Kerze unter dem Stop, wird zum Eroeffnungskurs verkauft. Daytrades flat by."""
+def day_pnl(state):
+    """Gebuchtes und offenes Ergebnis der heutigen Daytrades."""
+    acc = state["accounts"]["day"]
+    realized = sum(j.get("pnl", 0) for j in today_entries(acc) if j["action"] == "SELL")
+    unrealized = sum(p["qty"] * (p.get("last", p["entry"]) - p["entry"]) for p in acc["positions"])
+    return realized, unrealized
+
+
+def manage(state, s, c):
+    """Stop vor Ziel; oeffnet eine Kerze unter dem Stop, wird zum Eroeffnungskurs verkauft. Daytrades flat by.
+    Jeder Balken, der nach dem Kauf endet, zaehlt, auch der, in dem gekauft wurde (vorsichtig)."""
     changed = False
     for name, acc in state["accounts"].items():
         for p in list(acc["positions"]):
             since = dt.datetime.fromisoformat(p["openedAt"]).timestamp()
-            bars = [b for b in session_bars(fetch(p["symbol"], "5m", "5d")) if b["t"] >= since]
+            try:
+                bars = [b for b in session_bars(fetch(p["symbol"], "5m", "5d")) if b["t"] + BAR > since]
+            except DATA_ERRORS as e:
+                note_error(state, f"Position {p['symbol']}", e)
+                continue
             if bars:
                 p["last"] = round(bars[-1]["c"], 2)
             hit = None
             for b in bars:
                 if b["l"] <= p["stop"]:
-                    hit = (round(min(b["o"], p["stop"]), 2), "Stop")
+                    hit = (min(b["o"], p["stop"]), "Stop")
                     break
                 if p["target"] and b["h"] >= p["target"]:
                     hit = (p["target"], "Ziel")
@@ -380,8 +438,13 @@ def manage(state, s):
             if not hit and name == "day" and (now_ts() >= s["flatBy"] or not s["open"]):
                 hit = (p["last"], "Flat by, Tagesschluss")
             if hit:
-                sell(state, name, p, hit[0], hit[1])
+                sell(state, name, p, hit[0], hit[1], c["slippage"])
                 changed = True
+    realized, unrealized = day_pnl(state)
+    if state["accounts"]["day"]["positions"] and realized + unrealized <= -c["max_day_loss"]:
+        for p in list(state["accounts"]["day"]["positions"]):
+            sell(state, "day", p, p.get("last", p["entry"]), "Tagesverlustgrenze erreicht", c["slippage"])
+        changed = True
     recalc(state)
     return changed
 
@@ -389,11 +452,18 @@ def manage(state, s):
 def try_day(state, s, c):
     """Erster abgeschlossener Balken ueber dem Hoch des ersten Balkens, innerhalb der ersten Stunde, Markt im Plus."""
     changed = False
-    inplay = rank_in_play(state, c)
-    spy = session_bars(fetch("SPY", "5m", "1d"))
-    if spy:
-        inplay["spyChangePct"] = round((spy[-1]["c"] / spy[0]["o"] - 1) * 100, 2)
-    inplay["windowEnd"] = iso(s["start"] + (1 + c["window"]) * BAR)
+    inplay = rank_in_play(state, c, s)
+    try:
+        spy = session_bars(fetch("SPY", "5m", "1d"))
+    except DATA_ERRORS as e:
+        note_error(state, "SPY", e)
+        return changed
+    spy_open = first_bar(spy, s["start"])
+    spy_at = {b["t"]: b for b in spy}
+    if spy and spy_open:
+        inplay["spyChangePct"] = round((spy[-1]["c"] / spy_open["o"] - 1) * 100, 2)
+    window_end = s["start"] + (1 + c["window"]) * BAR
+    inplay["windowEnd"] = iso(window_end)
 
     def skip(x, why):
         x["status"], x["why"] = "aussortiert", why
@@ -403,29 +473,38 @@ def try_day(state, s, c):
         if x["done"]:
             continue
         symbol = x["symbol"]
-        result = fetch(symbol, "5m", "1d")
-        bars = session_bars(result)
+        try:
+            result = fetch(symbol, "5m", "1d")
+            bars = session_bars(result)
+        except DATA_ERRORS as e:
+            note_error(state, symbol, e)
+            continue
         if bars:
             x["last"] = round(bars[-1]["c"], 2)
             x["distPct"] = round((bars[-1]["c"] / x["high"] - 1) * 100, 2)
-        idx = next((i for i in range(1, min(len(bars), 1 + c["window"])) if bars[i]["c"] > x["high"]), None)
-        if idx is None:
+        pos = find_trigger(bars, x["high"], s["start"], c["window"])
+        if pos is None:
             x["status"], x["why"] = "wartet", "Noch kein 5-Minuten-Schluss über dem Auslöser"
             changed = True
-            if len(bars) > c["window"]:
+            if now_ts() >= window_end:
                 x["done"] = True
                 skip(x, "Kein Ausbruch in der ersten Stunde")
             continue
         x["done"] = True
         changed = True
-        if idx >= len(spy) or spy[idx]["c"] <= spy[0]["o"]:
+        trig = bars[pos]
+        spy_bar = spy_at.get(trig["t"])
+        if not spy_open or not spy_bar:
+            skip(x, "SPY-Daten fuer den Ausbruchsbalken fehlen")
+            continue
+        if spy_bar["c"] <= spy_open["o"]:
             skip(x, "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung")
             continue
-        if len(bars) - 1 - idx > 1:
+        if bar_index(bars[-1], s["start"]) - bar_index(trig, s["start"]) > 1:
             skip(x, "Ausbruch verpasst, Bot lief zu spaet")
             continue
         last = bars[-1]["c"]
-        p, why = plan(last, x["atr"], c)
+        p, why = plan(last * (1 + c["slippage"]), x["atr"], c)
         if not p:
             skip(x, why)
             continue
@@ -434,11 +513,19 @@ def try_day(state, s, c):
             skip(x, block)
             continue
         meta = result.get("meta", {})
-        news = news_check(symbol, meta.get("longName") or meta.get("shortName") or "")
+        try:
+            news = news_check(symbol, meta.get("longName") or meta.get("shortName") or "")
+        except DATA_ERRORS as e:
+            note_error(state, f"News {symbol}", e)
+            skip(x, "News nicht abrufbar, Kauf ausgelassen")
+            continue
         if news["flagged"]:
             skip(x, "News: " + news["flagged"][0])
             continue
-        tm = time_machine(symbol, p, len(bars) - 1)
+        try:
+            tm = time_machine(symbol, p, len(bars) - 1)
+        except DATA_ERRORS:
+            tm = None
         info = f"Time Machine: Stop zuerst {tm['stopFirst']:.0%}, Schnitt {tm['avgR']}R, Seed {tm['seed']}. " if tm else ""
         reason = (f"In Play: Volumen {x['rv']}x, Gap {x['gap']:.1%}, Ausbruch ueber {round(x['high'], 2)}, SPY im Plus. "
                   f"Stop {c['atr']} ATR, kein festes Ziel. {info}News: {news['recent']} Meldungen, keine schwere.")
@@ -460,12 +547,16 @@ def try_swing(state, s, c):
             if not bars or now_ts() - bars[-1]["t"] > 900:
                 continue
             last = bars[-1]["c"]
-            p = daily_setup(symbol, last, c)
-        except (RuntimeError, ValueError, KeyError, subprocess.CalledProcessError):
+            p = daily_setup(symbol, last * (1 + c["slippage"]), c)
+        except DATA_ERRORS:
             continue
         if not p or risk_block(state, "swing", symbol, p["qty"], p["entry"], p["stop"], p["target"], last, s, c):
             continue
-        news = news_check(symbol, "")
+        try:
+            news = news_check(symbol, "")
+        except DATA_ERRORS as e:
+            note_error(state, f"News {symbol}", e)
+            continue
         if news["flagged"]:
             decide(state, symbol, "aussortiert", "Swing, News: " + news["flagged"][0])
             changed = True
@@ -494,7 +585,7 @@ def tick(do_publish=True):
     s = session()
     changed = False
     if s["open"]:
-        changed |= manage(state, s)
+        changed |= manage(state, s, c)
         if s["noEntryBefore"] <= now_ts() < s["noEntryAfter"]:
             if now_ts() >= s["swingAfter"]:
                 changed |= try_swing(state, s, c)
@@ -507,7 +598,7 @@ def tick(do_publish=True):
     else:
         # Verpasster Tagesschluss, etwa nach Ruhezustand: Daytrades nie ueber Nacht halten.
         if state["accounts"]["day"]["positions"]:
-            changed |= manage(state, s)
+            changed |= manage(state, s, c)
         state["status"] = "Markt geschlossen."
     if s["open"]:
         remember_bars(state, s)
@@ -533,7 +624,7 @@ def remember_bars(state, s):
     for symbol in day_syms:
         try:
             bars = session_bars(fetch(symbol, "5m", "1d"))
-        except (RuntimeError, ValueError, KeyError, subprocess.CalledProcessError):
+        except DATA_ERRORS:
             continue
         if bars:
             store[f"{ny(bars[-1]['t']).date().isoformat()}:{symbol}"] = [[b["t"], round(b["c"], 2)] for b in bars]
@@ -542,7 +633,7 @@ def remember_bars(state, s):
     for symbol in swing_syms:
         try:
             bars = rows(fetch(symbol, "1d", "6mo"), bar=86400)
-        except (RuntimeError, ValueError, KeyError, subprocess.CalledProcessError):
+        except DATA_ERRORS:
             continue
         store[f"D:{symbol}"] = [[b["t"], round(b["c"], 2)] for b in bars]
     for key in sorted(k for k in store if not k.startswith("D:"))[:-30]:

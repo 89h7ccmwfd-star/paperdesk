@@ -1,30 +1,37 @@
 {
- "at": "2026-11-04T17:28:47-05:00",
- "from": "2026-09-02",
- "to": "2026-11-03",
+ "at": "2026-11-05T17:17:18-05:00",
+ "from": "2026-09-03",
+ "to": "2026-11-04",
  "days": 44,
  "first": {
-  "pnl": 382,
-  "trades": 29,
-  "win": 0.31,
-  "avgR": 0.263,
-  "maxDD": -204
+  "pnl": 345,
+  "trades": 22,
+  "win": 0.273,
+  "avgR": 0.154,
+  "maxDD": -319
  },
  "second": {
-  "pnl": 190,
-  "trades": 25,
-  "win": 0.44,
-  "avgR": 0.152,
-  "maxDD": -50
+  "pnl": 406,
+  "trades": 23,
+  "win": 0.478,
+  "avgR": 0.648,
+  "maxDD": -84
  },
  "all": {
-  "pnl": 572,
-  "trades": 54,
-  "win": 0.37,
-  "avgR": 0.212,
-  "maxDD": -222
+  "pnl": 751,
+  "trades": 45,
+  "win": 0.378,
+  "avgR": 0.406,
+  "maxDD": -319
  },
- "spyPct": -1.0,
+ "spyPct": -0.15,
  "oldRulePnl": -1592,
- "oldRuleTrades": 177
+ "oldRuleTrades": 177,
+ "config": {
+  "max_risk": 250.0,
+  "max_position": 5000.0,
+  "max_day_loss": 500.0,
+  "max_day_trades": 3,
+  "slippage": 0.0004
+ }
 }

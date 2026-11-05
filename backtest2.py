@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Andere Ansaetze statt Feintuning, mit Vergleich zu Kaufen und Halten. Gleiche Kosten und Aufteilung wie backtest.py."""
+import datetime as dt
 import itertools
 import json
 import os
@@ -9,9 +10,10 @@ import time
 import backtest as bt
 import paper
 
-SLIP = bt.SLIP
-RISK = 50.0
-MAX_POS = 3000.0
+# None = Werte aus config.json wie im Bot; nur fuer Experimente ueberschreiben.
+SLIP = None
+RISK = None
+MAX_POS = None
 
 
 def daily(d, days):
@@ -39,19 +41,30 @@ def market_ok(spy, day, i):
     return b[i]["c"] > b[0]["o"]
 
 
-def in_play(data, spy, v, day, alldays, dailies):
-    """Aktien mit ungewoehnlich viel Volumen im ersten Balken, Ausbruch nach dem ersten Balken."""
-    ranked = []
+def in_play(data, spy, v, day, alldays, dailies, c=None):
+    """Ein Handelstag mit denselben Funktionen wie der Bot (Erstbalken, Ausloeser, Groesse) und gemeinsamer Kasse.
+    Einstieg zum naechsten Open (v["next"]) oder zum Schluss des Ausloesebalkens."""
+    c = dict(c or paper.cfg())
+    c["atr"] = v["atr"]
+    if RISK is not None:
+        c["max_risk"] = RISK
+    if MAX_POS is not None:
+        c["max_position"] = MAX_POS
+    slip = c["slippage"] if SLIP is None else SLIP
     idx = alldays.index(day)
     if idx < 15:
         return []
+    start = int(dt.datetime.fromisoformat(day + "T09:30").replace(tzinfo=paper.NY).timestamp())
+    spy_day = spy.get(day) or []
+    spy_open = paper.first_bar(spy_day, start)
+    spy_at = {b["t"]: b for b in spy_day}
+    ranked = []
     for s, d in data.items():
-        if day not in d or len(d[day]) < 2:
-            continue
+        bars = d.get(day) or []
+        first = paper.first_bar(bars, start)
         hist = [x for x in alldays[idx - 15:idx] if x in d]
-        if len(hist) < 15:
+        if not first or len(hist) < 15:
             continue
-        first = d[day][0]
         avg = sum(dailies[s][x]["first"] for x in hist[-14:]) / 14
         rv = first["v"] / avg if avg else 0
         gap = first["o"] / dailies[s][hist[-1]]["c"] - 1
@@ -61,38 +74,49 @@ def in_play(data, spy, v, day, alldays, dailies):
     ranked.sort(reverse=True)
     trades = []
     for rv, s, a in ranked[:v["top"]]:
-        bars = d = data[s][day]
-        high = bars[0]["h"]
-        for i in range(1, min(len(bars) - 1, 1 + v["window"])):
-            if bars[i]["c"] <= high:
-                continue
-            if v["mkt"] and not market_ok(spy, day, i):
+        bars = data[s][day]
+        pos = paper.find_trigger(bars, bars[0]["h"], start, v["window"])
+        if pos is None or pos + 1 >= len(bars):
+            continue
+        trig = bars[pos]
+        if v["mkt"] and (not spy_open or trig["t"] not in spy_at or spy_at[trig["t"]]["c"] <= spy_open["o"]):
+            continue
+        raw = bars[pos + 1]["o"] if v.get("next") else trig["c"]
+        p, _ = paper.plan(raw * (1 + slip), a, c)
+        if not p:
+            continue
+        entry, stop, qty = p["entry"], p["stop"], p["qty"]
+        target = entry + v["r"] * (entry - stop) if v["r"] else None
+        # Wie live: Tagesschluss mit dem Schluss des Balkens 15:50 bis 15:55
+        rest = [x for x in bars[pos + 1:] if paper.bar_index(x, start) <= 76]
+        px, exit_pos = None, len(rest) - 1
+        for k, x in enumerate(rest):
+            if x["l"] <= stop:
+                px, exit_pos = min(x["o"], stop), k
                 break
-            # "next": realistischer, Kauf erst zum Eroeffnungskurs des naechsten Balkens.
-            entry = (bars[i + 1]["o"] if v.get("next") else bars[i]["c"]) * (1 + SLIP)
-            stop = entry - v["atr"] * a
-            if stop <= 0:
+            if target and x["h"] >= target:
+                px, exit_pos = target, k
                 break
-            qty = int(min(RISK / (entry - stop), MAX_POS / entry))
-            if qty < 1:
-                break
-            target = entry + v["r"] * (entry - stop) if v["r"] else None
-            px = None
-            for x in bars[i + 1:]:
-                if x["l"] <= stop:
-                    px = min(x["o"], stop)
-                    break
-                if target and x["h"] >= target:
-                    px = target
-                    break
-            if px is None:
-                px = bars[-1]["c"]
-            px *= 1 - SLIP
-            pnl = (px - entry) * qty - paper.fee(qty) * 2
-            trades.append({"i": i, "pnl": pnl, "r": pnl / (RISK), "s": s})
-            break
+        if px is None:
+            px = rest[-1]["c"] if rest else entry
+        px *= 1 - slip
+        pnl = (px - entry) * qty - paper.fee(qty) * 2
+        trades.append({"i": pos, "exit": pos + 1 + exit_pos, "pnl": pnl, "r": pnl / p["plannedRisk"], "s": s,
+                       "cost": qty * entry, "risk": p["plannedRisk"]})
+    # Gemeinsame Kasse und dieselben Sperren wie live: Anzahl, Bargeld, Tagesverlust inklusive offenem Risiko.
     trades.sort(key=lambda t: t["i"])
-    return trades[:v["max"]]
+    taken, cash = [], 10000.0
+    for t in trades:
+        if len(taken) >= c["max_day_trades"]:
+            break
+        live = [x for x in taken if x["exit"] > t["i"]]
+        closed = [x for x in taken if x["exit"] <= t["i"]]
+        free = cash + sum(x["pnl"] for x in closed) - sum(x["cost"] for x in live)
+        realized = sum(x["pnl"] for x in closed)
+        if t["cost"] + paper.fee(1) > free or -realized + sum(x["risk"] for x in live) + t["risk"] > c["max_day_loss"]:
+            continue
+        taken.append(t)
+    return taken
 
 
 def summarize(results):
@@ -114,6 +138,7 @@ def buy_hold(series, days):
 
 def swing_test(symbols):
     """Aktuelle Swing-Regel ueber 2 Jahre Tageskerzen."""
+    slip = paper.cfg()["slippage"] if SLIP is None else SLIP
     data = {}
     for s in symbols:
         p = os.path.join(bt.CACHE, "d_" + s + ".json")
@@ -143,7 +168,7 @@ def swing_test(symbols):
             if not hit or not c[-1] > sma20 > sma50:
                 i += 1
                 continue
-            entry = bars[i + 1]["o"] * (1 + SLIP)
+            entry = bars[i + 1]["o"] * (1 + slip)
             stop = min(b["l"] for b in bars[i - 9:i + 1])
             risk = entry - stop
             if risk <= 0 or risk / entry > 0.08:
@@ -160,7 +185,7 @@ def swing_test(symbols):
                     break
             if px is None:
                 px = bars[j]["c"]
-            trades.append({"setup": hit, "t": bars[i]["t"], "r": (px * (1 - SLIP) - entry) / risk})
+            trades.append({"setup": hit, "t": bars[i]["t"], "r": (px * (1 - slip) - entry) / risk})
             i = j + 1
     trades.sort(key=lambda t: t["t"])
     out = {}
@@ -175,8 +200,6 @@ def swing_test(symbols):
 
 def current():
     """Aktuelle Parameter mit vorsichtigen Annahmen (Kauf zum naechsten Open, doppelte Slippage); fuers Dashboard."""
-    global SLIP
-    SLIP = 0.0004
     c = paper.cfg()
     v = {"rv": c["rv"], "gap": c["gap"], "top": int(c["top"]), "atr": c["atr"], "r": 0, "mkt": True,
          "window": int(c["window"]), "max": int(c["max_day_trades"]), "next": True}
@@ -189,7 +212,8 @@ def current():
     a = [in_play(data, spy, v, d, days, dailies) for d in t[:mid]]
     b = [in_play(data, spy, v, d, days, dailies) for d in t[mid:]]
     out = {"at": paper.iso(), "from": t[0], "to": t[-1], "days": len(t), "first": summarize(a), "second": summarize(b),
-           "all": summarize(a + b), "spyPct": buy_hold(spy, t), "oldRulePnl": -1592, "oldRuleTrades": 177}
+           "all": summarize(a + b), "spyPct": buy_hold(spy, t), "oldRulePnl": -1592, "oldRuleTrades": 177,
+           "config": {k: c[k] for k in ("max_risk", "max_position", "max_day_loss", "max_day_trades", "slippage")}}
     with open(os.path.join(paper.HOME, "site", "backtest.json"), "w") as f:
         json.dump(out, f, indent=1)
     print(json.dumps(out))
