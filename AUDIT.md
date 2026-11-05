@@ -58,7 +58,7 @@ Vorher: Phasen 2 bis 12 des Auftrags: Datenversionierung, Börsenkalender, Order
 | Backtest-Qualität | 5/10 | jetzt gleiche Regeln und Kasse wie live, aber Survivorship Bias und kurze Historie |
 | Statistische Validität | 4/10 | Methodik jetzt vorhanden (Walk-Forward, Reality Check, Variantenprotokoll, eingefrorene Regel); Ergebnis: kein belegter Vorteil, siehe RESEARCH.md |
 | Risikomanagement | 6/10 | Tagesverlust mit offenem Risiko, Kasse, Limits geprüft; keine Korrelationen |
-| Paper-Execution | 4/10 | Slippage und Gebühren, aber keine Spreads, Teilfüllungen oder Orderobjekte |
+| Paper-Execution | 6/10 | Order-Protokoll mit Zeitpunkten, Referenz- und Ausführungspreis, Kosten und Status; Spread (Annahme 0,04 %), Slippage, Gebühren, Volumengrenze 1 % der Kerze mit Teilausführung, Ablehnungen; keine echten Geld-Brief-Kurse, Limit-Orders nicht genutzt |
 | Operative Zuverlässigkeit | 5/10 | eigener Börsenkalender (Feiertage, Halbtage) bis Ende 2027, Folgeläufe stoßen sich selbst an, Not-Aus bei kaputtem Zustand; der erste Start am Tag hängt weiter an GitHubs Zeitplan |
 
 ## Betrieb und Daten (Schritt 3)
@@ -71,3 +71,14 @@ Vorher: Phasen 2 bis 12 des Auftrags: Datenversionierung, Börsenkalender, Order
 - `cloud-loop.sh` stößt kurz vor Ende seiner Laufzeit selbst einen Folgelauf an (`gh workflow run`), wenn die Börse noch offen ist; wartet vor Börsenstart bis zu 3 Stunden, aber nur an Handelstagen.
 - Tests: `tests/test_operations.py` (Kalender, Lücken, Verspätung, Sperre, Not-Aus), insgesamt 31 Tests bestanden.
 - Ungetestet: der Folgelauf über `gh workflow run` in GitHub selbst, Halbtage im Live-Betrieb.
+
+## Ausführung und Kennzahlen (Schritt 4)
+
+- `paper.cost`: halber Spread (Annahme `spread` 0,04 %, Yahoo liefert keine Geld-Brief-Kurse) plus Slippage je Seite, live und im Rückblick gleich.
+- `paper.fill_qty`: höchstens `max_volume_share` (1 %) des Volumens der Kerze; Rest verfällt (Teilausführung), unter einer Aktie wird abgelehnt.
+- `state.orders`: jede Kauf- und Verkaufsorder mit ID, Strategie, Signal-, Erstell- und Ausführungszeit, Referenz- und Ausführungspreis, Kosten je Aktie, Gebühr, Status (`filled`, `partial`, `rejected`) und Grund; Ablehnungen durch Risiko oder Volumen ebenfalls.
+- `analytics.py`: Netto, Rendite, Trefferquote, Ø Gewinn/Verlust, Gewinnfaktor, Erwartung mit 95-%-Intervall, Ø R, Sharpe, Sortino, max. Rückgang, Erholungsfaktor, Haltedauer, Zeit im Markt, Umschlag, Gebührenanteil, Spread- und Slippagekosten, je Monat und je Strategieversion. Fehlbuchungen werden herausgerechnet.
+- Dashboard: Karte „Kennzahlen · Papierhandel“, klar getrennt von Rückblick und Walk-Forward.
+- Neu gerechnet mit den Kosten: Rückblick +685 USD (45 Trades), Walk-Forward −34 USD, Reality Check p = 0,097, Zufallseinstieg −409 USD.
+- Tests: 41 bestanden (neu: Volumengrenze, Spread, Order-Protokoll, Ablehnung, Kennzahlen mit Handrechnung).
+- Nicht modelliert: Teilausführungen beim Verkauf (Stops gelten als voll ausgeführt), echte Geld-Brief-Spannen, Marktauswirkung über die Slippage hinaus.

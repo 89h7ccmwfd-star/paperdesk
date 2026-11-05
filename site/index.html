@@ -111,6 +111,11 @@ td.why{min-width:220px;color:var(--muted)}
 .bars i{display:block;height:6px;border-radius:3px;background:rgba(var(--cyan),.75)}.bars i.neg{background:rgba(var(--rose),.75)}
 .bars u{text-decoration:none;color:var(--body)}
 .review{margin:0;white-space:pre-wrap;line-height:1.6}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.mgrid div{padding:12px;border:1px solid var(--line);border-radius:14px}
+.mgrid span{display:block;color:var(--faint);font-size:12px}
+.mgrid b{display:block;margin-top:2px;color:#fff;font-size:18px;font-weight:600}
+.mgrid b.pos{color:#6ee7b7}.mgrid b.neg{color:#fda4af}
 footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;margin-top:24px;color:var(--faint);font-size:12px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
@@ -159,6 +164,12 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
         </div>
       </div>
     </section>
+
+    <section class="card emerald s4" id="metrics"><div class="face" aria-hidden="true"></div><div class="in">
+      <div class="title"><h2 id="mTitle">Kennzahlen · Papierhandel</h2><span class="small" id="mNote"></span></div>
+      <div class="mgrid" id="mgrid"></div>
+      <p class="note">Nur echte Papier-Trades, keine Rückblick-Zahlen. Als Fehlbuchung markierte Trades sind herausgerechnet. Unter 40 Trades sind diese Zahlen Zufall nahe, das Intervall zeigt die Spannweite.</p>
+    </div></section>
 
     <section class="card indigo s2"><div class="face" aria-hidden="true"></div><div class="in">
       <div class="title"><h2 id="eqTitle">Kapital</h2></div>
@@ -329,6 +340,15 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
     $('sampleNote').textContent='Erst '+sells.length+' geschlossene Trades. Unter 40 sagt das Ergebnis wenig über die Strategie.';
   }
 
+  function renderMetrics(){
+    const m=(state.metrics||{})[mode],a=m&&m.all;$('mTitle').textContent='Kennzahlen · Papierhandel · '+(mode==='day'?'Daytrading':'Swing');
+    if(!a||!a.trades){$('mgrid').innerHTML='<div class="empty" style="grid-column:1/-1">Noch keine abgeschlossenen Papier-Trades. Kennzahlen erscheinen nach dem ersten Verkauf.</div>';$('mNote').textContent='';return}
+    $('mNote').textContent=a.trades+' Trades an '+a.days+' Tagen · Versionen: '+Object.keys(m.byStrategy||{}).join(', ');
+    const f=(v,suf='')=>v==null?'–':num(v,2)+suf,ci=a.expectancyCI;
+    const items=[['Netto',signed(a.netPnl),cls(a.netPnl)],['Rendite',f(a.returnPct,' %'),cls(a.returnPct)],['Trefferquote',f(a.winRate*100,' %')],['Ø Gewinn',a.avgWin==null?'–':usd(a.avgWin)],['Ø Verlust',a.avgLoss==null?'–':usd(a.avgLoss)],['Gewinnfaktor',f(a.profitFactor)],['Erwartung je Trade',usd(a.expectancy)+(ci?' ('+usd(ci.low)+' bis '+usd(ci.high)+')':''),cls(a.expectancy)],['Ø R',f(a.avgR)],['Sharpe',f(a.sharpe)],['Sortino',f(a.sortino)],['Max. Rückgang',usd(a.maxDrawdown)+' ('+f(a.maxDrawdownPct,' %')+')'],['Erholung',f(a.recoveryFactor)],['Ø Haltedauer',a.avgHoldMin>=1440?f(a.avgHoldMin/1440,' Tage'):f(a.avgHoldMin,' min')],['Im Markt',f(a.exposurePct,' %')],['Umschlag',f(a.turnover,'x')],['Gebühren',usd(a.fees)+' ('+f(a.feeSharePct,' %')+')'],['Spread und Slippage',usd(a.slippageCost)]];
+    $('mgrid').innerHTML=items.map(i=>'<div><span>'+esc(i[0])+'</span><b class="'+(i[2]||'')+'">'+esc(i[1])+'</b></div>').join('');
+  }
+
   function renderLog(){
     const items=(state.decisions||[]).map(d=>({at:d.timestamp,sym:d.symbol,text:d.outcome==='gekauft'?'Gekauft. '+d.detail.split('. ')[0]+'.':d.detail,kind:d.outcome==='gekauft'?'buy':'skip'}));
     Object.values(state.accounts).forEach(a=>a.journal.forEach(j=>{if(j.action==='SELL')items.push({at:j.timestamp,sym:j.symbol,text:'Verkauft zu '+usd(j.price)+', '+j.reason+', '+signed(j.pnl),kind:'sell'})}));
@@ -347,7 +367,7 @@ footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 24px;ma
     if(!state)return;
     const a=state.accounts[mode];
     $('dayBtn').setAttribute('aria-pressed',mode==='day');$('swingBtn').setAttribute('aria-pressed',mode==='swing');
-    renderNow();renderWatch();renderTrades(a);renderEquity(a);renderLog();renderBt();
+    renderNow();renderWatch();renderTrades(a);renderMetrics();renderEquity(a);renderLog();renderBt();
     if(state.review){$('review').textContent=state.review.text;$('reviewAt').textContent=when(state.review.at)}
   }
   // Der Bot sichert seinen Stand im oeffentlichen Repo, die Seite liest ihn dort. Rueckfall: mitgelieferte Kopie.

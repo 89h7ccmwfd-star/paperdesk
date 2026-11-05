@@ -51,7 +51,7 @@ def in_play(data, spy, v, day, alldays, dailies, c=None):
         c["max_risk"] = RISK
     if MAX_POS is not None:
         c["max_position"] = MAX_POS
-    slip = c["slippage"] if SLIP is None else SLIP
+    slip = paper.cost(c) if SLIP is None else SLIP
     idx = alldays.index(day)
     if idx < 15:
         return []
@@ -91,6 +91,11 @@ def in_play(data, spy, v, day, alldays, dailies, c=None):
         p, _ = paper.plan(raw * (1 + slip), a, c)
         if not p:
             continue
+        # Wie live: hoechstens ein Anteil des Volumens der Kerze, in der gekauft wird.
+        filled = paper.fill_qty(p["qty"], bars[pos + 1]["v"] if v.get("next") else trig["v"], c)
+        if filled < 1:
+            continue
+        p = dict(p, qty=filled, plannedRisk=round(filled * (p["entry"] - p["stop"]), 2))
         entry, stop, qty = p["entry"], p["stop"], p["qty"]
         target = entry + v["r"] * (entry - stop) if v["r"] else None
         # Wie live: Tagesschluss mit dem Schluss des Balkens 15:50 bis 15:55
@@ -144,7 +149,7 @@ def buy_hold(series, days):
 
 def swing_test(symbols):
     """Aktuelle Swing-Regel ueber 2 Jahre Tageskerzen."""
-    slip = paper.cfg()["slippage"] if SLIP is None else SLIP
+    slip = paper.cost(paper.cfg()) if SLIP is None else SLIP
     data = {}
     for s in symbols:
         p = os.path.join(bt.CACHE, "d_" + s + ".json")
@@ -219,7 +224,7 @@ def current():
     b = [in_play(data, spy, v, d, days, dailies) for d in t[mid:]]
     out = {"at": paper.iso(), "from": t[0], "to": t[-1], "days": len(t), "first": summarize(a), "second": summarize(b),
            "all": summarize(a + b), "spyPct": buy_hold(spy, t), "oldRulePnl": -1592, "oldRuleTrades": 177,
-           "config": {k: c[k] for k in ("max_risk", "max_position", "max_day_loss", "max_day_trades", "slippage")}}
+           "config": {k: c[k] for k in ("max_risk", "max_position", "max_day_loss", "max_day_trades", "slippage", "spread", "max_volume_share")}}
     with open(os.path.join(paper.HOME, "site", "backtest.json"), "w") as f:
         json.dump(out, f, indent=1)
     print(json.dumps(out))

@@ -136,18 +136,48 @@ class ExecutionTests(Base):
         self.assertFalse(st["inPlay"]["symbols"][0]["done"])
 
 
+class OrderTests(Base):
+    def test_volume_cap_partial_fill(self):
+        self.assertEqual(paper.fill_qty(500, 20_000, self.c), 200)
+        self.assertEqual(paper.fill_qty(50, 20_000, self.c), 50)
+        self.assertEqual(paper.fill_qty(50, 50, self.c), 0)
+
+    def test_cost_includes_half_spread(self):
+        self.assertAlmostEqual(paper.cost(self.c), self.c["spread"] / 2 + self.c["slippage"])
+
+    def test_sell_records_order(self):
+        st = empty_state()
+        pos = {"symbol": "X", "qty": 10, "entry": 100, "stop": 99, "target": None, "entryFee": 1, "last": 100}
+        st["accounts"]["day"]["positions"] = [pos]
+        paper.sell(st, "day", pos, 99.0, "Stop", 0.001)
+        o = st["orders"][-1]
+        self.assertEqual((o["type"], o["status"], o["filledQty"]), ("stop", "filled", 10))
+        self.assertAlmostEqual(o["refPrice"] - o["fillPrice"], o["costPerShare"])
+
+    def test_low_volume_rejects_buy(self):
+        st = empty_state()
+        st["inPlay"] = {"date": "2026-11-05", "scanned": 1, "matches": 1,
+                        "symbols": [{"symbol": "X", "rv": 2, "gap": 0.01, "atr": 2, "high": 11, "done": False}]}
+        spy = chart([bar(i, 100, 110, 99, 100.5 + i) for i in range(6)])
+        x = chart([bar(i, 10.5, 10.95 if i else 11, 10.4, 10.9, 10) for i in range(5)] + [bar(5, 10.9, 11.5, 10.8, 11.4, 10)])
+        with mock.patch.object(paper, "fetch", side_effect=lambda s, i, r: spy if s == "SPY" else x):
+            paper.try_day(st, self.s, self.c)
+        self.assertEqual(st["orders"][-1]["status"], "rejected")
+        self.assertEqual(st["accounts"]["day"]["positions"], [])
+
+
 class ParityTests(Base):
     def test_backtest_uses_live_rules(self):
         days = [f"2026-10-{d:02d}" for d in range(1, 16)] + [DAY]
         first = {d: 1000 for d in days}
         dailies = {s: {d: {"o": 100, "h": 101, "l": 99, "c": 100, "first": first[d]} for d in days} for s in "ABC"}
-        today = [bar(0, 101, 102, 100.5, 101.8, 5000), bar(1, 101.8, 102.5, 101.7, 102.4, 3000)]
-        today += [bar(i, 102.4, 102.6, 102.2, 102.5, 2000) for i in range(2, 78)]
+        today = [bar(0, 101, 102, 100.5, 101.8, 5_000_000), bar(1, 101.8, 102.5, 101.7, 102.4, 3_000_000)]
+        today += [bar(i, 102.4, 102.6, 102.2, 102.5, 2_000_000) for i in range(2, 78)]
         data = {s: {**{d: [] for d in days[:-1]}, DAY: today} for s in "ABC"}
         spy = {DAY: [bar(i, 400, 401, 399, 400.5 + i * 0.01) for i in range(78)]}
         v = {"rv": 1.0, "gap": 0.005, "top": 5, "atr": 0.25, "r": 0, "mkt": True, "window": 12, "max": 3, "next": True}
         trades = backtest2.in_play(data, spy, v, DAY, days, dailies, self.c)
-        live, _ = paper.plan(102.4 * (1 + self.c["slippage"]), backtest2.atr(dailies["A"], days[:15]),
+        live, _ = paper.plan(102.4 * (1 + paper.cost(self.c)), backtest2.atr(dailies["A"], days[:15]),
                              dict(self.c, atr=0.25))
         self.assertTrue(trades)
         self.assertAlmostEqual(trades[0]["risk"], live["plannedRisk"])

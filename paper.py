@@ -19,6 +19,8 @@ import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 from zoneinfo import ZoneInfo
 
+import analytics
+
 HOME = os.environ.get("PAPER_HOME") or os.path.dirname(os.path.abspath(__file__))
 STATE = os.path.join(HOME, "site", "state.json")
 CONFIG = os.path.join(HOME, "config.json")
@@ -31,13 +33,15 @@ MAX_DECISIONS = 60
 
 # Grenzen fuer die abendliche Analyse: sie darf nur innerhalb dieser Werte verstellen.
 DEFAULTS = {"rv": 1.0, "gap": 0.005, "top": 5, "atr": 0.25, "window": 12, "max_risk": 50.0, "max_position": 3000.0,
-            "max_day_loss": 100.0, "max_day_trades": 3, "max_swing_open": 2, "max_swing_new": 1, "slippage": 0.0004}
+            "max_day_loss": 100.0, "max_day_trades": 3, "max_swing_open": 2, "max_swing_new": 1, "slippage": 0.0004,
+            "spread": 0.0004, "max_volume_share": 0.01}
 # Erlaubte Bereiche je Schluessel; alles andere in config.json ist ein Fehler.
 SCHEMA = {"rv": (0.5, 5), "gap": (0, 0.1), "top": (1, 20), "atr": (0.05, 2), "window": (1, 77), "max_risk": (1, 5000),
           "max_position": (100, 100000), "max_day_loss": (1, 10000), "max_day_trades": (1, 20), "max_swing_open": (0, 10),
-          "max_swing_new": (0, 10), "slippage": (0, 0.01)}
+          "max_swing_new": (0, 10), "slippage": (0, 0.01), "spread": (0, 0.02), "max_volume_share": (0.001, 0.5)}
 DATA_ERRORS = (RuntimeError, ValueError, KeyError, IndexError, TypeError, subprocess.CalledProcessError, ET.ParseError)
 MAX_ERRORS = 20
+MAX_ORDERS = 300
 
 # NYSE-Kalender laut nyse.com/markets/hours-calendars (gelesen 13.10.2026). Danach bricht der Bot bewusst ab.
 HOLIDAYS = {"2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25", "2026-06-19", "2026-07-03",
@@ -73,6 +77,25 @@ def ny(ts=None):
 
 def iso(ts=None):
     return ny(ts).isoformat(timespec="seconds")
+
+
+def cost(c):
+    """Kosten je Seite als Anteil am Kurs: halber Spread plus Slippage. Gilt live und im Rueckblick."""
+    return c["spread"] / 2 + c["slippage"]
+
+
+def fill_qty(qty, bar_volume, c):
+    """Hoechstens ein Anteil des Volumens der letzten Kerze wird ausgefuehrt; der Rest verfaellt."""
+    return max(0, min(qty, int(bar_volume * c["max_volume_share"])))
+
+
+def record_order(state, **o):
+    """Jede Order mit Zeitpunkten, Preisen, Kosten und Status; abgelehnte auch."""
+    o.setdefault("id", f"{int(now_ts())}-{o.get('symbol', '')}-{len(state.get('orders', []))}")
+    o.setdefault("createdAt", iso())
+    state.setdefault("orders", []).append(o)
+    del state["orders"][:-MAX_ORDERS]
+    return o
 
 
 def fee(qty):
@@ -296,6 +319,7 @@ def archive(day, payload):
 
 def plan(entry, atr_value, c):
     """Stop in ATR-Bruchteilen unter dem Einstieg, kein festes Ziel: Gewinne laufen bis zum Tagesschluss."""
+    entry = round(entry, 2)
     stop = math.floor((entry - c["atr"] * atr_value) * 100) / 100
     risk = entry - stop
     if risk <= 0:
@@ -469,8 +493,13 @@ def buy(state, account, symbol, p, source, reason):
 
 
 def sell(state, account, pos, price, reason, slip=0.0):
+    ref = price
     price = round(price * (1 - slip), 2)
     acc = state["accounts"][account]
+    record_order(state, account=account, strategy=pos.get("strategy"), side="SELL", symbol=pos["symbol"],
+                 type="stop" if reason == "Stop" else "market", executedAt=iso(), requestedQty=pos["qty"],
+                 filledQty=pos["qty"], refPrice=round(ref, 4), fillPrice=price, costPerShare=round(ref - price, 4),
+                 fee=fee(pos["qty"]), status="filled", reason=reason)
     f = fee(pos["qty"])
     pnl = round((price - pos["entry"]) * pos["qty"] - pos["entryFee"] - f, 2)
     acc["cash"] = round(acc["cash"] + pos["qty"] * price - f, 2)
@@ -516,12 +545,12 @@ def manage(state, s, c):
             if not hit and name == "day" and (now_ts() >= s["flatBy"] or not s["open"]):
                 hit = (p["last"], "Flat by, Tagesschluss")
             if hit:
-                sell(state, name, p, hit[0], hit[1], c["slippage"])
+                sell(state, name, p, hit[0], hit[1], cost(c))
                 changed = True
     realized, unrealized = day_pnl(state)
     if state["accounts"]["day"]["positions"] and realized + unrealized <= -c["max_day_loss"]:
         for p in list(state["accounts"]["day"]["positions"]):
-            sell(state, "day", p, p.get("last", p["entry"]), "Tagesverlustgrenze erreicht", c["slippage"])
+            sell(state, "day", p, p.get("last", p["entry"]), "Tagesverlustgrenze erreicht", cost(c))
         changed = True
     recalc(state)
     return changed
@@ -596,12 +625,22 @@ def try_day(state, s, c):
             skip(x, "Ausbruch verpasst, Bot lief zu spaet")
             continue
         last = bars[-1]["c"]
-        p, why = plan(last * (1 + c["slippage"]), x["atr"], c)
+        p, why = plan(last * (1 + cost(c)), x["atr"], c)
         if not p:
             skip(x, why)
             continue
+        order = dict(account="day", strategy=strategy_version(), side="BUY", symbol=symbol, type="market",
+                     signalAt=iso(trig["t"] + BAR), refPrice=round(last, 4), requestedQty=p["qty"])
+        filled = fill_qty(p["qty"], bars[-1]["v"], c)
+        if filled < 1:
+            record_order(state, **order, filledQty=0, status="rejected", reason="Volumen der letzten Kerze zu klein")
+            skip(x, "Volumen zu klein fuer eine Ausfuehrung")
+            continue
+        if filled < p["qty"]:
+            p = dict(p, qty=filled, plannedRisk=round(filled * (p["entry"] - p["stop"]), 2))
         block = risk_block(state, "day", symbol, p["qty"], p["entry"], p["stop"], p["target"], last, s, c)
         if block:
+            record_order(state, **order, filledQty=0, status="rejected", reason=block)
             skip(x, block)
             continue
         meta = result.get("meta", {})
@@ -624,6 +663,11 @@ def try_day(state, s, c):
         buy(state, "day", symbol, p, "Yahoo 5m", reason)
         state["accounts"]["day"]["journal"][-1]["trigger"] = round(x["high"], 2)
         state["accounts"]["day"]["journal"][-1]["strategy"] = strategy_version()
+        state["accounts"]["day"]["positions"][-1]["strategy"] = strategy_version()
+        record_order(state, **order, executedAt=iso(), filledQty=p["qty"], fillPrice=p["entry"],
+                     costPerShare=round(p["entry"] - last, 4), fee=fee(p["qty"]),
+                     status="filled" if p["qty"] == order["requestedQty"] else "partial", reason="Ausbruch",
+                     risk={"stop": p["stop"], "plannedRisk": p["plannedRisk"]})
         x["status"], x["why"] = "gekauft", f"Gekauft zu {p['entry']}"
         decide(state, symbol, "gekauft", reason)
     return changed
@@ -640,7 +684,10 @@ def try_swing(state, s, c):
             if not bars or now_ts() - bars[-1]["t"] > 900:
                 continue
             last = bars[-1]["c"]
-            p = daily_setup(symbol, last * (1 + c["slippage"]), c)
+            p = daily_setup(symbol, last * (1 + cost(c)), c)
+            if p:
+                filled = fill_qty(p["qty"], bars[-1]["v"], c)
+                p = dict(p, qty=filled, plannedRisk=round(filled * (p["entry"] - p["stop"]), 2)) if filled else None
         except DATA_ERRORS:
             continue
         if not p or risk_block(state, "swing", symbol, p["qty"], p["entry"], p["stop"], p["target"], last, s, c):
@@ -657,6 +704,12 @@ def try_swing(state, s, c):
         reason = f"Tages-Setup {p['setup']}, Stop am 10-Tage-Tief, Ziel 2R. News: {news['recent']} Meldungen, keine schwere."
         buy(state, "swing", symbol, p, "Yahoo 5m", reason)
         state["accounts"]["swing"]["journal"][-1]["strategy"] = "swing-reclaim-1"
+        state["accounts"]["swing"]["positions"][-1]["strategy"] = "swing-reclaim-1"
+        record_order(state, account="swing", strategy="swing-reclaim-1", side="BUY", symbol=symbol, type="market",
+                     signalAt=iso(), executedAt=iso(), refPrice=round(last, 4), requestedQty=p["qty"],
+                     filledQty=p["qty"], fillPrice=p["entry"], costPerShare=round(p["entry"] - last, 4),
+                     fee=fee(p["qty"]), status="filled", reason=p["setup"],
+                     risk={"stop": p["stop"], "plannedRisk": p["plannedRisk"]})
         decide(state, symbol, "gekauft", reason)
         return True
     return changed
@@ -706,6 +759,7 @@ def tick(do_publish=True):
     if s["open"]:
         remember_bars(state, s)
     describe(state, s, c)
+    state["metrics"] = analytics.report(state)
     failed = [f["symbol"] for f in FETCH_LOG if not f["ok"]]
     state["dataQuality"] = {"at": iso(), "source": "Yahoo chart v8", "requests": len(FETCH_LOG), "failed": len(failed),
                             "failedSymbols": sorted(set(failed))[:10],
@@ -798,7 +852,7 @@ def main():
         if cmd == "tick":
             tick(do_publish="--no-publish" not in args)
         elif cmd == "stats":
-            print(json.dumps({"stats": stats(), "config": cfg(), "decisions": load().get("decisions", [])[-40:],
+            print(json.dumps({"stats": stats(), "metrics": analytics.report(load()), "config": cfg(), "decisions": load().get("decisions", [])[-40:],
                               "bounds": BOUNDS}, ensure_ascii=False, indent=1))
         elif cmd == "review":
             state = load()
