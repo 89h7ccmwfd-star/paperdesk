@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-06T13:51:31-05:00",
+ "updatedAt": "2026-11-06T13:56:28-05:00",
  "status": "Markt offen. In Play heute: NVDA, CSCO, INTC, GOOGL.",
  "accounts": {
   "day": {
@@ -40,7 +40,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 9258.15,
-   "equity": 9946.89,
+   "equity": 9947.23,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -53,7 +53,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 344.37
+     "last": 344.54
     }
    ],
    "journal": [
@@ -215,7 +215,7 @@
     "why": "Ausbruch verpasst, Bot lief zu spaet"
    }
   ],
-  "spyChangePct": 0.5,
+  "spyChangePct": 0.52,
   "windowEnd": "2026-11-06T10:35:00-05:00"
  },
  "publishedAt": 1793990268.9636157,
@@ -1652,7 +1652,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-06T13:51:31-05:00",
+  "at": "2026-11-06T13:56:28-05:00",
   "source": "Yahoo chart v8",
   "requests": 201,
   "failed": 1,
