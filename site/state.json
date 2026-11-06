@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-05T16:39:11-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-06T13:37:48-05:00",
+ "status": "Markt offen. In Play heute: NVDA, CSCO, INTC, GOOGL.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -40,7 +40,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 9258.15,
-   "equity": 9950.19,
+   "equity": 9947.29,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -53,7 +53,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 346.02
+     "last": 344.57
     }
    ],
    "journal": [
@@ -135,56 +135,90 @@
    "symbol": "TGT",
    "outcome": "aussortiert",
    "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-06T13:37:48-05:00",
+   "symbol": "NVDA",
+   "outcome": "aussortiert",
+   "detail": "Ausbruch verpasst, Bot lief zu spaet"
+  },
+  {
+   "timestamp": "2026-11-06T13:37:48-05:00",
+   "symbol": "CSCO",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-06T13:37:48-05:00",
+   "symbol": "INTC",
+   "outcome": "aussortiert",
+   "detail": "Ausbruch verpasst, Bot lief zu spaet"
+  },
+  {
+   "timestamp": "2026-11-06T13:37:48-05:00",
+   "symbol": "GOOGL",
+   "outcome": "aussortiert",
+   "detail": "Ausbruch verpasst, Bot lief zu spaet"
   }
  ],
  "inPlay": {
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "scanned": 98,
-  "matches": 9,
+  "matches": 4,
   "symbols": [
    {
-    "symbol": "HD",
-    "rv": 4.65,
-    "gap": 0.0146,
-    "atr": 9.0311,
-    "high": 362.3500061035156,
-    "done": true
+    "symbol": "NVDA",
+    "rv": 2.96,
+    "gap": 0.0526,
+    "atr": 7.4563,
+    "high": 193.47000122070312,
+    "done": true,
+    "last": 187.21,
+    "distPct": -3.24,
+    "status": "aussortiert",
+    "why": "Ausbruch verpasst, Bot lief zu spaet"
    },
    {
-    "symbol": "CVS",
-    "rv": 3.07,
-    "gap": 0.0206,
-    "atr": 3.0226,
-    "high": 83.38990020751953,
-    "done": true
+    "symbol": "CSCO",
+    "rv": 1.67,
+    "gap": 0.0112,
+    "atr": 3.4571,
+    "high": 97.5,
+    "done": true,
+    "last": 94.18,
+    "distPct": -3.41,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    },
    {
-    "symbol": "AXP",
-    "rv": 1.87,
-    "gap": 0.0208,
-    "atr": 7.5763,
-    "high": 343.885009765625,
-    "done": true
+    "symbol": "INTC",
+    "rv": 1.65,
+    "gap": 0.0548,
+    "atr": 6.5067,
+    "high": 55.689701080322266,
+    "done": true,
+    "last": 56.44,
+    "distPct": 1.36,
+    "status": "aussortiert",
+    "why": "Ausbruch verpasst, Bot lief zu spaet"
    },
    {
-    "symbol": "LOW",
-    "rv": 1.47,
-    "gap": 0.0175,
-    "atr": 6.1543,
-    "high": 234.3300018310547,
-    "done": true
-   },
-   {
-    "symbol": "TGT",
-    "rv": 1.41,
-    "gap": 0.0144,
-    "atr": 5.0038,
-    "high": 166.49000549316406,
-    "done": true
+    "symbol": "GOOGL",
+    "rv": 1.06,
+    "gap": 0.008,
+    "atr": 11.1936,
+    "high": 288.4100036621094,
+    "done": true,
+    "last": 285.98,
+    "distPct": -0.84,
+    "status": "aussortiert",
+    "why": "Ausbruch verpasst, Bot lief zu spaet"
    }
-  ]
+  ],
+  "spyChangePct": 0.54,
+  "windowEnd": "2026-11-06T10:35:00-05:00"
  },
- "publishedAt": 1793910539.6750412,
+ "publishedAt": 1793990268.9636157,
  "bars": {
   "2026-11-04:V": [
    [
@@ -1008,6 +1042,10 @@
    [
     1793802600,
     169.27
+   ],
+   [
+    1793889000,
+    165.3
    ]
   ],
   "D:AAPL": [
@@ -1518,7 +1556,109 @@
    [
     1793802600,
     349.51
+   ],
+   [
+    1793889000,
+    344.17
    ]
   ]
+ },
+ "plan": {
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
+  "windowEnd": "2026-11-06T10:35:00-05:00",
+  "dayBuys": 0,
+  "maxDayTrades": 3
+ },
+ "metrics": {
+  "day": {
+   "all": {
+    "trades": 1,
+    "strategy": "alle",
+    "netPnl": 32.62,
+    "returnPct": 0.33,
+    "winRate": 1.0,
+    "avgWin": 32.62,
+    "avgLoss": null,
+    "profitFactor": null,
+    "expectancy": 32.62,
+    "expectancyCI": {
+     "low": 32.62,
+     "high": 32.62
+    },
+    "avgR": 0.714,
+    "sharpe": null,
+    "sortino": null,
+    "maxDrawdown": 0.0,
+    "maxDrawdownPct": 0.0,
+    "recoveryFactor": null,
+    "avgHoldMin": 304.6,
+    "exposurePct": 78.1,
+    "turnover": 0.52,
+    "fees": 2.0,
+    "feeSharePct": 5.8,
+    "slippageCost": 0,
+    "days": 1,
+    "byMonth": {
+     "2026-11": 32.62
+    }
+   },
+   "byStrategy": {
+    "vor Versionierung": {
+     "trades": 1,
+     "strategy": "vor Versionierung",
+     "netPnl": 32.62,
+     "returnPct": 0.33,
+     "winRate": 1.0,
+     "avgWin": 32.62,
+     "avgLoss": null,
+     "profitFactor": null,
+     "expectancy": 32.62,
+     "expectancyCI": {
+      "low": 32.62,
+      "high": 32.62
+     },
+     "avgR": 0.714,
+     "sharpe": null,
+     "sortino": null,
+     "maxDrawdown": 0.0,
+     "maxDrawdownPct": 0.0,
+     "recoveryFactor": null,
+     "avgHoldMin": 304.6,
+     "exposurePct": 78.1,
+     "turnover": 0.52,
+     "fees": 2.0,
+     "feeSharePct": 5.8,
+     "slippageCost": 0,
+     "days": 1,
+     "byMonth": {
+      "2026-11": 32.62
+     }
+    }
+   }
+  },
+  "swing": {
+   "all": {
+    "trades": 0,
+    "strategy": "alle"
+   },
+   "byStrategy": {
+    "vor Versionierung": {
+     "trades": 0,
+     "strategy": "vor Versionierung"
+    }
+   }
+  }
+ },
+ "dataQuality": {
+  "at": "2026-11-06T13:37:48-05:00",
+  "source": "Yahoo chart v8",
+  "requests": 402,
+  "failed": 2,
+  "failedSymbols": [
+   "SQ"
+  ],
+  "issues": []
  }
 }
