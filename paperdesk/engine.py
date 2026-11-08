@@ -7,15 +7,16 @@ from . import clock, config, data, execution, ledger, publishing, risk_engine, s
 from .types import Any, Bar, Bars, Config, Dict, List, Optional, Order, Plan, Position, Session, State, Tuple  # noqa: F401
 
 
-def manage(state: State, s: Session, c: Config) -> bool:
+def manage(state: State, s: Session, c: Config, until: Optional[float] = None) -> bool:
     """Stop vor Ziel; oeffnet eine Kerze unter dem Stop, wird zum Eroeffnungskurs verkauft. Daytrades flat by.
-    Jeder Balken, der nach dem Kauf endet, zaehlt, auch der, in dem gekauft wurde (vorsichtig)."""
+    Jeder Balken, der nach dem Kauf endet, zaehlt, auch der, in dem gekauft wurde (vorsichtig).
+    until: nur Kerzen bis zu diesem Zeitpunkt (Nachholen); dann kein Tagesschluss und kein Zeitstopp."""
     changed = False
     for name, acc in state["accounts"].items():
         for p in list(acc["positions"]):
             since = dt.datetime.fromisoformat(p["openedAt"]).timestamp()
             try:
-                bars = [b for b in data.session_bars(data.fetch(p["symbol"], "5m", "5d")) if b["t"] + config.BAR > since]
+                bars = [b for b in data.session_bars(data.fetch(p["symbol"], "5m", "5d")) if b["t"] + config.BAR > since and (until is None or b["t"] + config.BAR <= until)]
             except config.DATA_ERRORS as e:
                 ledger.note_error(state, f"Position {p['symbol']}", e)
                 continue
@@ -24,20 +25,21 @@ def manage(state: State, s: Session, c: Config) -> bool:
             hit = None
             for b in bars:
                 if b["l"] <= p["stop"]:
-                    hit = (min(b["o"], p["stop"]), "Stop")
+                    hit = (min(b["o"], p["stop"]), "Stop", b["t"] + config.BAR)
                     break
                 if p["target"] and b["h"] >= p["target"]:
-                    hit = (p["target"], "Ziel")
+                    hit = (p["target"], "Ziel", b["t"] + config.BAR)
                     break
-            if not hit and name == "swing" and clock.now_ts() - since > config.SWING_MAX_DAYS * 86400:
+            if not hit and until is None and name == "swing" and clock.now_ts() - since > config.SWING_MAX_DAYS * 86400:
                 hit = (p["last"], "Zeitstopp nach 8 Wochen")
-            if not hit and name == "day" and (clock.now_ts() >= s["flatBy"] or not s["open"]):
+            if not hit and until is None and name == "day" and (clock.now_ts() >= s["flatBy"] or not s["open"]):
                 hit = (p["last"], "Flat by, Tagesschluss")
             if hit:
-                execution.sell(state, name, p, hit[0], hit[1], config.cost(c))
+                # Zeit der Kerze, in der Stop oder Ziel lag; zaehlt bei nachgeholten Kaeufen.
+                execution.sell(state, name, p, hit[0], hit[1], config.cost(c), at=hit[2] if len(hit) > 2 else None)
                 changed = True
     realized, unrealized = risk_engine.day_pnl(state)
-    if state["accounts"]["day"]["positions"] and realized + unrealized <= -c["max_day_loss"]:
+    if until is None and state["accounts"]["day"]["positions"] and realized + unrealized <= -c["max_day_loss"]:
         for p in list(state["accounts"]["day"]["positions"]):
             execution.sell(state, "day", p, p.get("last", p["entry"]), "Tagesverlustgrenze erreicht", config.cost(c))
         changed = True
@@ -69,6 +71,7 @@ def try_day(state: State, s: Session, c: Config) -> bool:
         x["status"], x["why"] = "aussortiert", why
         ledger.decide(state, x["symbol"], "aussortiert", why)
 
+    hits, caught_up = [], False
     for x in inplay["symbols"]:
         if x["done"]:
             continue
@@ -100,6 +103,10 @@ def try_day(state: State, s: Session, c: Config) -> bool:
                 x["done"] = True
                 skip(x, "Kein Ausbruch in der ersten Stunde")
             continue
+        hits.append((bars[pos]["t"], x, result, bars, pos))
+    # Nach einem verspaeteten Lauf koennen mehrere Ausbrueche anstehen: in der Reihenfolge buchen, in der sie passiert sind.
+    for _, x, result, bars, pos in sorted(hits, key=lambda h: h[0]):
+        symbol = x["symbol"]
         x["done"] = True
         changed = True
         trig = bars[pos]
@@ -110,17 +117,25 @@ def try_day(state: State, s: Session, c: Config) -> bool:
         if spy_bar["c"] <= spy_open["o"]:
             skip(x, "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung")
             continue
-        if data.bar_index(bars[-1], s["start"]) - data.bar_index(trig, s["start"]) > 1:
-            skip(x, "Ausbruch verpasst, Bot lief zu spaet")
-            continue
-        last = bars[-1]["c"]
+        # Lief der Bot zu spaet (GitHub startet geplante Laeufe oft Stunden verspaetet), wird der Ausbruch so gebucht,
+        # wie ein puenktlicher Lauf es getan haette: zum Schluss der Ausloeser-Kerze, mit deren Zeit und Volumen.
+        # Stop und Tagesschluss seit dem Kauf prueft manage() direkt danach mit allen Kerzen seither.
+        late = data.bar_index(bars[-1], s["start"]) - data.bar_index(trig, s["start"]) > 1
+        ref = trig if late else bars[-1]
+        at = trig["t"] + config.BAR if late else None
+        if late:
+            # Stand zum Signalzeitpunkt herstellen: Stops frueherer nachgeholter Kaeufe bis dahin anwenden,
+            # damit Risiko- und Geldpruefung so rechnen wie ein puenktlicher Lauf.
+            manage(state, s, c, until=at)
+            caught_up = True
+        last = ref["c"]
         p, why = strategy.plan(last * (1 + config.cost(c)), x["atr"], c)
         if not p:
             skip(x, why)
             continue
         order = dict(account="day", strategy=strategy.strategy_version(), side="BUY", symbol=symbol, type="market",
                      signalAt=clock.iso(trig["t"] + config.BAR), refPrice=round(last, 4), requestedQty=p["qty"])
-        filled = config.fill_qty(p["qty"], bars[-1]["v"], c)
+        filled = config.fill_qty(p["qty"], ref["v"], c)
         if filled < 1:
             ledger.record_order(state, **order, filledQty=0, status="rejected", reason="Volumen der letzten Kerze zu klein")
             skip(x, "Volumen zu klein fuer eine Ausfuehrung")
@@ -143,22 +158,28 @@ def try_day(state: State, s: Session, c: Config) -> bool:
             skip(x, "News: " + news["flagged"][0])
             continue
         try:
-            tm = strategy.time_machine(symbol, p, len(bars) - 1)
+            tm = strategy.time_machine(symbol, p, pos if late else len(bars) - 1)
         except config.DATA_ERRORS:
             tm = None
         info = f"Time Machine: Stop zuerst {tm['stopFirst']:.0%}, Schnitt {tm['avgR']}R, Seed {tm['seed']}. " if tm else ""
-        reason = (f"In Play: Volumen {x['rv']}x, Gap {x['gap']:.1%}, Ausbruch ueber {round(x['high'], 2)}, SPY im Plus. "
+        caught = f"Nachgeholt: Bot lief erst {clock.ny().strftime('%H:%M')}, gebucht zum Signal {clock.ny(at).strftime('%H:%M')}. " if late else ""
+        reason = (f"{caught}In Play: Volumen {x['rv']}x, Gap {x['gap']:.1%}, Ausbruch ueber {round(x['high'], 2)}, SPY im Plus. "
                   f"Stop {c['atr']} ATR, kein festes Ziel. {info}News: {news['recent']} Meldungen, keine schwere.")
-        execution.buy(state, "day", symbol, p, "Yahoo 5m", reason)
+        execution.buy(state, "day", symbol, p, "Yahoo 5m", reason, at=at)
+        if late:
+            state["accounts"]["day"]["journal"][-1]["late"] = True
         state["accounts"]["day"]["journal"][-1]["trigger"] = round(x["high"], 2)
         state["accounts"]["day"]["journal"][-1]["strategy"] = strategy.strategy_version()
         state["accounts"]["day"]["positions"][-1]["strategy"] = strategy.strategy_version()
-        ledger.record_order(state, **order, executedAt=clock.iso(), filledQty=p["qty"], fillPrice=p["entry"],
+        ledger.record_order(state, **order, executedAt=clock.iso(at), filledQty=p["qty"], fillPrice=p["entry"],
                      costPerShare=round(p["entry"] - last, 4), fee=config.fee(p["qty"]),
-                     status="filled" if p["qty"] == order["requestedQty"] else "partial", reason="Ausbruch",
+                     status="filled" if p["qty"] == order["requestedQty"] else "partial", reason="Ausbruch, nachgeholt" if late else "Ausbruch",
                      risk={"stop": p["stop"], "plannedRisk": p["plannedRisk"]})
-        x["status"], x["why"] = "gekauft", f"Gekauft zu {p['entry']}"
+        x["status"], x["why"] = "gekauft", f"Gekauft zu {p['entry']}" + (f", nachgeholt ({clock.ny(at).strftime('%H:%M')})" if late else "")
         ledger.decide(state, symbol, "gekauft", reason)
+    if caught_up:
+        # Nachgeholte Kaeufe sofort gegen alle Kerzen seit dem Kauf pruefen (Stop, Tagesschluss).
+        manage(state, s, c)
     return changed
 
 

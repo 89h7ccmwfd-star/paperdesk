@@ -1,0 +1,12 @@
+name = "paperdesk-trigger"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+# Keine oeffentliche Adresse noetig, nur der Cron.
+workers_dev = false
+
+# Alle 5 Minuten, Mo bis Fr, 13 bis 21 Uhr UTC (deckt 9:30 bis 16:00 New York in Sommer- und Winterzeit).
+# Die genaue Boersenzeit und Feiertage prueft der Worker selbst.
+[triggers]
+crons = ["*/5 13-21 * * MON-FRI"]
+
+# Secret GH_TOKEN (nicht hier eintragen): npx wrangler secret put GH_TOKEN

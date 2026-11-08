@@ -4,7 +4,7 @@ Nur Simulation mit je 10.000 USD virtuell (Daytrading und Swing). Keine Broker-V
 
 - `paper.py`: Kommandozeile (`tick`, `stats`, `review`, `set`, `resume`, `publish`); der Code liegt im Paket `paperdesk/` (siehe AUDIT.md, Schritt 5)
 - `site/`: Dashboard und `state.json`; `config.json`: Parameter (die Analyse darf nur innerhalb von `BOUNDS` verstellen)
-- Läufe: GitHub Actions (`.github/workflows/tick.yml`, `cloud-loop.sh`) zur Börsenzeit alle 5 Minuten, unabhängig von einem Rechner. Der Stand liegt in `site/state.json` im Repo.
+- Läufe: GitHub Actions (`.github/workflows/tick.yml`, `cloud-loop.sh`) zur Börsenzeit alle 5 Minuten, unabhängig von einem Rechner. Der Stand liegt in `site/state.json` im Repo. GitHubs eigener Zeitplan startet oft Stunden zu spät oder gar nicht; deshalb stößt der Cloudflare-Worker `trigger/` (Cron alle 5 Minuten) `tick.yml` zur Börsenzeit an, wenn kein Lauf aktiv ist. Der GitHub-Cron bleibt als Reserve. Einrichtung: Fine-grained Token nur für dieses Repo mit „Actions: Read and write“, dann in `trigger/`: `npx wrangler secret put GH_TOKEN` und `npx wrangler deploy`. Test: `node --test trigger/worker.test.mjs`. Verspätete Läufe holen Ausbrüche zur Signalzeit nach (`late` im Journal).
 - Dashboard: paperdesk-sim.pages.dev (Cloudflare Pages). Die Seite liest `site/state.json` direkt aus diesem Repo, GitHub cacht bis zu 5 Minuten. Nur Änderungen an der Seite selbst brauchen einen Upload.
 - Abendanalyse: optionale lokale Claude-Aufgabe.
 
