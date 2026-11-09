@@ -1,14 +1,41 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-09T09:36:50-05:00",
+ "updatedAt": "2026-11-09T09:41:03-05:00",
  "status": "Markt offen. In Play heute: AMAT, ABNB, AVGO, KLAC, NET.",
  "accounts": {
   "day": {
    "startingCash": 10000,
-   "cash": 10032.62,
-   "equity": 10032.62,
+   "cash": 61.52,
+   "equity": 10030.62,
    "realizedPnl": 32.62,
-   "positions": [],
+   "positions": [
+    {
+     "symbol": "AMAT",
+     "side": "Long",
+     "qty": 14,
+     "entry": 355.45,
+     "stop": 349.68,
+     "target": null,
+     "entryFee": 1.0,
+     "openedAt": "2026-11-09T09:41:02-05:00",
+     "source": "Yahoo 5m",
+     "last": 355.45,
+     "strategy": "inplay-1"
+    },
+    {
+     "symbol": "AVGO",
+     "side": "Long",
+     "qty": 16,
+     "entry": 312.05,
+     "stop": 308.27,
+     "target": null,
+     "entryFee": 1.0,
+     "openedAt": "2026-11-09T09:41:03-05:00",
+     "source": "Yahoo 5m",
+     "last": 312.05,
+     "strategy": "inplay-1"
+    }
+   ],
    "journal": [
     {
      "timestamp": "2026-11-04T11:40:38-05:00",
@@ -34,13 +61,43 @@
      "pnl": 32.62,
      "source": "Yahoo 5m",
      "reason": "Tagesschluss"
+    },
+    {
+     "timestamp": "2026-11-09T09:41:02-05:00",
+     "action": "BUY",
+     "symbol": "AMAT",
+     "qty": 14,
+     "price": 355.45,
+     "stop": 349.68,
+     "target": null,
+     "fee": 1.0,
+     "plannedRisk": 80.78,
+     "source": "Yahoo 5m",
+     "reason": "In Play: Volumen 3.1x, Gap 3.1%, Ausbruch ueber 352.04, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 52%, Schnitt -0.135R, Seed 19. News: 18 Meldungen, keine schwere.",
+     "trigger": 352.04,
+     "strategy": "inplay-1"
+    },
+    {
+     "timestamp": "2026-11-09T09:41:03-05:00",
+     "action": "BUY",
+     "symbol": "AVGO",
+     "qty": 16,
+     "price": 312.05,
+     "stop": 308.27,
+     "target": null,
+     "fee": 1.0,
+     "plannedRisk": 60.48,
+     "source": "Yahoo 5m",
+     "reason": "In Play: Volumen 2.23x, Gap 4.0%, Ausbruch ueber 310.94, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 52%, Schnitt -0.177R, Seed 19. News: 19 Meldungen, keine schwere.",
+     "trigger": 310.94,
+     "strategy": "inplay-1"
     }
    ]
   },
   "swing": {
    "startingCash": 10000,
    "cash": 9258.15,
-   "equity": 9953.97,
+   "equity": 9957.87,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -53,7 +110,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 347.91
+     "last": 349.86
     }
    ],
    "journal": [
@@ -159,6 +216,24 @@
    "symbol": "GOOGL",
    "outcome": "aussortiert",
    "detail": "Ausbruch verpasst, Bot lief zu spaet"
+  },
+  {
+   "timestamp": "2026-11-09T09:41:02-05:00",
+   "symbol": "AMAT",
+   "outcome": "gekauft",
+   "detail": "In Play: Volumen 3.1x, Gap 3.1%, Ausbruch ueber 352.04, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 52%, Schnitt -0.135R, Seed 19. News: 18 Meldungen, keine schwere."
+  },
+  {
+   "timestamp": "2026-11-09T09:41:03-05:00",
+   "symbol": "AVGO",
+   "outcome": "gekauft",
+   "detail": "In Play: Volumen 2.23x, Gap 4.0%, Ausbruch ueber 310.94, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 52%, Schnitt -0.177R, Seed 19. News: 19 Meldungen, keine schwere."
+  },
+  {
+   "timestamp": "2026-11-09T09:41:03-05:00",
+   "symbol": "KLAC",
+   "outcome": "aussortiert",
+   "detail": "zu wenig virtuelles Geld"
   }
  ],
  "inPlay": {
@@ -172,11 +247,11 @@
     "gap": 0.0309,
     "atr": 23.0603,
     "high": 352.0350036621094,
-    "done": false,
-    "last": 351.74,
-    "distPct": -0.08,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 355.23,
+    "distPct": 0.91,
+    "status": "gekauft",
+    "why": "Gekauft zu 355.45"
    },
    {
     "symbol": "ABNB",
@@ -185,8 +260,8 @@
     "atr": 6.7238,
     "high": 196.8594970703125,
     "done": false,
-    "last": 196.52,
-    "distPct": -0.17,
+    "last": 195.57,
+    "distPct": -0.65,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -196,11 +271,11 @@
     "gap": 0.0403,
     "atr": 15.0848,
     "high": 310.94000244140625,
-    "done": false,
-    "last": 310.35,
-    "distPct": -0.19,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 311.86,
+    "distPct": 0.3,
+    "status": "gekauft",
+    "why": "Gekauft zu 312.05"
    },
    {
     "symbol": "KLAC",
@@ -208,11 +283,11 @@
     "gap": 0.0266,
     "atr": 9.4982,
     "high": 144.06500244140625,
-    "done": false,
-    "last": 143.99,
-    "distPct": -0.05,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 144.65,
+    "distPct": 0.41,
+    "status": "aussortiert",
+    "why": "zu wenig virtuelles Geld"
    },
    {
     "symbol": "NET",
@@ -221,16 +296,16 @@
     "atr": 22.4608,
     "high": 286.7200012207031,
     "done": false,
-    "last": 285.2,
-    "distPct": -0.53,
+    "last": 286.53,
+    "distPct": -0.07,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": 0.19,
+  "spyChangePct": 0.4,
   "windowEnd": "2026-11-09T10:35:00-05:00"
  },
- "publishedAt": 1794235010.5605466,
+ "publishedAt": 1794235263.9515839,
  "bars": {
   "2026-11-04:V": [
    [
@@ -1557,14 +1632,34 @@
     1793975400,
     342.37
    ]
+  ],
+  "2026-11-09:AMAT": [
+   [
+    1794234600,
+    351.74
+   ],
+   [
+    1794234900,
+    355.23
+   ]
+  ],
+  "2026-11-09:AVGO": [
+   [
+    1794234600,
+    310.35
+   ],
+   [
+    1794234900,
+    311.86
+   ]
   ]
  },
  "plan": {
   "phase": "fenster",
-  "text": "Beobachtet AMAT, ABNB, AVGO, KLAC, NET. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "text": "Beobachtet ABNB, NET. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
   "next": "2026-11-09T10:35:00-05:00",
   "windowEnd": "2026-11-09T10:35:00-05:00",
-  "dayBuys": 0,
+  "dayBuys": 2,
   "maxDayTrades": 3
  },
  "metrics": {
@@ -1648,13 +1743,74 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-09T09:36:50-05:00",
+  "at": "2026-11-09T09:41:03-05:00",
   "source": "Yahoo chart v8",
-  "requests": 206,
-  "failed": 1,
-  "failedSymbols": [
-   "SQ"
-  ],
+  "requests": 13,
+  "failed": 0,
+  "failedSymbols": [],
   "issues": []
- }
+ },
+ "orders": [
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "BUY",
+   "symbol": "AMAT",
+   "type": "market",
+   "signalAt": "2026-11-09T09:40:00-05:00",
+   "refPrice": 355.235,
+   "requestedQty": 14,
+   "executedAt": "2026-11-09T09:41:02-05:00",
+   "filledQty": 14,
+   "fillPrice": 355.45,
+   "costPerShare": 0.215,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Ausbruch",
+   "risk": {
+    "stop": 349.68,
+    "plannedRisk": 80.78
+   },
+   "id": "1794235262-AMAT-0",
+   "createdAt": "2026-11-09T09:41:02-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "BUY",
+   "symbol": "AVGO",
+   "type": "market",
+   "signalAt": "2026-11-09T09:40:00-05:00",
+   "refPrice": 311.865,
+   "requestedQty": 16,
+   "executedAt": "2026-11-09T09:41:03-05:00",
+   "filledQty": 16,
+   "fillPrice": 312.05,
+   "costPerShare": 0.185,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Ausbruch",
+   "risk": {
+    "stop": 308.27,
+    "plannedRisk": 60.48
+   },
+   "id": "1794235263-AVGO-1",
+   "createdAt": "2026-11-09T09:41:03-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "BUY",
+   "symbol": "KLAC",
+   "type": "market",
+   "signalAt": "2026-11-09T09:40:00-05:00",
+   "refPrice": 144.655,
+   "requestedQty": 34,
+   "filledQty": 0,
+   "status": "rejected",
+   "reason": "zu wenig virtuelles Geld",
+   "id": "1794235263-KLAC-2",
+   "createdAt": "2026-11-09T09:41:03-05:00"
+  }
+ ]
 }
