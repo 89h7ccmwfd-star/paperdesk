@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-09T10:31:02-05:00",
+ "updatedAt": "2026-11-09T10:36:02-05:00",
  "status": "Markt offen. In Play heute: AMAT, ABNB, AVGO, KLAC, NET.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 61.52,
-   "equity": 10201.56,
+   "equity": 10208.08,
    "realizedPnl": 32.62,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:41:02-05:00",
      "source": "Yahoo 5m",
-     "last": 362.38,
+     "last": 362.4,
      "strategy": "inplay-1"
     },
     {
@@ -32,7 +32,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:41:03-05:00",
      "source": "Yahoo 5m",
-     "last": 316.67,
+     "last": 317.06,
      "strategy": "inplay-1"
     }
    ],
@@ -97,7 +97,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9996.38,
+   "equity": 9983.56,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -110,7 +110,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 350.61
+     "last": 350.43
     },
     {
      "symbol": "TMO",
@@ -122,7 +122,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 700.05,
+     "last": 698.27,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -273,6 +273,12 @@
    "symbol": "NET",
    "outcome": "aussortiert",
    "detail": "zu wenig virtuelles Geld"
+  },
+  {
+   "timestamp": "2026-11-09T10:36:02-05:00",
+   "symbol": "ABNB",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
   }
  ],
  "inPlay": {
@@ -298,11 +304,11 @@
     "gap": 0.0173,
     "atr": 6.7238,
     "high": 196.8594970703125,
-    "done": false,
-    "last": 191.48,
-    "distPct": -2.73,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 191.54,
+    "distPct": -2.7,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    },
    {
     "symbol": "AVGO",
@@ -341,10 +347,10 @@
     "why": "zu wenig virtuelles Geld"
    }
   ],
-  "spyChangePct": 0.97,
+  "spyChangePct": 1.02,
   "windowEnd": "2026-11-09T10:35:00-05:00"
  },
- "publishedAt": 1794238262.5383494,
+ "publishedAt": 1794238562.8764737,
  "bars": {
   "2026-11-04:V": [
    [
@@ -1720,6 +1726,10 @@
    [
     1794237900,
     362.38
+   ],
+   [
+    1794238200,
+    362.4
    ]
   ],
   "2026-11-09:AVGO": [
@@ -1770,6 +1780,10 @@
    [
     1794237900,
     316.67
+   ],
+   [
+    1794238200,
+    317.06
    ]
   ],
   "D:TMO": [
@@ -2280,9 +2294,9 @@
   ]
  },
  "plan": {
-  "phase": "fenster",
-  "text": "Beobachtet ABNB. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
-  "next": "2026-11-09T10:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Offene Daytrades werden am Stop oder spätestens 15:55 Uhr New York verkauft.",
+  "next": "2026-11-09T15:55:00-05:00",
   "windowEnd": "2026-11-09T10:35:00-05:00",
   "dayBuys": 2,
   "maxDayTrades": 3
@@ -2368,7 +2382,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-09T10:31:02-05:00",
+  "at": "2026-11-09T10:36:02-05:00",
   "source": "Yahoo chart v8",
   "requests": 11,
   "failed": 0,
