@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-09T10:36:02-05:00",
+ "updatedAt": "2026-11-09T10:41:01-05:00",
  "status": "Markt offen. In Play heute: AMAT, ABNB, AVGO, KLAC, NET.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 61.52,
-   "equity": 10208.08,
+   "equity": 10195.1,
    "realizedPnl": 32.62,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:41:02-05:00",
      "source": "Yahoo 5m",
-     "last": 362.4,
+     "last": 361.85,
      "strategy": "inplay-1"
     },
     {
@@ -32,7 +32,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:41:03-05:00",
      "source": "Yahoo 5m",
-     "last": 317.06,
+     "last": 316.73,
      "strategy": "inplay-1"
     }
    ],
@@ -97,7 +97,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9983.56,
+   "equity": 9983.65,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -110,7 +110,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 350.43
+     "last": 350.79
     },
     {
      "symbol": "TMO",
@@ -122,7 +122,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 698.27,
+     "last": 698.18,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -347,7 +347,7 @@
     "why": "zu wenig virtuelles Geld"
    }
   ],
-  "spyChangePct": 1.02,
+  "spyChangePct": 1.01,
   "windowEnd": "2026-11-09T10:35:00-05:00"
  },
  "publishedAt": 1794238562.8764737,
@@ -1730,6 +1730,10 @@
    [
     1794238200,
     362.4
+   ],
+   [
+    1794238500,
+    361.85
    ]
   ],
   "2026-11-09:AVGO": [
@@ -1784,6 +1788,10 @@
    [
     1794238200,
     317.06
+   ],
+   [
+    1794238500,
+    316.73
    ]
   ],
   "D:TMO": [
@@ -2382,9 +2390,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-09T10:36:02-05:00",
+  "at": "2026-11-09T10:41:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 11,
+  "requests": 10,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
