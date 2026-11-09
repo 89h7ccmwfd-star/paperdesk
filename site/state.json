@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-09T15:16:03-05:00",
+ "updatedAt": "2026-11-09T15:16:15-05:00",
  "status": "Markt offen. In Play heute: AMAT, ABNB, AVGO, KLAC, NET.",
  "accounts": {
   "day": {
@@ -2830,7 +2830,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-09T15:16:03-05:00",
+  "at": "2026-11-09T15:16:15-05:00",
   "source": "Yahoo chart v8",
   "requests": 10,
   "failed": 0,
