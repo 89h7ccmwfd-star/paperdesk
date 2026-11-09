@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-09T10:16:03-05:00",
+ "updatedAt": "2026-11-09T10:21:02-05:00",
  "status": "Markt offen. In Play heute: AMAT, ABNB, AVGO, KLAC, NET.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 61.52,
-   "equity": 10198.64,
+   "equity": 10199.82,
    "realizedPnl": 32.62,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:41:02-05:00",
      "source": "Yahoo 5m",
-     "last": 362.64,
+     "last": 362.85,
      "strategy": "inplay-1"
     },
     {
@@ -32,7 +32,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:41:03-05:00",
      "source": "Yahoo 5m",
-     "last": 316.26,
+     "last": 316.15,
      "strategy": "inplay-1"
     }
    ],
@@ -97,7 +97,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9978.08,
+   "equity": 9990.55,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -110,7 +110,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.02
+     "last": 349.83
     },
     {
      "symbol": "TMO",
@@ -122,7 +122,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 697.89,
+     "last": 699.44,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -299,8 +299,8 @@
     "atr": 6.7238,
     "high": 196.8594970703125,
     "done": false,
-    "last": 192.95,
-    "distPct": -1.99,
+    "last": 193.25,
+    "distPct": -1.83,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -341,10 +341,10 @@
     "why": "zu wenig virtuelles Geld"
    }
   ],
-  "spyChangePct": 0.91,
+  "spyChangePct": 0.96,
   "windowEnd": "2026-11-09T10:35:00-05:00"
  },
- "publishedAt": 1794237363.6869853,
+ "publishedAt": 1794237662.9955213,
  "bars": {
   "2026-11-04:V": [
    [
@@ -1708,6 +1708,10 @@
    [
     1794237000,
     362.64
+   ],
+   [
+    1794237300,
+    362.85
    ]
   ],
   "2026-11-09:AVGO": [
@@ -1746,6 +1750,10 @@
    [
     1794237000,
     316.26
+   ],
+   [
+    1794237300,
+    316.15
    ]
   ],
   "D:TMO": [
@@ -2344,7 +2352,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-09T10:16:03-05:00",
+  "at": "2026-11-09T10:21:02-05:00",
   "source": "Yahoo chart v8",
   "requests": 11,
   "failed": 0,
