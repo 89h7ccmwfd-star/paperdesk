@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-09T12:56:03-05:00",
+ "updatedAt": "2026-11-09T13:01:02-05:00",
  "status": "Markt offen. In Play heute: AMAT, ABNB, AVGO, KLAC, NET.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 61.52,
-   "equity": 10362.58,
+   "equity": 10362.6,
    "realizedPnl": 32.62,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:41:02-05:00",
      "source": "Yahoo 5m",
-     "last": 369.95,
+     "last": 370.02,
      "strategy": "inplay-1"
     },
     {
@@ -32,7 +32,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:41:03-05:00",
      "source": "Yahoo 5m",
-     "last": 320.11,
+     "last": 320.05,
      "strategy": "inplay-1"
     }
    ],
@@ -97,7 +97,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10044.72,
+   "equity": 10049.27,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -110,7 +110,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.3
+     "last": 349.09
     },
     {
      "symbol": "TMO",
@@ -122,7 +122,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 707.33,
+     "last": 708.04,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -1842,6 +1842,10 @@
    [
     1794246600,
     369.95
+   ],
+   [
+    1794246900,
+    370.02
    ]
   ],
   "2026-11-09:AVGO": [
@@ -2008,6 +2012,10 @@
    [
     1794246600,
     320.11
+   ],
+   [
+    1794246900,
+    320.05
    ]
   ],
   "D:TMO": [
@@ -2606,7 +2614,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-09T12:56:03-05:00",
+  "at": "2026-11-09T13:01:02-05:00",
   "source": "Yahoo chart v8",
   "requests": 10,
   "failed": 0,
