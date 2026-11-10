@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-10T09:30:15-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-10T09:36:19-05:00",
+ "status": "Markt offen. In Play heute: keine.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -92,7 +92,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10147.41,
+   "equity": 10095.01,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +105,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 350.49
+     "last": 351.17
     },
     {
      "symbol": "TMO",
@@ -117,7 +117,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 721.66,
+     "last": 713.98,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -277,73 +277,12 @@
   }
  ],
  "inPlay": {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "scanned": 98,
-  "matches": 11,
-  "symbols": [
-   {
-    "symbol": "AMAT",
-    "rv": 3.1,
-    "gap": 0.0309,
-    "atr": 23.0603,
-    "high": 352.0350036621094,
-    "done": true,
-    "last": 355.23,
-    "distPct": 0.91,
-    "status": "gekauft",
-    "why": "Gekauft zu 355.45"
-   },
-   {
-    "symbol": "ABNB",
-    "rv": 2.72,
-    "gap": 0.0173,
-    "atr": 6.7238,
-    "high": 196.8594970703125,
-    "done": true,
-    "last": 191.54,
-    "distPct": -2.7,
-    "status": "aussortiert",
-    "why": "Kein Ausbruch in der ersten Stunde"
-   },
-   {
-    "symbol": "AVGO",
-    "rv": 2.23,
-    "gap": 0.0403,
-    "atr": 15.0848,
-    "high": 310.94000244140625,
-    "done": true,
-    "last": 311.86,
-    "distPct": 0.3,
-    "status": "gekauft",
-    "why": "Gekauft zu 312.05"
-   },
-   {
-    "symbol": "KLAC",
-    "rv": 2.19,
-    "gap": 0.0266,
-    "atr": 9.4982,
-    "high": 144.06500244140625,
-    "done": true,
-    "last": 144.65,
-    "distPct": 0.41,
-    "status": "aussortiert",
-    "why": "zu wenig virtuelles Geld"
-   },
-   {
-    "symbol": "NET",
-    "rv": 1.83,
-    "gap": 0.0285,
-    "atr": 22.4608,
-    "high": 286.7200012207031,
-    "done": true,
-    "last": 290.55,
-    "distPct": 1.34,
-    "status": "aussortiert",
-    "why": "zu wenig virtuelles Geld"
-   }
-  ],
-  "spyChangePct": 1.77,
-  "windowEnd": "2026-11-09T10:35:00-05:00"
+  "matches": 0,
+  "symbols": [],
+  "spyChangePct": 0.15,
+  "windowEnd": "2026-11-10T10:35:00-05:00"
  },
  "publishedAt": 1794321015.6717687,
  "bars": {
@@ -2813,9 +2752,9 @@
   ]
  },
  "plan": {
-  "phase": "start",
-  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
-  "next": "2026-11-10T09:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
   "windowEnd": "2026-11-10T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -2932,11 +2871,13 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-10T09:30:15-05:00",
+  "at": "2026-11-10T09:36:19-05:00",
   "source": "Yahoo chart v8",
-  "requests": 5,
-  "failed": 0,
-  "failedSymbols": [],
+  "requests": 203,
+  "failed": 1,
+  "failedSymbols": [
+   "SQ"
+  ],
   "issues": []
  },
  "orders": [
