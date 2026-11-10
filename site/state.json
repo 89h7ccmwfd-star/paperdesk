@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-10T15:16:00-05:00",
+ "updatedAt": "2026-11-10T15:16:13-05:00",
  "status": "Markt offen. In Play heute: keine.",
  "accounts": {
   "day": {
@@ -2871,7 +2871,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-10T15:16:00-05:00",
+  "at": "2026-11-10T15:16:13-05:00",
   "source": "Yahoo chart v8",
   "requests": 6,
   "failed": 0,
