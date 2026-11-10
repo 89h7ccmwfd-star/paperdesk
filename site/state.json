@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-10T14:36:01-05:00",
+ "updatedAt": "2026-11-10T14:41:00-05:00",
  "status": "Markt offen. In Play heute: keine.",
  "accounts": {
   "day": {
@@ -92,7 +92,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10122.14,
+   "equity": 10124.29,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +105,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 348.74
+     "last": 348.52
     },
     {
      "symbol": "TMO",
@@ -117,7 +117,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 718.55,
+     "last": 718.92,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -281,7 +281,7 @@
   "scanned": 98,
   "matches": 0,
   "symbols": [],
-  "spyChangePct": 0.14,
+  "spyChangePct": 0.04,
   "windowEnd": "2026-11-10T10:35:00-05:00"
  },
  "publishedAt": 1794339361.5827718,
@@ -2871,7 +2871,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-10T14:36:01-05:00",
+  "at": "2026-11-10T14:41:00-05:00",
   "source": "Yahoo chart v8",
   "requests": 6,
   "failed": 0,
