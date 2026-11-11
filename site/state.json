@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-11T09:30:17-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-11T09:36:36-05:00",
+ "status": "Markt offen. In Play heute: NVDA, AVGO, DELL, COST, PANW.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -92,7 +92,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10121.64,
+   "equity": 10129.9,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +105,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 348.63
+     "last": 352.06
     },
     {
      "symbol": "TMO",
@@ -117,7 +117,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 718.51,
+     "last": 718.71,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -277,14 +277,75 @@
   }
  ],
  "inPlay": {
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "scanned": 98,
-  "matches": 0,
-  "symbols": [],
-  "spyChangePct": 0.2,
-  "windowEnd": "2026-11-10T10:35:00-05:00"
+  "matches": 6,
+  "symbols": [
+   {
+    "symbol": "NVDA",
+    "rv": 4.36,
+    "gap": 0.0233,
+    "atr": 9.2155,
+    "high": 174.95989990234375,
+    "done": false,
+    "last": 173.85,
+    "distPct": -0.63,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "AVGO",
+    "rv": 1.89,
+    "gap": 0.0549,
+    "atr": 17.2612,
+    "high": 354.5,
+    "done": false,
+    "last": 351.72,
+    "distPct": -0.78,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "DELL",
+    "rv": 1.75,
+    "gap": 0.0786,
+    "atr": 33.2342,
+    "high": 368.3500061035156,
+    "done": false,
+    "last": 361.83,
+    "distPct": -1.77,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "COST",
+    "rv": 1.65,
+    "gap": 0.0139,
+    "atr": 21.3688,
+    "high": 1090.8299560546875,
+    "done": false,
+    "last": 1090.48,
+    "distPct": -0.03,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "PANW",
+    "rv": 1.46,
+    "gap": 0.0347,
+    "atr": 20.9311,
+    "high": 341.1600036621094,
+    "done": false,
+    "last": 338.49,
+    "distPct": -0.78,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   }
+  ],
+  "spyChangePct": -0.0,
+  "windowEnd": "2026-11-11T10:35:00-05:00"
  },
- "publishedAt": 1794407417.2713482,
+ "publishedAt": 1794407796.5148282,
  "bars": {
   "2026-11-04:V": [
    [
@@ -2764,9 +2825,9 @@
   ]
  },
  "plan": {
-  "phase": "start",
-  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
-  "next": "2026-11-11T09:35:00-05:00",
+  "phase": "fenster",
+  "text": "Beobachtet NVDA, AVGO, DELL, COST, PANW. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "next": "2026-11-11T10:35:00-05:00",
   "windowEnd": "2026-11-11T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -2883,11 +2944,13 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-11T09:30:17-05:00",
+  "at": "2026-11-11T09:36:36-05:00",
   "source": "Yahoo chart v8",
-  "requests": 5,
-  "failed": 0,
-  "failedSymbols": [],
+  "requests": 208,
+  "failed": 1,
+  "failedSymbols": [
+   "SQ"
+  ],
   "issues": []
  },
  "orders": [
