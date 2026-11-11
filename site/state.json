@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-10T17:34:51-05:00",
+ "updatedAt": "2026-11-11T09:30:17-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -92,7 +92,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10131.21,
+   "equity": 10121.64,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +105,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.39
+     "last": 348.63
     },
     {
      "symbol": "TMO",
@@ -117,7 +117,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 719.66,
+     "last": 718.51,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -284,7 +284,7 @@
   "spyChangePct": 0.2,
   "windowEnd": "2026-11-10T10:35:00-05:00"
  },
- "publishedAt": 1794343261.3713338,
+ "publishedAt": 1794407417.2713482,
  "bars": {
   "2026-11-04:V": [
    [
@@ -1108,6 +1108,10 @@
    [
     1794234600,
     164.73
+   ],
+   [
+    1794321000,
+    164.47
    ]
   ],
   "D:AAPL": [
@@ -1618,6 +1622,10 @@
    [
     1794234600,
     350.69
+   ],
+   [
+    1794321000,
+    348.51
    ]
   ],
   "2026-11-09:AMAT": [
@@ -2748,14 +2756,18 @@
    [
     1794234600,
     721.63
+   ],
+   [
+    1794321000,
+    718.2
    ]
   ]
  },
  "plan": {
-  "phase": "verwalten",
-  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
-  "next": null,
-  "windowEnd": "2026-11-10T10:35:00-05:00",
+  "phase": "start",
+  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
+  "next": "2026-11-11T09:35:00-05:00",
+  "windowEnd": "2026-11-11T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
  },
@@ -2871,7 +2883,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-10T15:56:01-05:00",
+  "at": "2026-11-11T09:30:17-05:00",
   "source": "Yahoo chart v8",
   "requests": 5,
   "failed": 0,
