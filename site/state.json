@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-11T10:21:02-05:00",
+ "updatedAt": "2026-11-11T10:26:02-05:00",
  "status": "Markt offen. In Play heute: NVDA, AVGO, DELL, COST, PANW.",
  "accounts": {
   "day": {
@@ -92,7 +92,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10160.93,
+   "equity": 10154.61,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +105,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 353.68
+     "last": 353.53
     },
     {
      "symbol": "TMO",
@@ -117,7 +117,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 722.68,
+     "last": 721.82,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -294,8 +294,8 @@
     "atr": 9.2155,
     "high": 174.95989990234375,
     "done": false,
-    "last": 172.8,
-    "distPct": -1.23,
+    "last": 173.17,
+    "distPct": -1.02,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -306,8 +306,8 @@
     "atr": 17.2612,
     "high": 354.5,
     "done": false,
-    "last": 350.46,
-    "distPct": -1.14,
+    "last": 348.42,
+    "distPct": -1.72,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -330,8 +330,8 @@
     "atr": 21.3688,
     "high": 1090.8299560546875,
     "done": false,
-    "last": 1074.68,
-    "distPct": -1.48,
+    "last": 1077.06,
+    "distPct": -1.26,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -342,16 +342,16 @@
     "atr": 20.9311,
     "high": 341.1600036621094,
     "done": false,
-    "last": 334.87,
-    "distPct": -1.84,
+    "last": 335.96,
+    "distPct": -1.52,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -0.09,
+  "spyChangePct": -0.13,
   "windowEnd": "2026-11-11T10:35:00-05:00"
  },
- "publishedAt": 1794410462.560279,
+ "publishedAt": 1794410762.706358,
  "bars": {
   "2026-11-04:V": [
    [
@@ -2950,9 +2950,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-11T10:21:02-05:00",
+  "at": "2026-11-11T10:26:02-05:00",
   "source": "Yahoo chart v8",
-  "requests": 11,
+  "requests": 10,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
