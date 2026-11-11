@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-11T15:26:02-05:00",
- "status": "Markt offen. In Play heute: NVDA, AVGO, DELL, COST, PANW.",
+ "updatedAt": "2026-11-11T15:31:01-05:00",
+ "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -92,7 +92,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10128.52,
+   "equity": 10137.82,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +105,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 355.01
+     "last": 354.97
     },
     {
      "symbol": "TMO",
@@ -117,7 +117,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 717.67,
+     "last": 719.01,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -2974,9 +2974,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-11T15:26:02-05:00",
+  "at": "2026-11-11T15:31:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 6,
+  "requests": 5,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
