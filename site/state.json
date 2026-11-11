@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-11T09:51:01-05:00",
+ "updatedAt": "2026-11-11T09:56:02-05:00",
  "status": "Markt offen. In Play heute: NVDA, AVGO, DELL, COST, PANW.",
  "accounts": {
   "day": {
@@ -92,7 +92,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10166.53,
+   "equity": 10136.93,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +105,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 353.68
+     "last": 353.65
     },
     {
      "symbol": "TMO",
@@ -117,7 +117,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 723.48,
+     "last": 719.26,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -288,8 +288,8 @@
     "atr": 9.2155,
     "high": 174.95989990234375,
     "done": false,
-    "last": 172.09,
-    "distPct": -1.64,
+    "last": 172.91,
+    "distPct": -1.17,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -300,8 +300,8 @@
     "atr": 17.2612,
     "high": 354.5,
     "done": false,
-    "last": 350.79,
-    "distPct": -1.05,
+    "last": 350.89,
+    "distPct": -1.02,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -312,8 +312,8 @@
     "atr": 33.2342,
     "high": 368.3500061035156,
     "done": false,
-    "last": 362.19,
-    "distPct": -1.67,
+    "last": 362.64,
+    "distPct": -1.55,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -324,8 +324,8 @@
     "atr": 21.3688,
     "high": 1090.8299560546875,
     "done": false,
-    "last": 1078.15,
-    "distPct": -1.16,
+    "last": 1079.02,
+    "distPct": -1.08,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -336,16 +336,16 @@
     "atr": 20.9311,
     "high": 341.1600036621094,
     "done": false,
-    "last": 333.27,
-    "distPct": -2.31,
+    "last": 331.1,
+    "distPct": -2.95,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -0.14,
+  "spyChangePct": -0.12,
   "windowEnd": "2026-11-11T10:35:00-05:00"
  },
- "publishedAt": 1794408661.933095,
+ "publishedAt": 1794408962.3395717,
  "bars": {
   "2026-11-04:V": [
    [
@@ -2944,7 +2944,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-11T09:51:01-05:00",
+  "at": "2026-11-11T09:56:02-05:00",
   "source": "Yahoo chart v8",
   "requests": 11,
   "failed": 0,
