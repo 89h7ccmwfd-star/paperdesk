@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-11T10:31:03-05:00",
+ "updatedAt": "2026-11-11T10:36:02-05:00",
  "status": "Markt offen. In Play heute: NVDA, AVGO, DELL, COST, PANW.",
  "accounts": {
   "day": {
@@ -92,7 +92,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10148.05,
+   "equity": 10149.42,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +105,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 353.54
+     "last": 353.28
     },
     {
      "symbol": "TMO",
@@ -117,7 +117,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 720.88,
+     "last": 721.15,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -280,6 +280,30 @@
    "symbol": "DELL",
    "outcome": "aussortiert",
    "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+  },
+  {
+   "timestamp": "2026-11-11T10:36:01-05:00",
+   "symbol": "NVDA",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-11T10:36:01-05:00",
+   "symbol": "AVGO",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-11T10:36:01-05:00",
+   "symbol": "COST",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-11T10:36:01-05:00",
+   "symbol": "PANW",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
   }
  ],
  "inPlay": {
@@ -293,11 +317,11 @@
     "gap": 0.0233,
     "atr": 9.2155,
     "high": 174.95989990234375,
-    "done": false,
-    "last": 174.23,
-    "distPct": -0.42,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 173.88,
+    "distPct": -0.62,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    },
    {
     "symbol": "AVGO",
@@ -305,11 +329,11 @@
     "gap": 0.0549,
     "atr": 17.2612,
     "high": 354.5,
-    "done": false,
-    "last": 350.93,
-    "distPct": -1.01,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 350.1,
+    "distPct": -1.24,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    },
    {
     "symbol": "DELL",
@@ -329,11 +353,11 @@
     "gap": 0.0139,
     "atr": 21.3688,
     "high": 1090.8299560546875,
-    "done": false,
-    "last": 1077.38,
-    "distPct": -1.23,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 1079.07,
+    "distPct": -1.08,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    },
    {
     "symbol": "PANW",
@@ -341,17 +365,17 @@
     "gap": 0.0347,
     "atr": 20.9311,
     "high": 341.1600036621094,
-    "done": false,
-    "last": 337.99,
-    "distPct": -0.93,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 337.29,
+    "distPct": -1.14,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    }
   ],
-  "spyChangePct": -0.01,
+  "spyChangePct": -0.03,
   "windowEnd": "2026-11-11T10:35:00-05:00"
  },
- "publishedAt": 1794411063.327451,
+ "publishedAt": 1794411362.4675198,
  "bars": {
   "2026-11-04:V": [
    [
@@ -2831,9 +2855,9 @@
   ]
  },
  "plan": {
-  "phase": "fenster",
-  "text": "Beobachtet NVDA, AVGO, COST, PANW. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
-  "next": "2026-11-11T10:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
   "windowEnd": "2026-11-11T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -2950,7 +2974,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-11T10:31:03-05:00",
+  "at": "2026-11-11T10:36:02-05:00",
   "source": "Yahoo chart v8",
   "requests": 10,
   "failed": 0,
