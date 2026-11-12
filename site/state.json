@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-12T14:31:01-05:00",
+ "updatedAt": "2026-11-12T14:36:01-05:00",
  "status": "Markt offen. In Play heute: AVGO, COST.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10016.5,
+   "equity": 10022.38,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 701.49,
+     "last": 702.33,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -374,7 +374,7 @@
     "why": "Kein Ausbruch in der ersten Stunde"
    }
   ],
-  "spyChangePct": 0.62,
+  "spyChangePct": 0.56,
   "windowEnd": "2026-11-12T10:35:00-05:00"
  },
  "publishedAt": 1794509161.8695917,
@@ -3095,6 +3095,10 @@
    [
     1794511500,
     365.17
+   ],
+   [
+    1794511800,
+    364.29
    ]
   ]
  },
@@ -3218,7 +3222,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-12T14:31:01-05:00",
+  "at": "2026-11-12T14:36:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 7,
   "failed": 0,
