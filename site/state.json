@@ -1,14 +1,28 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-12T09:36:27-05:00",
+ "updatedAt": "2026-11-12T09:41:02-05:00",
  "status": "Markt offen. In Play heute: AVGO, COST.",
  "accounts": {
   "day": {
    "startingCash": 10000,
-   "cash": 10345.04,
-   "equity": 10345.04,
+   "cash": 5607.36,
+   "equity": 10344.04,
    "realizedPnl": 345.04,
-   "positions": [],
+   "positions": [
+    {
+     "symbol": "AVGO",
+     "side": "Long",
+     "qty": 13,
+     "entry": 364.36,
+     "stop": 359.89,
+     "target": null,
+     "entryFee": 1.0,
+     "openedAt": "2026-11-12T09:41:02-05:00",
+     "source": "Yahoo 5m",
+     "last": 364.36,
+     "strategy": "inplay-1"
+    }
+   ],
    "journal": [
     {
      "timestamp": "2026-11-04T11:40:38-05:00",
@@ -86,13 +100,28 @@
      "pnl": 107.92,
      "source": "Yahoo 5m",
      "reason": "Flat by, Tagesschluss"
+    },
+    {
+     "timestamp": "2026-11-12T09:41:02-05:00",
+     "action": "BUY",
+     "symbol": "AVGO",
+     "qty": 13,
+     "price": 364.36,
+     "stop": 359.89,
+     "target": null,
+     "fee": 1.0,
+     "plannedRisk": 58.11,
+     "source": "Yahoo 5m",
+     "reason": "In Play: Volumen 2.76x, Gap 3.3%, Ausbruch ueber 361.88, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 49%, Schnitt -0.102R, Seed 19. News: 20 Meldungen, keine schwere.",
+     "trigger": 361.88,
+     "strategy": "inplay-1"
     }
    ]
   },
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10045.45,
+   "equity": 10049.69,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +134,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 357.47
+     "last": 356.51
     },
     {
      "symbol": "TMO",
@@ -117,7 +146,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 705.1,
+     "last": 705.98,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -304,6 +333,12 @@
    "symbol": "PANW",
    "outcome": "aussortiert",
    "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-12T09:41:02-05:00",
+   "symbol": "AVGO",
+   "outcome": "gekauft",
+   "detail": "In Play: Volumen 2.76x, Gap 3.3%, Ausbruch ueber 361.88, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 49%, Schnitt -0.102R, Seed 19. News: 20 Meldungen, keine schwere."
   }
  ],
  "inPlay": {
@@ -317,11 +352,11 @@
     "gap": 0.0328,
     "atr": 17.8469,
     "high": 361.8788146972656,
-    "done": false,
-    "last": 361.6,
-    "distPct": -0.08,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 364.14,
+    "distPct": 0.62,
+    "status": "gekauft",
+    "why": "Gekauft zu 364.36"
    },
    {
     "symbol": "COST",
@@ -330,16 +365,16 @@
     "atr": 21.7295,
     "high": 1102.8399658203125,
     "done": false,
-    "last": 1098.97,
-    "distPct": -0.35,
+    "last": 1091.44,
+    "distPct": -1.03,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": 0.19,
+  "spyChangePct": 0.45,
   "windowEnd": "2026-11-12T10:35:00-05:00"
  },
- "publishedAt": 1794494187.7600875,
+ "publishedAt": 1794494462.4352407,
  "bars": {
   "2026-11-04:V": [
    [
@@ -2816,14 +2851,24 @@
     1794407400,
     717.71
    ]
+  ],
+  "2026-11-12:AVGO": [
+   [
+    1794493800,
+    361.6
+   ],
+   [
+    1794494100,
+    364.14
+   ]
   ]
  },
  "plan": {
   "phase": "fenster",
-  "text": "Beobachtet AVGO, COST. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "text": "Beobachtet COST. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
   "next": "2026-11-12T10:35:00-05:00",
   "windowEnd": "2026-11-12T10:35:00-05:00",
-  "dayBuys": 0,
+  "dayBuys": 1,
   "maxDayTrades": 3
  },
  "metrics": {
@@ -2853,7 +2898,7 @@
     "turnover": 2.55,
     "fees": 6.0,
     "feeSharePct": 1.7,
-    "slippageCost": 12.09,
+    "slippageCost": 14.95,
     "days": 2,
     "byMonth": {
      "2026-11": 345.04
@@ -2885,7 +2930,7 @@
      "turnover": 2.03,
      "fees": 4.0,
      "feeSharePct": 1.3,
-     "slippageCost": 12.09,
+     "slippageCost": 14.95,
      "days": 1,
      "byMonth": {
       "2026-11": 312.42
@@ -2938,13 +2983,11 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-12T09:36:27-05:00",
+  "at": "2026-11-12T09:41:02-05:00",
   "source": "Yahoo chart v8",
-  "requests": 205,
-  "failed": 1,
-  "failedSymbols": [
-   "SQ"
-  ],
+  "requests": 10,
+  "failed": 0,
+  "failedSymbols": [],
   "issues": []
  },
  "orders": [
@@ -3082,6 +3125,29 @@
    "reason": "Flat by, Tagesschluss",
    "id": "1794257761-AVGO-6",
    "createdAt": "2026-11-09T15:56:01-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "BUY",
+   "symbol": "AVGO",
+   "type": "market",
+   "signalAt": "2026-11-12T09:40:00-05:00",
+   "refPrice": 364.14,
+   "requestedQty": 13,
+   "executedAt": "2026-11-12T09:41:02-05:00",
+   "filledQty": 13,
+   "fillPrice": 364.36,
+   "costPerShare": 0.22,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Ausbruch",
+   "risk": {
+    "stop": 359.89,
+    "plannedRisk": 58.11
+   },
+   "id": "1794494462-AVGO-7",
+   "createdAt": "2026-11-12T09:41:02-05:00"
   }
  ],
  "review": {
