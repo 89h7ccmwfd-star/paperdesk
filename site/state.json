@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-12T10:31:01-05:00",
+ "updatedAt": "2026-11-12T10:36:01-05:00",
  "status": "Markt offen. In Play heute: AVGO, COST.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9995.55,
+   "equity": 10004.75,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 357.86
+     "last": 357.7
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 697.86,
+     "last": 699.22,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -336,6 +336,12 @@
    "symbol": "AVGO",
    "outcome": "gekauft",
    "detail": "In Play: Volumen 2.76x, Gap 3.3%, Ausbruch ueber 361.88, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 49%, Schnitt -0.102R, Seed 19. News: 20 Meldungen, keine schwere."
+  },
+  {
+   "timestamp": "2026-11-12T10:36:01-05:00",
+   "symbol": "COST",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
   }
  ],
  "inPlay": {
@@ -361,17 +367,17 @@
     "gap": 0.008,
     "atr": 21.7295,
     "high": 1102.8399658203125,
-    "done": false,
-    "last": 1098.19,
-    "distPct": -0.42,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 1098.66,
+    "distPct": -0.38,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    }
   ],
-  "spyChangePct": 0.46,
+  "spyChangePct": 0.41,
   "windowEnd": "2026-11-12T10:35:00-05:00"
  },
- "publishedAt": 1794497461.320385,
+ "publishedAt": 1794497761.695624,
  "bars": {
   "2026-11-04:V": [
    [
@@ -2897,13 +2903,17 @@
    [
     1794497100,
     361.53
+   ],
+   [
+    1794497400,
+    361.73
    ]
   ]
  },
  "plan": {
-  "phase": "fenster",
-  "text": "Beobachtet COST. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
-  "next": "2026-11-12T10:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
   "windowEnd": "2026-11-12T10:35:00-05:00",
   "dayBuys": 1,
   "maxDayTrades": 3
@@ -3020,7 +3030,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-12T10:31:01-05:00",
+  "at": "2026-11-12T10:36:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 8,
   "failed": 0,
