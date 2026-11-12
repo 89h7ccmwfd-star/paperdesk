@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-12T09:41:02-05:00",
+ "updatedAt": "2026-11-12T09:46:01-05:00",
  "status": "Markt offen. In Play heute: AVGO, COST.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 5607.36,
-   "equity": 10344.04,
+   "equity": 10327.53,
    "realizedPnl": 345.04,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-12T09:41:02-05:00",
      "source": "Yahoo 5m",
-     "last": 364.36,
+     "last": 363.09,
      "strategy": "inplay-1"
     }
    ],
@@ -121,7 +121,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10049.69,
+   "equity": 10036.97,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -134,7 +134,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 356.51
+     "last": 356.87
     },
     {
      "symbol": "TMO",
@@ -146,7 +146,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 705.98,
+     "last": 704.06,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -365,16 +365,16 @@
     "atr": 21.7295,
     "high": 1102.8399658203125,
     "done": false,
-    "last": 1091.44,
-    "distPct": -1.03,
+    "last": 1093.3,
+    "distPct": -0.87,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": 0.45,
+  "spyChangePct": 0.46,
   "windowEnd": "2026-11-12T10:35:00-05:00"
  },
- "publishedAt": 1794494462.4352407,
+ "publishedAt": 1794494761.6277401,
  "bars": {
   "2026-11-04:V": [
    [
@@ -2860,6 +2860,10 @@
    [
     1794494100,
     364.14
+   ],
+   [
+    1794494400,
+    363.09
    ]
   ]
  },
@@ -2983,9 +2987,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-12T09:41:02-05:00",
+  "at": "2026-11-12T09:46:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 10,
+  "requests": 9,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
