@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-12T15:31:01-05:00",
+ "updatedAt": "2026-11-12T15:36:01-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10028.03,
+   "equity": 10029.71,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 703.18,
+     "last": 703.42,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -3143,6 +3143,10 @@
    [
     1794515100,
     361.88
+   ],
+   [
+    1794515400,
+    361.74
    ]
   ]
  },
@@ -3266,7 +3270,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-12T15:31:01-05:00",
+  "at": "2026-11-12T15:36:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 6,
   "failed": 0,
