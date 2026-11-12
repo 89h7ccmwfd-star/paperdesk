@@ -1,28 +1,14 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-12T09:46:01-05:00",
+ "updatedAt": "2026-11-12T09:51:01-05:00",
  "status": "Markt offen. In Play heute: AVGO, COST.",
  "accounts": {
   "day": {
    "startingCash": 10000,
-   "cash": 5607.36,
-   "equity": 10327.53,
-   "realizedPnl": 345.04,
-   "positions": [
-    {
-     "symbol": "AVGO",
-     "side": "Long",
-     "qty": 13,
-     "entry": 364.36,
-     "stop": 359.89,
-     "target": null,
-     "entryFee": 1.0,
-     "openedAt": "2026-11-12T09:41:02-05:00",
-     "source": "Yahoo 5m",
-     "last": 363.09,
-     "strategy": "inplay-1"
-    }
-   ],
+   "cash": 10282.07,
+   "equity": 10282.07,
+   "realizedPnl": 282.07,
+   "positions": [],
    "journal": [
     {
      "timestamp": "2026-11-04T11:40:38-05:00",
@@ -115,13 +101,24 @@
      "reason": "In Play: Volumen 2.76x, Gap 3.3%, Ausbruch ueber 361.88, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 49%, Schnitt -0.102R, Seed 19. News: 20 Meldungen, keine schwere.",
      "trigger": 361.88,
      "strategy": "inplay-1"
+    },
+    {
+     "timestamp": "2026-11-12T09:50:00-05:00",
+     "action": "SELL",
+     "symbol": "AVGO",
+     "qty": 13,
+     "price": 359.67,
+     "fee": 1.0,
+     "pnl": -62.97,
+     "source": "Yahoo 5m",
+     "reason": "Stop"
     }
    ]
   },
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10036.97,
+   "equity": 10052.52,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -134,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 356.87
+     "last": 357.26
     },
     {
      "symbol": "TMO",
@@ -146,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 704.06,
+     "last": 706.17,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -365,16 +362,16 @@
     "atr": 21.7295,
     "high": 1102.8399658203125,
     "done": false,
-    "last": 1093.3,
-    "distPct": -0.87,
+    "last": 1092.85,
+    "distPct": -0.91,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": 0.46,
+  "spyChangePct": 0.44,
   "windowEnd": "2026-11-12T10:35:00-05:00"
  },
- "publishedAt": 1794494761.6277401,
+ "publishedAt": 1794495061.142078,
  "bars": {
   "2026-11-04:V": [
    [
@@ -2864,6 +2861,10 @@
    [
     1794494400,
     363.09
+   ],
+   [
+    1794494700,
+    358.15
    ]
   ]
  },
@@ -2878,66 +2879,66 @@
  "metrics": {
   "day": {
    "all": {
-    "trades": 3,
+    "trades": 4,
     "strategy": "alle",
-    "netPnl": 345.04,
-    "returnPct": 3.45,
-    "winRate": 1.0,
+    "netPnl": 282.07,
+    "returnPct": 2.82,
+    "winRate": 0.75,
     "avgWin": 115.01,
-    "avgLoss": null,
-    "profitFactor": null,
-    "expectancy": 115.01,
+    "avgLoss": -62.97,
+    "profitFactor": 5.479,
+    "expectancy": 70.52,
     "expectancyCI": {
-     "low": 32.62,
-     "high": 204.5
+     "low": -20.2475,
+     "high": 161.53
     },
-    "avgR": 1.677,
-    "sharpe": 13.85,
-    "sortino": null,
-    "maxDrawdown": 0.0,
-    "maxDrawdownPct": 0.0,
-    "recoveryFactor": null,
-    "avgHoldMin": 351.5,
-    "exposurePct": 135.2,
-    "turnover": 2.55,
-    "fees": 6.0,
-    "feeSharePct": 1.7,
-    "slippageCost": 14.95,
-    "days": 2,
+    "avgR": 0.987,
+    "sharpe": 7.74,
+    "sortino": 42.63,
+    "maxDrawdown": -62.97,
+    "maxDrawdownPct": -0.61,
+    "recoveryFactor": 4.48,
+    "avgHoldMin": 265.9,
+    "exposurePct": 90.9,
+    "turnover": 3.49,
+    "fees": 8.0,
+    "feeSharePct": 1.9,
+    "slippageCost": 17.81,
+    "days": 3,
     "byMonth": {
-     "2026-11": 345.04
+     "2026-11": 282.07
     }
    },
    "byStrategy": {
     "inplay-1": {
-     "trades": 2,
+     "trades": 3,
      "strategy": "inplay-1",
-     "netPnl": 312.42,
-     "returnPct": 3.12,
-     "winRate": 1.0,
+     "netPnl": 249.45,
+     "returnPct": 2.49,
+     "winRate": 0.6667,
      "avgWin": 156.21,
-     "avgLoss": null,
-     "profitFactor": null,
-     "expectancy": 156.21,
+     "avgLoss": -62.97,
+     "profitFactor": 4.961,
+     "expectancy": 83.15,
      "expectancyCI": {
-      "low": 107.92,
+      "low": -62.97,
       "high": 204.5
      },
-     "avgR": 2.158,
-     "sharpe": null,
-     "sortino": null,
-     "maxDrawdown": 0.0,
-     "maxDrawdownPct": 0.0,
-     "recoveryFactor": null,
-     "avgHoldMin": 375.0,
-     "exposurePct": 192.3,
-     "turnover": 2.03,
-     "fees": 4.0,
-     "feeSharePct": 1.3,
-     "slippageCost": 14.95,
-     "days": 1,
+     "avgR": 1.077,
+     "sharpe": 7.55,
+     "sortino": 46.21,
+     "maxDrawdown": -62.97,
+     "maxDrawdownPct": -0.61,
+     "recoveryFactor": 3.96,
+     "avgHoldMin": 253.0,
+     "exposurePct": 97.3,
+     "turnover": 2.97,
+     "fees": 6.0,
+     "feeSharePct": 1.6,
+     "slippageCost": 17.81,
+     "days": 2,
      "byMonth": {
-      "2026-11": 312.42
+      "2026-11": 249.45
      }
     },
     "vor Versionierung": {
@@ -2987,7 +2988,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-12T09:46:01-05:00",
+  "at": "2026-11-12T09:51:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 9,
   "failed": 0,
@@ -3152,6 +3153,24 @@
    },
    "id": "1794494462-AVGO-7",
    "createdAt": "2026-11-12T09:41:02-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "SELL",
+   "symbol": "AVGO",
+   "type": "stop",
+   "executedAt": "2026-11-12T09:50:00-05:00",
+   "requestedQty": 13,
+   "filledQty": 13,
+   "refPrice": 359.89,
+   "fillPrice": 359.67,
+   "costPerShare": 0.22,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Stop",
+   "id": "1794495060-AVGO-8",
+   "createdAt": "2026-11-12T09:51:00-05:00"
   }
  ],
  "review": {
