@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-11T15:56:02-05:00",
+ "updatedAt": "2026-11-12T09:30:16-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -92,7 +92,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10148.97,
+   "equity": 10130.36,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -105,7 +105,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 355.4
+     "last": 355.79
     },
     {
      "symbol": "TMO",
@@ -117,7 +117,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 720.48,
+     "last": 717.71,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -375,7 +375,7 @@
   "spyChangePct": 0.43,
   "windowEnd": "2026-11-11T10:35:00-05:00"
  },
- "publishedAt": 1794430562.089225,
+ "publishedAt": 1794493816.1478198,
  "bars": {
   "2026-11-04:V": [
    [
@@ -692,10 +692,6 @@
    ]
   ],
   "D:XOM": [
-   [
-    1778506200,
-    149.68
-   ],
    [
     1778592600,
     150.63
@@ -1203,13 +1199,13 @@
    [
     1794321000,
     164.47
+   ],
+   [
+    1794407400,
+    166.71
    ]
   ],
   "D:AAPL": [
-   [
-    1778506200,
-    292.68
-   ],
    [
     1778592600,
     294.8
@@ -1717,6 +1713,10 @@
    [
     1794321000,
     348.51
+   ],
+   [
+    1794407400,
+    355.63
    ]
   ],
   "2026-11-09:AMAT": [
@@ -2341,10 +2341,6 @@
   ],
   "D:TMO": [
    [
-    1778506200,
-    452.6
-   ],
-   [
     1778592600,
     459.3
    ],
@@ -2851,14 +2847,18 @@
    [
     1794321000,
     718.2
+   ],
+   [
+    1794407400,
+    717.71
    ]
   ]
  },
  "plan": {
-  "phase": "verwalten",
-  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
-  "next": null,
-  "windowEnd": "2026-11-11T10:35:00-05:00",
+  "phase": "start",
+  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
+  "next": "2026-11-12T09:35:00-05:00",
+  "windowEnd": "2026-11-12T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
  },
@@ -2974,7 +2974,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-11T15:56:02-05:00",
+  "at": "2026-11-12T09:30:16-05:00",
   "source": "Yahoo chart v8",
   "requests": 5,
   "failed": 0,
