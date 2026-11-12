@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-12T15:16:01-05:00",
+ "updatedAt": "2026-11-12T15:16:16-05:00",
  "status": "Markt offen. In Play heute: AVGO, COST.",
  "accounts": {
   "day": {
@@ -3254,7 +3254,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-12T15:16:01-05:00",
+  "at": "2026-11-12T15:16:16-05:00",
   "source": "Yahoo chart v8",
   "requests": 7,
   "failed": 0,
