@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-12T15:56:01-05:00",
+ "updatedAt": "2026-11-12T17:04:26-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -3472,18 +3472,18 @@
   }
  ],
  "review": {
-  "at": "2026-11-10T17:34:51-05:00",
-  "text": "10.11.: Kein Trade. Der Scan lief pünktlich um 09:36, 98 Werte geprüft, kein Wert erfüllte die In-Play-Regel (SPY +0,2 %), Datenquelle ohne Fehler. Daytrading-Konto 10.345,04 USD, 3 geschlossene Trades, davon 2 mit In-Play-Regel (beide Gewinner, Schnitt 2,16 R). Der Rückblick zeigt 37,8 % Treffer und 0,36 R bei 45 Trades; zwei Live-Trades sind kein Vergleich. Verpasste Ausbrüche durch späten Lauf zuletzt am 06.11. (NVDA, INTC, GOOGL), heute keine. Am 09.11. fielen KLAC und NET wegen zu wenig virtuellem Geld weg. Swing: AAPL und TMO offen, XOM war Fehlbuchung. Kein Parameter geändert: 2 statt mindestens 40 Trades, zu wenige Daten.",
+  "at": "2026-11-12T17:04:26-05:00",
+  "text": "Nur 4 geschlossene Daytrades (3 Gewinne, 1 Verlust, +282 USD, Schnitt 0,99R), weit unter den nötigen 40: Trefferquote und R sind statistisch nicht belastbar. Aussortiert wurde meist wegen fehlendem Ausbruch in der ersten Stunde, SPY unter Eröffnung oder zu wenig virtuellem Geld; am 06.11. gab es zwei verpasste Ausbrüche (INTC, GOOGL) durch verspätete Läufe. Der Rückblick sieht rund 50% Stop-zuerst und leicht negative R, Live ist zu dünn für einen Vergleich. Keine Parameteränderung: zu wenige Daten sind keine Verbesserung.",
   "stats": {
    "day": {
-    "closed": 3,
+    "closed": 4,
     "wins": 3,
-    "losses": 0,
-    "winRate": 1.0,
+    "losses": 1,
+    "winRate": 0.75,
     "avgWin": 115.01,
-    "avgLoss": null,
-    "pnl": 345.04,
-    "equity": 10345.04
+    "avgLoss": -62.97,
+    "pnl": 282.07,
+    "equity": 10282.07
    },
    "swing": {
     "closed": 1,
@@ -3493,7 +3493,7 @@
     "avgWin": null,
     "avgLoss": -50.11,
     "pnl": -50.11,
-    "equity": 10131.21
+    "equity": 10002.55
    }
   },
   "config": {
