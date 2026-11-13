@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-12T17:04:26-05:00",
+ "updatedAt": "2026-11-13T09:30:12-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10002.55,
+   "equity": 10002.28,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 354.92
+     "last": 354.89
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 699.7,
+     "last": 699.67,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -377,7 +377,7 @@
   "spyChangePct": 0.49,
   "windowEnd": "2026-11-12T10:35:00-05:00"
  },
- "publishedAt": 1794516661.4939413,
+ "publishedAt": 1794580212.7103822,
  "bars": {
   "2026-11-04:V": [
    [
@@ -694,10 +694,6 @@
    ]
   ],
   "D:XOM": [
-   [
-    1778592600,
-    150.63
-   ],
    [
     1778679000,
     151.57
@@ -1205,13 +1201,13 @@
    [
     1794407400,
     166.71
+   ],
+   [
+    1794493800,
+    169.78
    ]
   ],
   "D:AAPL": [
-   [
-    1778592600,
-    294.8
-   ],
    [
     1778679000,
     298.87
@@ -1719,6 +1715,10 @@
    [
     1794407400,
     355.63
+   ],
+   [
+    1794493800,
+    354.88
    ]
   ],
   "2026-11-09:AMAT": [
@@ -2343,10 +2343,6 @@
   ],
   "D:TMO": [
    [
-    1778592600,
-    459.3
-   ],
-   [
     1778679000,
     446.03
    ],
@@ -2853,6 +2849,10 @@
    [
     1794407400,
     717.71
+   ],
+   [
+    1794493800,
+    699.44
    ]
   ],
   "2026-11-12:AVGO": [
@@ -3167,11 +3167,11 @@
   ]
  },
  "plan": {
-  "phase": "verwalten",
-  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
-  "next": null,
-  "windowEnd": "2026-11-12T10:35:00-05:00",
-  "dayBuys": 1,
+  "phase": "start",
+  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
+  "next": "2026-11-13T09:35:00-05:00",
+  "windowEnd": "2026-11-13T10:35:00-05:00",
+  "dayBuys": 0,
   "maxDayTrades": 3
  },
  "metrics": {
@@ -3286,9 +3286,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-12T15:56:01-05:00",
+  "at": "2026-11-13T09:30:12-05:00",
   "source": "Yahoo chart v8",
-  "requests": 6,
+  "requests": 5,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
