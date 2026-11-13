@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-13T09:30:12-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-13T09:36:38-05:00",
+ "status": "Markt offen. In Play heute: keine.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10002.28,
+   "equity": 10005.56,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 354.89
+     "last": 359.26
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 699.67,
+     "last": 698.89,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -345,37 +345,12 @@
   }
  ],
  "inPlay": {
-  "date": "2026-11-12",
+  "date": "2026-11-13",
   "scanned": 98,
-  "matches": 2,
-  "symbols": [
-   {
-    "symbol": "AVGO",
-    "rv": 2.76,
-    "gap": 0.0328,
-    "atr": 17.8469,
-    "high": 361.8788146972656,
-    "done": true,
-    "last": 364.14,
-    "distPct": 0.62,
-    "status": "gekauft",
-    "why": "Gekauft zu 364.36"
-   },
-   {
-    "symbol": "COST",
-    "rv": 2.33,
-    "gap": 0.008,
-    "atr": 21.7295,
-    "high": 1102.8399658203125,
-    "done": true,
-    "last": 1098.66,
-    "distPct": -0.38,
-    "status": "aussortiert",
-    "why": "Kein Ausbruch in der ersten Stunde"
-   }
-  ],
-  "spyChangePct": 0.49,
-  "windowEnd": "2026-11-12T10:35:00-05:00"
+  "matches": 0,
+  "symbols": [],
+  "spyChangePct": -0.25,
+  "windowEnd": "2026-11-13T10:35:00-05:00"
  },
  "publishedAt": 1794580212.7103822,
  "bars": {
@@ -3167,9 +3142,9 @@
   ]
  },
  "plan": {
-  "phase": "start",
-  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
-  "next": "2026-11-13T09:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
   "windowEnd": "2026-11-13T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -3286,11 +3261,13 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-13T09:30:12-05:00",
+  "at": "2026-11-13T09:36:38-05:00",
   "source": "Yahoo chart v8",
-  "requests": 5,
-  "failed": 0,
-  "failedSymbols": [],
+  "requests": 203,
+  "failed": 1,
+  "failedSymbols": [
+   "SQ"
+  ],
   "issues": []
  },
  "orders": [
