@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-13T15:56:00-05:00",
+ "updatedAt": "2026-11-14T03:17:20-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -3447,8 +3447,8 @@
   }
  ],
  "review": {
-  "at": "2026-11-12T17:04:26-05:00",
-  "text": "Nur 4 geschlossene Daytrades (3 Gewinne, 1 Verlust, +282 USD, Schnitt 0,99R), weit unter den nötigen 40: Trefferquote und R sind statistisch nicht belastbar. Aussortiert wurde meist wegen fehlendem Ausbruch in der ersten Stunde, SPY unter Eröffnung oder zu wenig virtuellem Geld; am 06.11. gab es zwei verpasste Ausbrüche (INTC, GOOGL) durch verspätete Läufe. Der Rückblick sieht rund 50% Stop-zuerst und leicht negative R, Live ist zu dünn für einen Vergleich. Keine Parameteränderung: zu wenige Daten sind keine Verbesserung.",
+  "at": "2026-11-14T03:17:20-05:00",
+  "text": "13.11.: Kein Trade. Von 98 Werten erfuellte keiner die In-Play-Regel, SPY lag bei -0,9 %, also richtig ausgesetzt; keine Datenfehler, kein verspaeteter Lauf. Gesamt Daytrades: 4 geschlossen, 3 davon mit In-Play-Regel (2 Gewinne, 1 Stop), +282 USD, Schnitt 1,08 R gegen 0,36 R im Rueckblick (45 Trades, Trefferquote 38 %). Die Abweichung ist bei 3 Trades Zufall. Verpasste Ausbrueche ('Bot lief zu spaet') nur am 06.11., seitdem nicht mehr. Swing: nur die XOM-Fehlbuchung vom 04.11., zaehlt nicht. Keine Parameteraenderung: unter 40 In-Play-Daytrades, zu wenige Daten sind keine Verbesserung. Keine Prognose, keine Anlageberatung.",
   "stats": {
    "day": {
     "closed": 4,
@@ -3468,7 +3468,7 @@
     "avgWin": null,
     "avgLoss": -50.11,
     "pnl": -50.11,
-    "equity": 10002.55
+    "equity": 10006.0
    }
   },
   "config": {
