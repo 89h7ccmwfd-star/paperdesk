@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-16T09:30:15-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-16T09:36:26-05:00",
+ "status": "Markt offen. In Play heute: PG, PEP, INTU, JNJ, CVS.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 10010.06,
+   "equity": 10014.39,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 356.4
+     "last": 355.52
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 700.35,
+     "last": 701.22,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -345,14 +345,75 @@
   }
  ],
  "inPlay": {
-  "date": "2026-11-13",
+  "date": "2026-11-16",
   "scanned": 98,
-  "matches": 0,
-  "symbols": [],
-  "spyChangePct": -0.9,
-  "windowEnd": "2026-11-13T10:35:00-05:00"
+  "matches": 6,
+  "symbols": [
+   {
+    "symbol": "PG",
+    "rv": 2.85,
+    "gap": 0.0122,
+    "atr": 3.2682,
+    "high": 173.32989501953125,
+    "done": false,
+    "last": 172.83,
+    "distPct": -0.29,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "PEP",
+    "rv": 1.42,
+    "gap": 0.0096,
+    "atr": 3.4187,
+    "high": 147.43499755859375,
+    "done": false,
+    "last": 147.27,
+    "distPct": -0.11,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "INTU",
+    "rv": 1.39,
+    "gap": 0.0185,
+    "atr": 13.0605,
+    "high": 349.7099914550781,
+    "done": false,
+    "last": 349.16,
+    "distPct": -0.16,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "JNJ",
+    "rv": 1.31,
+    "gap": 0.0103,
+    "atr": 7.1215,
+    "high": 290.0799865722656,
+    "done": false,
+    "last": 289.67,
+    "distPct": -0.14,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "CVS",
+    "rv": 1.23,
+    "gap": 0.0067,
+    "atr": 3.4886,
+    "high": 90.62000274658203,
+    "done": false,
+    "last": 90.18,
+    "distPct": -0.49,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   }
+  ],
+  "spyChangePct": -0.25,
+  "windowEnd": "2026-11-16T10:35:00-05:00"
  },
- "publishedAt": 1794839415.9839816,
+ "publishedAt": 1794839786.7738295,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3118,9 +3179,9 @@
   ]
  },
  "plan": {
-  "phase": "start",
-  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
-  "next": "2026-11-16T09:35:00-05:00",
+  "phase": "fenster",
+  "text": "Beobachtet PG, PEP, INTU, JNJ, CVS. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "next": "2026-11-16T10:35:00-05:00",
   "windowEnd": "2026-11-16T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -3237,11 +3298,13 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-16T09:30:15-05:00",
+  "at": "2026-11-16T09:36:26-05:00",
   "source": "Yahoo chart v8",
-  "requests": 5,
-  "failed": 0,
-  "failedSymbols": [],
+  "requests": 208,
+  "failed": 1,
+  "failedSymbols": [
+   "SQ"
+  ],
   "issues": []
  },
  "orders": [
