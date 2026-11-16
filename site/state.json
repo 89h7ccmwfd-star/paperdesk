@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-16T10:21:01-05:00",
+ "updatedAt": "2026-11-16T10:26:01-05:00",
  "status": "Markt offen. In Play heute: PG, PEP, INTU, JNJ, CVS.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9954.28,
+   "equity": 9940.0,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 354.2
+     "last": 353.78
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 693.01,
+     "last": 691.09,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -392,8 +392,8 @@
     "atr": 13.0605,
     "high": 349.7099914550781,
     "done": false,
-    "last": 348.4,
-    "distPct": -0.37,
+    "last": 347.69,
+    "distPct": -0.58,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -404,8 +404,8 @@
     "atr": 7.1215,
     "high": 290.0799865722656,
     "done": false,
-    "last": 287.11,
-    "distPct": -1.02,
+    "last": 287.22,
+    "distPct": -0.99,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -416,16 +416,16 @@
     "atr": 3.4886,
     "high": 90.62000274658203,
     "done": false,
-    "last": 90.01,
-    "distPct": -0.68,
+    "last": 90.15,
+    "distPct": -0.52,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -0.62,
+  "spyChangePct": -0.77,
   "windowEnd": "2026-11-16T10:35:00-05:00"
  },
- "publishedAt": 1794842461.4429204,
+ "publishedAt": 1794842761.860794,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3310,9 +3310,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-16T10:21:01-05:00",
+  "at": "2026-11-16T10:26:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 10,
+  "requests": 9,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
