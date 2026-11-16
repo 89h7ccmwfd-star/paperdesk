@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-16T10:06:02-05:00",
+ "updatedAt": "2026-11-16T10:11:01-05:00",
  "status": "Markt offen. In Play heute: PG, PEP, INTU, JNJ, CVS.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9962.33,
+   "equity": 9979.87,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 353.64
+     "last": 353.8
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 694.32,
+     "last": 696.78,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -362,8 +362,8 @@
     "atr": 3.2682,
     "high": 173.32989501953125,
     "done": false,
-    "last": 172.66,
-    "distPct": -0.39,
+    "last": 172.83,
+    "distPct": -0.29,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -386,8 +386,8 @@
     "atr": 13.0605,
     "high": 349.7099914550781,
     "done": false,
-    "last": 345.61,
-    "distPct": -1.17,
+    "last": 347.5,
+    "distPct": -0.63,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -398,8 +398,8 @@
     "atr": 7.1215,
     "high": 290.0799865722656,
     "done": false,
-    "last": 286.85,
-    "distPct": -1.12,
+    "last": 287.48,
+    "distPct": -0.89,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -410,8 +410,8 @@
     "atr": 3.4886,
     "high": 90.62000274658203,
     "done": false,
-    "last": 90.0,
-    "distPct": -0.69,
+    "last": 90.26,
+    "distPct": -0.4,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
@@ -419,7 +419,7 @@
   "spyChangePct": -0.63,
   "windowEnd": "2026-11-16T10:35:00-05:00"
  },
- "publishedAt": 1794841562.1830885,
+ "publishedAt": 1794841861.7907443,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3304,9 +3304,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-16T10:06:02-05:00",
+  "at": "2026-11-16T10:11:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 11,
+  "requests": 10,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
