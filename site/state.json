@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-16T13:11:01-05:00",
+ "updatedAt": "2026-11-16T13:16:01-05:00",
  "status": "Markt offen. In Play heute: PG, PEP, INTU, JNJ, CVS.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9982.1,
+   "equity": 9984.4,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 353.48
+     "last": 353.65
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 697.19,
+     "last": 697.47,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -440,7 +440,7 @@
     "why": "Kein Ausbruch in der ersten Stunde"
    }
   ],
-  "spyChangePct": -0.99,
+  "spyChangePct": -0.98,
   "windowEnd": "2026-11-16T10:35:00-05:00"
  },
  "publishedAt": 1794851161.5321457,
@@ -3328,7 +3328,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-16T13:11:01-05:00",
+  "at": "2026-11-16T13:16:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 6,
   "failed": 0,
