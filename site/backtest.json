@@ -1,30 +1,30 @@
 {
- "at": "2026-11-05T17:34:34-05:00",
- "from": "2026-09-03",
- "to": "2026-11-04",
+ "at": "2026-11-17T16:44:17-05:00",
+ "from": "2026-09-16",
+ "to": "2026-11-16",
  "days": 44,
  "first": {
-  "pnl": 316,
-  "trades": 22,
-  "win": 0.273,
-  "avgR": 0.121,
-  "maxDD": -329
+  "pnl": 17,
+  "trades": 23,
+  "win": 0.261,
+  "avgR": 0.099,
+  "maxDD": -364
  },
  "second": {
-  "pnl": 369,
-  "trades": 23,
-  "win": 0.478,
-  "avgR": 0.593,
-  "maxDD": -88
+  "pnl": 299,
+  "trades": 22,
+  "win": 0.5,
+  "avgR": 0.495,
+  "maxDD": -201
  },
  "all": {
-  "pnl": 685,
+  "pnl": 316,
   "trades": 45,
   "win": 0.378,
-  "avgR": 0.363,
-  "maxDD": -329
+  "avgR": 0.292,
+  "maxDD": -364
  },
- "spyPct": -0.15,
+ "spyPct": -2.56,
  "oldRulePnl": -1592,
  "oldRuleTrades": 177,
  "config": {
@@ -35,13 +35,5 @@
   "slippage": 0.0004,
   "spread": 0.0004,
   "max_volume_share": 0.01
- },
- "walkForward": {
-  "days": 24,
-  "pnl": -33.96,
-  "shareAtOrBelowZero": 0.5628,
-  "realityCheckP": 0.097,
-  "variants": 72,
-  "randomEntryPnl": -409.17
  }
 }
