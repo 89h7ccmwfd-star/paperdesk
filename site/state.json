@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-17T10:16:01-05:00",
+ "updatedAt": "2026-11-17T10:21:01-05:00",
  "status": "Markt offen. In Play heute: NKE.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9920.0,
+   "equity": 9923.52,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 354.98
+     "last": 354.36
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 687.89,
+     "last": 688.57,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -386,16 +386,16 @@
     "atr": 1.265,
     "high": 40.4900016784668,
     "done": false,
-    "last": 39.12,
-    "distPct": -3.4,
+    "last": 39.2,
+    "distPct": -3.19,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -0.13,
+  "spyChangePct": -0.23,
   "windowEnd": "2026-11-17T10:35:00-05:00"
  },
- "publishedAt": 1794928561.7445626,
+ "publishedAt": 1794928861.8798668,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3292,7 +3292,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-17T10:16:01-05:00",
+  "at": "2026-11-17T10:21:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 7,
   "failed": 0,
