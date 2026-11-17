@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-17T15:56:01-05:00",
+ "updatedAt": "2026-11-17T16:41:20-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -3484,8 +3484,8 @@
   }
  ],
  "review": {
-  "at": "2026-11-16T23:52:01-05:00",
-  "text": "16.11.: kein Daytrade. PEP und PG brachen aus, wurden aber aussortiert, weil SPY unter Eröffnung lag; INTU, JNJ, CVS ohne Ausbruch in der ersten Stunde. Kein verpasster Ausbruch durch späte Läufe heute (zuletzt am 06.11.). Live bisher 3 In-Play-Daytrades: Trefferquote 67 %, Schnitt 1,08R, Rückblick 38 % und 0,36R. Live liegt darüber, aber 3 Trades sind statistisch bedeutungslos. Swing: einziger Trade ist die XOM-Fehlbuchung, keine Aussage. Kein Parameter geändert, da weit unter 40 geschlossenen In-Play-Trades; zu wenige Daten sind keine Verbesserung. Risikolimits unverändert.",
+  "at": "2026-11-17T16:41:20-05:00",
+  "text": "Heute kein Trade: NKE ohne Ausbruch in der ersten Stunde aussortiert, keine verpassten Ausbrueche durch verspaetete Laeufe (zuletzt am 06.11. bei NVDA, INTC, GOOGL). Daytrading gesamt 4 geschlossen, 3 Gewinner, +282 USD, Schnitt 0,99 R; In-Play-Regel 3 Trades mit 1,08 R gegen 0,36 R im Rueckblick (45 Trades). Mehrfach aussortiert, weil SPY unter Eroeffnung lag. Swing: XOM-Fehlbuchung zaehlt nicht. Kein Parameter geaendert: nur 3 geschlossene In-Play-Daytrades statt der noetigen 40, zu wenige Daten sind keine Verbesserung.",
   "stats": {
    "day": {
     "closed": 4,
@@ -3505,7 +3505,7 @@
     "avgWin": null,
     "avgLoss": -50.11,
     "pnl": -50.11,
-    "equity": 9932.38
+    "equity": 9903.27
    }
   },
   "config": {
