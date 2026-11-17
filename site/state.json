@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-16T23:52:01-05:00",
+ "updatedAt": "2026-11-17T09:30:17-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9932.38,
+   "equity": 9941.56,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 352.07
+     "last": 352.81
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 690.49,
+     "last": 691.59,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -443,7 +443,7 @@
   "spyChangePct": -1.44,
   "windowEnd": "2026-11-16T10:35:00-05:00"
  },
- "publishedAt": 1794862262.240066,
+ "publishedAt": 1794925817.7917557,
  "bars": {
   "2026-11-04:V": [
    [
@@ -1263,6 +1263,10 @@
    [
     1794580200,
     170.59
+   ],
+   [
+    1794839400,
+    166.87
    ]
   ],
   "D:AAPL": [
@@ -1769,6 +1773,10 @@
    [
     1794580200,
     356.27
+   ],
+   [
+    1794839400,
+    352.78
    ]
   ],
   "2026-11-09:AMAT": [
@@ -2895,6 +2903,10 @@
    [
     1794580200,
     700.22
+   ],
+   [
+    1794839400,
+    691.33
    ]
   ],
   "2026-11-12:AVGO": [
@@ -3209,10 +3221,10 @@
   ]
  },
  "plan": {
-  "phase": "verwalten",
-  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
-  "next": null,
-  "windowEnd": "2026-11-16T10:35:00-05:00",
+  "phase": "start",
+  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
+  "next": "2026-11-17T09:35:00-05:00",
+  "windowEnd": "2026-11-17T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
  },
@@ -3328,7 +3340,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-16T15:56:01-05:00",
+  "at": "2026-11-17T09:30:17-05:00",
   "source": "Yahoo chart v8",
   "requests": 5,
   "failed": 0,
