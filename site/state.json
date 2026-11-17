@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-17T15:16:02-05:00",
+ "updatedAt": "2026-11-17T15:16:16-05:00",
  "status": "Markt offen. In Play heute: NKE.",
  "accounts": {
   "day": {
@@ -3298,7 +3298,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-17T15:16:02-05:00",
+  "at": "2026-11-17T15:16:16-05:00",
   "source": "Yahoo chart v8",
   "requests": 6,
   "failed": 0,
