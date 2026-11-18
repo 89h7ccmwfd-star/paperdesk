@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-18T15:26:01-05:00",
- "status": "Markt offen. In Play heute: TGT, SCHW.",
+ "updatedAt": "2026-11-18T15:31:01-05:00",
+ "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9937.81,
+   "equity": 9938.41,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 352.09
+     "last": 351.9
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 691.26,
+     "last": 691.4,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -3334,9 +3334,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-18T15:26:01-05:00",
+  "at": "2026-11-18T15:31:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 6,
+  "requests": 5,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
