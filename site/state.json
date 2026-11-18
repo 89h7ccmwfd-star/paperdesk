@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-18T15:16:02-05:00",
+ "updatedAt": "2026-11-18T15:16:19-05:00",
  "status": "Markt offen. In Play heute: TGT, SCHW.",
  "accounts": {
   "day": {
@@ -3334,7 +3334,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-18T15:16:02-05:00",
+  "at": "2026-11-18T15:16:19-05:00",
   "source": "Yahoo chart v8",
   "requests": 6,
   "failed": 0,
