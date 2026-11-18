@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-18T09:30:16-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-18T09:36:44-05:00",
+ "status": "Markt offen. In Play heute: TGT, SCHW.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9906.32,
+   "equity": 9920.85,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 351.92
+     "last": 354.32
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 686.81,
+     "last": 688.2,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -381,27 +381,39 @@
   }
  ],
  "inPlay": {
-  "date": "2026-11-17",
+  "date": "2026-11-18",
   "scanned": 98,
-  "matches": 1,
+  "matches": 2,
   "symbols": [
    {
-    "symbol": "NKE",
-    "rv": 4.29,
-    "gap": 0.05,
-    "atr": 1.265,
-    "high": 40.4900016784668,
-    "done": true,
-    "last": 39.09,
-    "distPct": -3.46,
-    "status": "aussortiert",
-    "why": "Kein Ausbruch in der ersten Stunde"
+    "symbol": "TGT",
+    "rv": 9.41,
+    "gap": 0.013,
+    "atr": 5.5554,
+    "high": 165.67999267578125,
+    "done": false,
+    "last": 164.48,
+    "distPct": -0.72,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "SCHW",
+    "rv": 1.39,
+    "gap": 0.0048,
+    "atr": 2.2566,
+    "high": 92.55000305175781,
+    "done": false,
+    "last": 92.49,
+    "distPct": -0.06,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -1.08,
-  "windowEnd": "2026-11-17T10:35:00-05:00"
+  "spyChangePct": 0.01,
+  "windowEnd": "2026-11-18T10:35:00-05:00"
  },
- "publishedAt": 1795012216.62978,
+ "publishedAt": 1795012604.165029,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3191,9 +3203,9 @@
   ]
  },
  "plan": {
-  "phase": "start",
-  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
-  "next": "2026-11-18T09:35:00-05:00",
+  "phase": "fenster",
+  "text": "Beobachtet TGT, SCHW. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "next": "2026-11-18T10:35:00-05:00",
   "windowEnd": "2026-11-18T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -3310,11 +3322,13 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-18T09:30:16-05:00",
+  "at": "2026-11-18T09:36:44-05:00",
   "source": "Yahoo chart v8",
-  "requests": 5,
-  "failed": 0,
-  "failedSymbols": [],
+  "requests": 205,
+  "failed": 1,
+  "failedSymbols": [
+   "SQ"
+  ],
   "issues": []
  },
  "orders": [
