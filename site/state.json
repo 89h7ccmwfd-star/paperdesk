@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-18T09:41:02-05:00",
+ "updatedAt": "2026-11-18T09:46:02-05:00",
  "status": "Markt offen. In Play heute: TGT, SCHW.",
  "accounts": {
   "day": {
@@ -118,7 +118,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9873.69,
+   "equity": 9906.53,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +131,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 355.03
+     "last": 355.49
     },
     {
      "symbol": "TMO",
@@ -143,7 +143,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 681.26,
+     "last": 685.82,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -384,6 +384,12 @@
    "symbol": "SCHW",
    "outcome": "aussortiert",
    "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+  },
+  {
+   "timestamp": "2026-11-18T09:46:02-05:00",
+   "symbol": "TGT",
+   "outcome": "aussortiert",
+   "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
   }
  ],
  "inPlay": {
@@ -397,11 +403,11 @@
     "gap": 0.013,
     "atr": 5.5554,
     "high": 165.67999267578125,
-    "done": false,
-    "last": 165.44,
-    "distPct": -0.14,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 167.44,
+    "distPct": 1.06,
+    "status": "aussortiert",
+    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    },
    {
     "symbol": "SCHW",
@@ -416,10 +422,10 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -0.18,
+  "spyChangePct": -0.38,
   "windowEnd": "2026-11-18T10:35:00-05:00"
  },
- "publishedAt": 1795012862.2112222,
+ "publishedAt": 1795013162.756717,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3209,9 +3215,9 @@
   ]
  },
  "plan": {
-  "phase": "fenster",
-  "text": "Beobachtet TGT. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
-  "next": "2026-11-18T10:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
   "windowEnd": "2026-11-18T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -3328,9 +3334,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-18T09:41:02-05:00",
+  "at": "2026-11-18T09:46:02-05:00",
   "source": "Yahoo chart v8",
-  "requests": 8,
+  "requests": 7,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
