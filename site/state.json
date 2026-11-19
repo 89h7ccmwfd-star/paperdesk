@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-19T12:41:01-05:00",
+ "updatedAt": "2026-11-19T12:46:01-05:00",
  "status": "Markt offen. In Play heute: PANW, CRWD, GS, SNOW, CRM.",
  "accounts": {
   "day": {
@@ -170,7 +170,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9967.66,
+   "equity": 9965.11,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -183,7 +183,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.9
+     "last": 349.64
     },
     {
      "symbol": "TMO",
@@ -195,7 +195,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 696.15,
+     "last": 695.86,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -540,7 +540,7 @@
     "why": "Kein Ausbruch in der ersten Stunde"
    }
   ],
-  "spyChangePct": -1.87,
+  "spyChangePct": -2.03,
   "windowEnd": "2026-11-19T10:35:00-05:00"
  },
  "publishedAt": 1795110061.8722255,
@@ -3483,6 +3483,10 @@
    [
     1795109700,
     284.79
+   ],
+   [
+    1795110000,
+    283.14
    ]
   ],
   "2026-11-19:GS": [
@@ -3637,6 +3641,10 @@
    [
     1795109700,
     855.89
+   ],
+   [
+    1795110000,
+    856.01
    ]
   ]
  },
@@ -3760,7 +3768,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-19T12:41:01-05:00",
+  "at": "2026-11-19T12:46:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 8,
   "failed": 0,
