@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-19T10:16:02-05:00",
+ "updatedAt": "2026-11-19T10:21:01-05:00",
  "status": "Markt offen. In Play heute: PANW, CRWD, GS, SNOW, CRM.",
  "accounts": {
   "day": {
@@ -170,7 +170,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9978.19,
+   "equity": 9991.39,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -183,7 +183,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.25
+     "last": 349.55
     },
     {
      "symbol": "TMO",
@@ -195,7 +195,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 697.84,
+     "last": 699.64,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -474,8 +474,8 @@
     "atr": 20.1593,
     "high": 370.0,
     "done": false,
-    "last": 357.48,
-    "distPct": -3.38,
+    "last": 355.65,
+    "distPct": -3.88,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -522,16 +522,16 @@
     "atr": 8.4972,
     "high": 194.94000244140625,
     "done": false,
-    "last": 190.95,
-    "distPct": -2.05,
+    "last": 188.62,
+    "distPct": -3.24,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -0.45,
+  "spyChangePct": -0.66,
   "windowEnd": "2026-11-19T10:35:00-05:00"
  },
- "publishedAt": 1795101362.132805,
+ "publishedAt": 1795101661.8925736,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3355,6 +3355,10 @@
    [
     1795101000,
     293.98
+   ],
+   [
+    1795101300,
+    290.91
    ]
   ],
   "2026-11-19:GS": [
@@ -3384,7 +3388,7 @@
    ],
    [
     1795100400,
-    886.11
+    886.35
    ],
    [
     1795100700,
@@ -3393,6 +3397,10 @@
    [
     1795101000,
     879.78
+   ],
+   [
+    1795101300,
+    874.25
    ]
   ]
  },
@@ -3516,9 +3524,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-19T10:16:02-05:00",
+  "at": "2026-11-19T10:21:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 11,
+  "requests": 10,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
