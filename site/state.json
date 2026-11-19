@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-19T10:31:02-05:00",
+ "updatedAt": "2026-11-19T10:36:02-05:00",
  "status": "Markt offen. In Play heute: PANW, CRWD, GS, SNOW, CRM.",
  "accounts": {
   "day": {
@@ -170,7 +170,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9985.32,
+   "equity": 9966.84,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -183,7 +183,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 348.72
+     "last": 348.37
     },
     {
      "symbol": "TMO",
@@ -195,7 +195,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 699.01,
+     "last": 696.47,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -460,6 +460,18 @@
    "symbol": "CRWD",
    "outcome": "aussortiert",
    "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+  },
+  {
+   "timestamp": "2026-11-19T10:36:01-05:00",
+   "symbol": "PANW",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-19T10:36:01-05:00",
+   "symbol": "CRM",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
   }
  ],
  "inPlay": {
@@ -473,11 +485,11 @@
     "gap": 0.0422,
     "atr": 20.1593,
     "high": 370.0,
-    "done": false,
-    "last": 351.73,
-    "distPct": -4.94,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 353.63,
+    "distPct": -4.42,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    },
    {
     "symbol": "CRWD",
@@ -521,17 +533,17 @@
     "gap": 0.0067,
     "atr": 8.4972,
     "high": 194.94000244140625,
-    "done": false,
-    "last": 188.54,
-    "distPct": -3.28,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 188.38,
+    "distPct": -3.37,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    }
   ],
-  "spyChangePct": -0.92,
+  "spyChangePct": -1.2,
   "windowEnd": "2026-11-19T10:35:00-05:00"
  },
- "publishedAt": 1795102262.3500745,
+ "publishedAt": 1795102562.1297998,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3358,7 +3370,7 @@
    ],
    [
     1795101300,
-    290.91
+    290.83
    ],
    [
     1795101600,
@@ -3367,6 +3379,10 @@
    [
     1795101900,
     288.76
+   ],
+   [
+    1795102200,
+    286.78
    ]
   ],
   "2026-11-19:GS": [
@@ -3417,13 +3433,17 @@
    [
     1795101900,
     870.53
+   ],
+   [
+    1795102200,
+    869.49
    ]
   ]
  },
  "plan": {
-  "phase": "fenster",
-  "text": "Beobachtet PANW, CRM. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
-  "next": "2026-11-19T10:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
   "windowEnd": "2026-11-19T10:35:00-05:00",
   "dayBuys": 2,
   "maxDayTrades": 3
@@ -3540,7 +3560,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-19T10:31:02-05:00",
+  "at": "2026-11-19T10:36:02-05:00",
   "source": "Yahoo chart v8",
   "requests": 10,
   "failed": 0,
