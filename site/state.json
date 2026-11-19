@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-19T15:16:01-05:00",
+ "updatedAt": "2026-11-19T15:16:12-05:00",
  "status": "Markt offen. In Play heute: PANW, CRWD, GS, SNOW, CRM.",
  "accounts": {
   "day": {
@@ -4008,7 +4008,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-19T15:16:01-05:00",
+  "at": "2026-11-19T15:16:12-05:00",
   "source": "Yahoo chart v8",
   "requests": 8,
   "failed": 0,
