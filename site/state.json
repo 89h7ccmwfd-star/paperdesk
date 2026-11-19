@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-19T10:26:01-05:00",
+ "updatedAt": "2026-11-19T10:31:02-05:00",
  "status": "Markt offen. In Play heute: PANW, CRWD, GS, SNOW, CRM.",
  "accounts": {
   "day": {
@@ -170,7 +170,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9977.07,
+   "equity": 9985.32,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -183,7 +183,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 348.83
+     "last": 348.72
     },
     {
      "symbol": "TMO",
@@ -195,7 +195,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 697.8,
+     "last": 699.01,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -474,8 +474,8 @@
     "atr": 20.1593,
     "high": 370.0,
     "done": false,
-    "last": 354.15,
-    "distPct": -4.28,
+    "last": 351.73,
+    "distPct": -4.94,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -522,16 +522,16 @@
     "atr": 8.4972,
     "high": 194.94000244140625,
     "done": false,
-    "last": 188.52,
-    "distPct": -3.29,
+    "last": 188.54,
+    "distPct": -3.28,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -0.78,
+  "spyChangePct": -0.92,
   "windowEnd": "2026-11-19T10:35:00-05:00"
  },
- "publishedAt": 1795101961.6328533,
+ "publishedAt": 1795102262.3500745,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3363,6 +3363,10 @@
    [
     1795101600,
     289.93
+   ],
+   [
+    1795101900,
+    288.76
    ]
   ],
   "2026-11-19:GS": [
@@ -3409,6 +3413,10 @@
    [
     1795101600,
     875.0
+   ],
+   [
+    1795101900,
+    870.53
    ]
   ]
  },
@@ -3532,7 +3540,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-19T10:26:01-05:00",
+  "at": "2026-11-19T10:31:02-05:00",
   "source": "Yahoo chart v8",
   "requests": 10,
   "failed": 0,
