@@ -1,14 +1,28 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-19T09:41:01-05:00",
+ "updatedAt": "2026-11-19T09:46:02-05:00",
  "status": "Markt offen. In Play heute: PANW, CRWD, GS, SNOW, CRM.",
  "accounts": {
   "day": {
    "startingCash": 10000,
-   "cash": 10282.07,
-   "equity": 10282.07,
+   "cash": 5547.47,
+   "equity": 10281.07,
    "realizedPnl": 282.07,
-   "positions": [],
+   "positions": [
+    {
+     "symbol": "SNOW",
+     "side": "Long",
+     "qty": 16,
+     "entry": 295.85,
+     "stop": 291.68,
+     "target": null,
+     "entryFee": 1.0,
+     "openedAt": "2026-11-19T09:46:02-05:00",
+     "source": "Yahoo 5m",
+     "last": 295.85,
+     "strategy": "inplay-1"
+    }
+   ],
    "journal": [
     {
      "timestamp": "2026-11-04T11:40:38-05:00",
@@ -112,13 +126,28 @@
      "pnl": -62.97,
      "source": "Yahoo 5m",
      "reason": "Stop"
+    },
+    {
+     "timestamp": "2026-11-19T09:46:02-05:00",
+     "action": "BUY",
+     "symbol": "SNOW",
+     "qty": 16,
+     "price": 295.85,
+     "stop": 291.68,
+     "target": null,
+     "fee": 1.0,
+     "plannedRisk": 66.72,
+     "source": "Yahoo 5m",
+     "reason": "In Play: Volumen 1.85x, Gap 3.0%, Ausbruch ueber 295.5, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 55%, Schnitt -0.031R, Seed 19. News: 7 Meldungen, keine schwere.",
+     "trigger": 295.5,
+     "strategy": "inplay-1"
     }
    ]
   },
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9979.48,
+   "equity": 9966.64,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -131,7 +160,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.09
+     "last": 349.39
     },
     {
      "symbol": "TMO",
@@ -143,7 +172,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 698.07,
+     "last": 696.15,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -390,6 +419,12 @@
    "symbol": "TGT",
    "outcome": "aussortiert",
    "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+  },
+  {
+   "timestamp": "2026-11-19T09:46:02-05:00",
+   "symbol": "SNOW",
+   "outcome": "gekauft",
+   "detail": "In Play: Volumen 1.85x, Gap 3.0%, Ausbruch ueber 295.5, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 55%, Schnitt -0.031R, Seed 19. News: 7 Meldungen, keine schwere."
   }
  ],
  "inPlay": {
@@ -404,8 +439,8 @@
     "atr": 20.1593,
     "high": 370.0,
     "done": false,
-    "last": 364.39,
-    "distPct": -1.52,
+    "last": 365.53,
+    "distPct": -1.21,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -416,8 +451,8 @@
     "atr": 15.097,
     "high": 254.0,
     "done": false,
-    "last": 251.15,
-    "distPct": -1.12,
+    "last": 253.9,
+    "distPct": -0.04,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -428,8 +463,8 @@
     "atr": 30.4308,
     "high": 886.6699829101562,
     "done": false,
-    "last": 883.34,
-    "distPct": -0.38,
+    "last": 886.51,
+    "distPct": -0.02,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -439,11 +474,11 @@
     "gap": 0.0298,
     "atr": 16.6667,
     "high": 295.5,
-    "done": false,
-    "last": 293.37,
-    "distPct": -0.72,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 295.67,
+    "distPct": 0.06,
+    "status": "gekauft",
+    "why": "Gekauft zu 295.85"
    },
    {
     "symbol": "CRM",
@@ -452,16 +487,16 @@
     "atr": 8.4972,
     "high": 194.94000244140625,
     "done": false,
-    "last": 193.94,
-    "distPct": -0.51,
+    "last": 194.8,
+    "distPct": -0.07,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -0.14,
+  "spyChangePct": 0.1,
   "windowEnd": "2026-11-19T10:35:00-05:00"
  },
- "publishedAt": 1795099261.8031013,
+ "publishedAt": 1795099562.844617,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3248,14 +3283,28 @@
     1794516600,
     363.29
    ]
+  ],
+  "2026-11-19:SNOW": [
+   [
+    1795098600,
+    295.27
+   ],
+   [
+    1795098900,
+    293.37
+   ],
+   [
+    1795099200,
+    295.67
+   ]
   ]
  },
  "plan": {
   "phase": "fenster",
-  "text": "Beobachtet PANW, CRWD, GS, SNOW, CRM. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "text": "Beobachtet PANW, CRWD, GS, CRM. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
   "next": "2026-11-19T10:35:00-05:00",
   "windowEnd": "2026-11-19T10:35:00-05:00",
-  "dayBuys": 0,
+  "dayBuys": 1,
   "maxDayTrades": 3
  },
  "metrics": {
@@ -3370,9 +3419,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-19T09:41:01-05:00",
+  "at": "2026-11-19T09:46:02-05:00",
   "source": "Yahoo chart v8",
-  "requests": 11,
+  "requests": 13,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
@@ -3553,6 +3602,29 @@
    "reason": "Stop",
    "id": "1794495060-AVGO-8",
    "createdAt": "2026-11-12T09:51:00-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "BUY",
+   "symbol": "SNOW",
+   "type": "market",
+   "signalAt": "2026-11-19T09:45:00-05:00",
+   "refPrice": 295.67,
+   "requestedQty": 16,
+   "executedAt": "2026-11-19T09:46:02-05:00",
+   "filledQty": 16,
+   "fillPrice": 295.85,
+   "costPerShare": 0.18,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Ausbruch",
+   "risk": {
+    "stop": 291.68,
+    "plannedRisk": 66.72
+   },
+   "id": "1795099562-SNOW-9",
+   "createdAt": "2026-11-19T09:46:02-05:00"
   }
  ],
  "review": {
