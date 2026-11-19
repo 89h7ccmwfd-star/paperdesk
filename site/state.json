@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-18T15:56:01-05:00",
+ "updatedAt": "2026-11-18T23:19:42-05:00",
  "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
  "accounts": {
   "day": {
@@ -3520,8 +3520,8 @@
   }
  ],
  "review": {
-  "at": "2026-11-17T16:41:20-05:00",
-  "text": "Heute kein Trade: NKE ohne Ausbruch in der ersten Stunde aussortiert, keine verpassten Ausbrueche durch verspaetete Laeufe (zuletzt am 06.11. bei NVDA, INTC, GOOGL). Daytrading gesamt 4 geschlossen, 3 Gewinner, +282 USD, Schnitt 0,99 R; In-Play-Regel 3 Trades mit 1,08 R gegen 0,36 R im Rueckblick (45 Trades). Mehrfach aussortiert, weil SPY unter Eroeffnung lag. Swing: XOM-Fehlbuchung zaehlt nicht. Kein Parameter geaendert: nur 3 geschlossene In-Play-Daytrades statt der noetigen 40, zu wenige Daten sind keine Verbesserung.",
+  "at": "2026-11-18T23:19:42-05:00",
+  "text": "Nur 4 geschlossene Daytrades (3 Gewinne, 1 Verlust, +282 USD, Schnitt 0,99 R); das ist statistisch noch nichts wert, das Konfidenzintervall reicht klar ins Negative. Heute wurden SCHW und TGT aussortiert, weil SPY unter der Eroeffnung lag; das Marktfilter-Muster wiederholt sich, verpasste Ausbrueche wurden nicht erkannt. Der XOM-Swing-Trade zaehlt nicht. Keinen Parameter geaendert: Zu wenige Daten (unter 40) sind keine Verbesserung.",
   "stats": {
    "day": {
     "closed": 4,
@@ -3541,12 +3541,12 @@
     "avgWin": null,
     "avgLoss": -50.11,
     "pnl": -50.11,
-    "equity": 9903.27
+    "equity": 9950.56
    }
   },
   "config": {
    "rv": 1.0,
-   "gap": 0.005,
+   "gap": 0.003,
    "top": 5,
    "atr": 0.25,
    "window": 12,
