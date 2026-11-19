@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-19T09:56:01-05:00",
+ "updatedAt": "2026-11-19T10:01:01-05:00",
  "status": "Markt offen. In Play heute: PANW, CRWD, GS, SNOW, CRM.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 5756.97,
-   "equity": 10188.52,
+   "equity": 10188.92,
    "realizedPnl": 210.47,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-19T09:51:01-05:00",
      "source": "Yahoo 5m",
-     "last": 886.31,
+     "last": 886.39,
      "strategy": "inplay-1"
     }
    ],
@@ -173,7 +173,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9961.07,
+   "equity": 9961.84,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -186,7 +186,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 348.6
+     "last": 349.58
     },
     {
      "symbol": "TMO",
@@ -198,7 +198,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 695.58,
+     "last": 695.41,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -471,8 +471,8 @@
     "atr": 20.1593,
     "high": 370.0,
     "done": false,
-    "last": 363.05,
-    "distPct": -1.88,
+    "last": 364.65,
+    "distPct": -1.45,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -483,8 +483,8 @@
     "atr": 15.097,
     "high": 254.0,
     "done": false,
-    "last": 252.35,
-    "distPct": -0.65,
+    "last": 252.69,
+    "distPct": -0.52,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -519,8 +519,8 @@
     "atr": 8.4972,
     "high": 194.94000244140625,
     "done": false,
-    "last": 192.34,
-    "distPct": -1.33,
+    "last": 191.8,
+    "distPct": -1.61,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
@@ -528,7 +528,7 @@
   "spyChangePct": -0.16,
   "windowEnd": "2026-11-19T10:35:00-05:00"
  },
- "publishedAt": 1795100161.9723215,
+ "publishedAt": 1795100461.6642878,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3336,6 +3336,10 @@
    [
     1795099800,
     293.09
+   ],
+   [
+    1795100100,
+    292.49
    ]
   ],
   "2026-11-19:GS": [
@@ -3349,7 +3353,7 @@
    ],
    [
     1795099200,
-    886.51
+    886.87
    ],
    [
     1795099500,
@@ -3358,6 +3362,10 @@
    [
     1795099800,
     886.31
+   ],
+   [
+    1795100100,
+    886.39
    ]
   ]
  },
@@ -3481,7 +3489,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-19T09:56:01-05:00",
+  "at": "2026-11-19T10:01:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 12,
   "failed": 0,
