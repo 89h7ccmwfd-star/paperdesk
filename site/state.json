@@ -1,25 +1,25 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-19T09:46:02-05:00",
+ "updatedAt": "2026-11-19T09:51:02-05:00",
  "status": "Markt offen. In Play heute: PANW, CRWD, GS, SNOW, CRM.",
  "accounts": {
   "day": {
    "startingCash": 10000,
-   "cash": 5547.47,
-   "equity": 10281.07,
-   "realizedPnl": 282.07,
+   "cash": 5756.97,
+   "equity": 10209.47,
+   "realizedPnl": 210.47,
    "positions": [
     {
-     "symbol": "SNOW",
+     "symbol": "GS",
      "side": "Long",
-     "qty": 16,
-     "entry": 295.85,
-     "stop": 291.68,
+     "qty": 5,
+     "entry": 890.5,
+     "stop": 882.89,
      "target": null,
      "entryFee": 1.0,
-     "openedAt": "2026-11-19T09:46:02-05:00",
+     "openedAt": "2026-11-19T09:51:01-05:00",
      "source": "Yahoo 5m",
-     "last": 295.85,
+     "last": 890.5,
      "strategy": "inplay-1"
     }
    ],
@@ -141,13 +141,39 @@
      "reason": "In Play: Volumen 1.85x, Gap 3.0%, Ausbruch ueber 295.5, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 55%, Schnitt -0.031R, Seed 19. News: 7 Meldungen, keine schwere.",
      "trigger": 295.5,
      "strategy": "inplay-1"
+    },
+    {
+     "timestamp": "2026-11-19T09:50:00-05:00",
+     "action": "SELL",
+     "symbol": "SNOW",
+     "qty": 16,
+     "price": 291.5,
+     "fee": 1.0,
+     "pnl": -71.6,
+     "source": "Yahoo 5m",
+     "reason": "Stop"
+    },
+    {
+     "timestamp": "2026-11-19T09:51:01-05:00",
+     "action": "BUY",
+     "symbol": "GS",
+     "qty": 5,
+     "price": 890.5,
+     "stop": 882.89,
+     "target": null,
+     "fee": 1.0,
+     "plannedRisk": 38.05,
+     "source": "Yahoo 5m",
+     "reason": "In Play: Volumen 1.88x, Gap 1.3%, Ausbruch ueber 886.67, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 59%, Schnitt -0.128R, Seed 19. News: 13 Meldungen, keine schwere.",
+     "trigger": 886.67,
+     "strategy": "inplay-1"
     }
    ]
   },
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9966.64,
+   "equity": 9971.59,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -160,7 +186,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.39
+     "last": 350.15
     },
     {
      "symbol": "TMO",
@@ -172,7 +198,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 696.15,
+     "last": 696.64,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -425,6 +451,12 @@
    "symbol": "SNOW",
    "outcome": "gekauft",
    "detail": "In Play: Volumen 1.85x, Gap 3.0%, Ausbruch ueber 295.5, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 55%, Schnitt -0.031R, Seed 19. News: 7 Meldungen, keine schwere."
+  },
+  {
+   "timestamp": "2026-11-19T09:51:01-05:00",
+   "symbol": "GS",
+   "outcome": "gekauft",
+   "detail": "In Play: Volumen 1.88x, Gap 1.3%, Ausbruch ueber 886.67, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 59%, Schnitt -0.128R, Seed 19. News: 13 Meldungen, keine schwere."
   }
  ],
  "inPlay": {
@@ -439,8 +471,8 @@
     "atr": 20.1593,
     "high": 370.0,
     "done": false,
-    "last": 365.53,
-    "distPct": -1.21,
+    "last": 361.99,
+    "distPct": -2.16,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -451,8 +483,8 @@
     "atr": 15.097,
     "high": 254.0,
     "done": false,
-    "last": 253.9,
-    "distPct": -0.04,
+    "last": 253.74,
+    "distPct": -0.1,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -462,11 +494,11 @@
     "gap": 0.0131,
     "atr": 30.4308,
     "high": 886.6699829101562,
-    "done": false,
-    "last": 886.51,
-    "distPct": -0.02,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 889.97,
+    "distPct": 0.37,
+    "status": "gekauft",
+    "why": "Gekauft zu 890.5"
    },
    {
     "symbol": "SNOW",
@@ -487,16 +519,16 @@
     "atr": 8.4972,
     "high": 194.94000244140625,
     "done": false,
-    "last": 194.8,
-    "distPct": -0.07,
+    "last": 193.71,
+    "distPct": -0.63,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": 0.1,
+  "spyChangePct": 0.21,
   "windowEnd": "2026-11-19T10:35:00-05:00"
  },
- "publishedAt": 1795099562.844617,
+ "publishedAt": 1795099862.0019972,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3296,80 +3328,102 @@
    [
     1795099200,
     295.67
+   ],
+   [
+    1795099500,
+    295.34
+   ]
+  ],
+  "2026-11-19:GS": [
+   [
+    1795098600,
+    885.1
+   ],
+   [
+    1795098900,
+    883.34
+   ],
+   [
+    1795099200,
+    886.51
+   ],
+   [
+    1795099500,
+    889.97
    ]
   ]
  },
  "plan": {
   "phase": "fenster",
-  "text": "Beobachtet PANW, CRWD, GS, CRM. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "text": "Beobachtet PANW, CRWD, CRM. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
   "next": "2026-11-19T10:35:00-05:00",
   "windowEnd": "2026-11-19T10:35:00-05:00",
-  "dayBuys": 1,
+  "dayBuys": 2,
   "maxDayTrades": 3
  },
  "metrics": {
   "day": {
    "all": {
-    "trades": 4,
+    "trades": 5,
     "strategy": "alle",
-    "netPnl": 282.07,
-    "returnPct": 2.82,
-    "winRate": 0.75,
+    "netPnl": 210.47,
+    "returnPct": 2.1,
+    "winRate": 0.6,
     "avgWin": 115.01,
-    "avgLoss": -62.97,
-    "profitFactor": 5.479,
-    "expectancy": 70.52,
+    "avgLoss": -67.28,
+    "profitFactor": 2.564,
+    "expectancy": 42.09,
     "expectancyCI": {
-     "low": -20.2475,
-     "high": 161.53
+     "low": -47.303999999999995,
+     "high": 135.748
     },
-    "avgR": 0.987,
-    "sharpe": 7.74,
-    "sortino": 42.63,
-    "maxDrawdown": -62.97,
-    "maxDrawdownPct": -0.61,
-    "recoveryFactor": 4.48,
-    "avgHoldMin": 265.9,
-    "exposurePct": 90.9,
-    "turnover": 3.49,
-    "fees": 8.0,
-    "feeSharePct": 1.9,
-    "slippageCost": 17.81,
-    "days": 3,
+    "avgR": 0.575,
+    "sharpe": 4.76,
+    "sortino": 18.32,
+    "maxDrawdown": -134.57,
+    "maxDrawdownPct": -1.3,
+    "recoveryFactor": 1.56,
+    "avgHoldMin": 213.5,
+    "exposurePct": 68.4,
+    "turnover": 4.43,
+    "fees": 10.0,
+    "feeSharePct": 2.1,
+    "slippageCost": 23.57,
+    "days": 4,
     "byMonth": {
-     "2026-11": 282.07
+     "2026-11": 210.47
     }
    },
    "byStrategy": {
     "inplay-1": {
-     "trades": 3,
+     "trades": 4,
      "strategy": "inplay-1",
-     "netPnl": 249.45,
-     "returnPct": 2.49,
-     "winRate": 0.6667,
+     "netPnl": 177.85,
+     "returnPct": 1.78,
+     "winRate": 0.5,
      "avgWin": 156.21,
-     "avgLoss": -62.97,
-     "profitFactor": 4.961,
-     "expectancy": 83.15,
+     "avgLoss": -67.28,
+     "profitFactor": 2.322,
+     "expectancy": 44.46,
      "expectancyCI": {
-      "low": -62.97,
-      "high": 204.5
+      "low": -67.285,
+      "high": 156.21
      },
-     "avgR": 1.077,
-     "sharpe": 7.55,
-     "sortino": 46.21,
-     "maxDrawdown": -62.97,
-     "maxDrawdownPct": -0.61,
-     "recoveryFactor": 3.96,
-     "avgHoldMin": 253.0,
-     "exposurePct": 97.3,
-     "turnover": 2.97,
-     "fees": 6.0,
-     "feeSharePct": 1.6,
-     "slippageCost": 17.81,
-     "days": 2,
+     "avgR": 0.54,
+     "sharpe": 4.4,
+     "sortino": 17.93,
+     "maxDrawdown": -134.57,
+     "maxDrawdownPct": -1.3,
+     "recoveryFactor": 1.32,
+     "avgHoldMin": 190.7,
+     "exposurePct": 65.2,
+     "turnover": 3.91,
+     "fees": 8.0,
+     "feeSharePct": 1.8,
+     "slippageCost": 23.57,
+     "days": 3,
      "byMonth": {
-      "2026-11": 249.45
+      "2026-11": 177.85
      }
     },
     "vor Versionierung": {
@@ -3419,9 +3473,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-19T09:46:02-05:00",
+  "at": "2026-11-19T09:51:02-05:00",
   "source": "Yahoo chart v8",
-  "requests": 13,
+  "requests": 14,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
@@ -3625,6 +3679,47 @@
    },
    "id": "1795099562-SNOW-9",
    "createdAt": "2026-11-19T09:46:02-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "SELL",
+   "symbol": "SNOW",
+   "type": "stop",
+   "executedAt": "2026-11-19T09:50:00-05:00",
+   "requestedQty": 16,
+   "filledQty": 16,
+   "refPrice": 291.68,
+   "fillPrice": 291.5,
+   "costPerShare": 0.18,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Stop",
+   "id": "1795099860-SNOW-10",
+   "createdAt": "2026-11-19T09:51:00-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "BUY",
+   "symbol": "GS",
+   "type": "market",
+   "signalAt": "2026-11-19T09:50:00-05:00",
+   "refPrice": 889.97,
+   "requestedQty": 5,
+   "executedAt": "2026-11-19T09:51:01-05:00",
+   "filledQty": 5,
+   "fillPrice": 890.5,
+   "costPerShare": 0.53,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Ausbruch",
+   "risk": {
+    "stop": 882.89,
+    "plannedRisk": 38.05
+   },
+   "id": "1795099861-GS-11",
+   "createdAt": "2026-11-19T09:51:01-05:00"
   }
  ],
  "review": {
