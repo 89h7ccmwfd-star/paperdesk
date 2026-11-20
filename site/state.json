@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T15:21:02-05:00",
+ "updatedAt": "2026-11-20T15:21:16-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
@@ -4718,7 +4718,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T15:21:02-05:00",
+  "at": "2026-11-20T15:21:16-05:00",
   "source": "Yahoo chart v8",
   "requests": 8,
   "failed": 0,
