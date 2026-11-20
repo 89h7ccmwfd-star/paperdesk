@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T10:06:02-05:00",
+ "updatedAt": "2026-11-20T10:11:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 355.18,
-   "equity": 10166.43,
+   "equity": 10185.44,
    "realizedPnl": 167.77,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:01:01-05:00",
      "source": "Yahoo 5m",
-     "last": 452.09,
+     "last": 452.66,
      "strategy": "inplay-1"
     },
     {
@@ -32,7 +32,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:06:01-05:00",
      "source": "Yahoo 5m",
-     "last": 345.59,
+     "last": 346.5,
      "strategy": "inplay-1"
     }
    ],
@@ -227,7 +227,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9910.2,
+   "equity": 9898.38,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -240,7 +240,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.45
+     "last": 349.77
     },
     {
      "symbol": "TMO",
@@ -252,7 +252,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 688.07,
+     "last": 686.29,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -627,7 +627,7 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": 0.44,
+  "spyChangePct": 0.23,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
  "publishedAt": 1795187162.5214617,
@@ -4066,6 +4066,10 @@
    [
     1795186800,
     452.09
+   ],
+   [
+    1795187100,
+    452.66
    ]
   ],
   "2026-11-20:UNH": [
@@ -4096,6 +4100,10 @@
    [
     1795186800,
     345.38
+   ],
+   [
+    1795187100,
+    346.5
    ]
   ]
  },
@@ -4219,9 +4227,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T10:06:02-05:00",
+  "at": "2026-11-20T10:11:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 11,
+  "requests": 10,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
