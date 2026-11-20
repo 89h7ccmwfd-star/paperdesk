@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T13:51:02-05:00",
+ "updatedAt": "2026-11-20T13:56:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 5293.29,
-   "equity": 10129.87,
+   "equity": 10132.11,
    "realizedPnl": 132.55,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:06:01-05:00",
      "source": "Yahoo 5m",
-     "last": 345.47,
+     "last": 345.63,
      "strategy": "inplay-1"
     }
    ],
@@ -225,7 +225,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9815.59,
+   "equity": 9829.14,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -238,7 +238,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 344.81
+     "last": 346.02
     },
     {
      "symbol": "TMO",
@@ -250,7 +250,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 675.88,
+     "last": 677.47,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -625,7 +625,7 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -1.85,
+  "spyChangePct": -1.56,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
  "publishedAt": 1795197662.0471728,
@@ -4235,7 +4235,7 @@
    ],
    [
     1795199700,
-    447.46
+    447.45
    ],
    [
     1795200000,
@@ -4244,6 +4244,10 @@
    [
     1795200300,
     446.48
+   ],
+   [
+    1795200600,
+    447.31
    ]
   ],
   "2026-11-20:UNH": [
@@ -4445,7 +4449,7 @@
    ],
    [
     1795199700,
-    345.26
+    345.2
    ],
    [
     1795200000,
@@ -4454,6 +4458,10 @@
    [
     1795200300,
     345.47
+   ],
+   [
+    1795200600,
+    345.63
    ]
   ]
  },
@@ -4577,7 +4585,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T13:51:02-05:00",
+  "at": "2026-11-20T13:56:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 9,
   "failed": 0,
