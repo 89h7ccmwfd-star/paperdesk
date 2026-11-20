@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T10:21:02-05:00",
+ "updatedAt": "2026-11-20T10:26:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 355.18,
-   "equity": 10152.65,
+   "equity": 10146.78,
    "realizedPnl": 167.77,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:01:01-05:00",
      "source": "Yahoo 5m",
-     "last": 451.69,
+     "last": 450.8,
      "strategy": "inplay-1"
     },
     {
@@ -32,7 +32,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:06:01-05:00",
      "source": "Yahoo 5m",
-     "last": 344.92,
+     "last": 345.2,
      "strategy": "inplay-1"
     }
    ],
@@ -227,7 +227,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9877.97,
+   "equity": 9835.68,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -240,7 +240,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.12
+     "last": 348.59
     },
     {
      "symbol": "TMO",
@@ -252,7 +252,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 683.56,
+     "last": 677.67,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -627,7 +627,7 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -0.33,
+  "spyChangePct": -0.55,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
  "publishedAt": 1795187162.5214617,
@@ -4078,6 +4078,10 @@
    [
     1795187700,
     451.69
+   ],
+   [
+    1795188000,
+    450.8
    ]
   ],
   "2026-11-20:UNH": [
@@ -4111,7 +4115,7 @@
    ],
    [
     1795187100,
-    346.5
+    346.44
    ],
    [
     1795187400,
@@ -4120,6 +4124,10 @@
    [
     1795187700,
     344.92
+   ],
+   [
+    1795188000,
+    345.2
    ]
   ]
  },
@@ -4243,7 +4251,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T10:21:02-05:00",
+  "at": "2026-11-20T10:26:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 10,
   "failed": 0,
