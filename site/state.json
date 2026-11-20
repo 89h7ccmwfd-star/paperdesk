@@ -1,14 +1,28 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T09:56:01-05:00",
+ "updatedAt": "2026-11-20T10:01:02-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
-   "cash": 10167.77,
-   "equity": 10167.77,
+   "cash": 5194.44,
+   "equity": 10166.77,
    "realizedPnl": 167.77,
-   "positions": [],
+   "positions": [
+    {
+     "symbol": "SPGI",
+     "side": "Long",
+     "qty": 11,
+     "entry": 452.03,
+     "stop": 449.28,
+     "target": null,
+     "entryFee": 1.0,
+     "openedAt": "2026-11-20T10:01:01-05:00",
+     "source": "Yahoo 5m",
+     "last": 452.03,
+     "strategy": "inplay-1"
+    }
+   ],
    "journal": [
     {
      "timestamp": "2026-11-04T11:40:38-05:00",
@@ -164,13 +178,28 @@
      "pnl": -42.7,
      "source": "Yahoo 5m",
      "reason": "Stop"
+    },
+    {
+     "timestamp": "2026-11-20T10:01:01-05:00",
+     "action": "BUY",
+     "symbol": "SPGI",
+     "qty": 11,
+     "price": 452.03,
+     "stop": 449.28,
+     "target": null,
+     "fee": 1.0,
+     "plannedRisk": 30.25,
+     "source": "Yahoo 5m",
+     "reason": "In Play: Volumen 2.74x, Gap 1.2%, Ausbruch ueber 451.64, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 58%, Schnitt -0.059R, Seed 19. News: 4 Meldungen, keine schwere.",
+     "trigger": 451.64,
+     "strategy": "inplay-1"
     }
    ]
   },
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9901.37,
+   "equity": 9904.0,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -183,7 +212,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 350.11
+     "last": 349.99
     },
     {
      "symbol": "TMO",
@@ -195,7 +224,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 686.62,
+     "last": 687.03,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -490,6 +519,12 @@
    "symbol": "MRK",
    "outcome": "aussortiert",
    "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+  },
+  {
+   "timestamp": "2026-11-20T10:01:01-05:00",
+   "symbol": "SPGI",
+   "outcome": "gekauft",
+   "detail": "In Play: Volumen 2.74x, Gap 1.2%, Ausbruch ueber 451.64, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 58%, Schnitt -0.059R, Seed 19. News: 4 Meldungen, keine schwere."
   }
  ],
  "inPlay": {
@@ -528,8 +563,8 @@
     "atr": 15.9418,
     "high": 345.0,
     "done": false,
-    "last": 342.99,
-    "distPct": -0.58,
+    "last": 343.98,
+    "distPct": -0.29,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -539,11 +574,11 @@
     "gap": 0.0122,
     "atr": 10.9925,
     "high": 451.6400146484375,
-    "done": false,
-    "last": 450.74,
-    "distPct": -0.2,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 451.76,
+    "distPct": 0.03,
+    "status": "gekauft",
+    "why": "Gekauft zu 452.03"
    },
    {
     "symbol": "MA",
@@ -558,10 +593,10 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": 0.25,
+  "spyChangePct": 0.5,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
- "publishedAt": 1795186561.1418638,
+ "publishedAt": 1795186862.32649,
  "bars": {
   "2026-11-04:V": [
    [
@@ -3968,14 +4003,40 @@
     1795121400,
     849.6
    ]
+  ],
+  "2026-11-20:SPGI": [
+   [
+    1795185000,
+    450.56
+   ],
+   [
+    1795185300,
+    450.77
+   ],
+   [
+    1795185600,
+    450.88
+   ],
+   [
+    1795185900,
+    450.72
+   ],
+   [
+    1795186200,
+    450.74
+   ],
+   [
+    1795186500,
+    451.76
+   ]
   ]
  },
  "plan": {
   "phase": "fenster",
-  "text": "Beobachtet UNH, SPGI. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "text": "Beobachtet UNH. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
   "next": "2026-11-20T10:35:00-05:00",
   "windowEnd": "2026-11-20T10:35:00-05:00",
-  "dayBuys": 0,
+  "dayBuys": 1,
   "maxDayTrades": 3
  },
  "metrics": {
@@ -4090,9 +4151,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T09:56:01-05:00",
+  "at": "2026-11-20T10:01:02-05:00",
   "source": "Yahoo chart v8",
-  "requests": 8,
+  "requests": 10,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
@@ -4355,6 +4416,29 @@
    "reason": "Stop",
    "id": "1795101361-GS-12",
    "createdAt": "2026-11-19T10:16:01-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "BUY",
+   "symbol": "SPGI",
+   "type": "market",
+   "signalAt": "2026-11-20T10:00:00-05:00",
+   "refPrice": 451.755,
+   "requestedQty": 11,
+   "executedAt": "2026-11-20T10:01:01-05:00",
+   "filledQty": 11,
+   "fillPrice": 452.03,
+   "costPerShare": 0.275,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Ausbruch",
+   "risk": {
+    "stop": 449.28,
+    "plannedRisk": 30.25
+   },
+   "id": "1795186861-SPGI-13",
+   "createdAt": "2026-11-20T10:01:01-05:00"
   }
  ],
  "review": {
