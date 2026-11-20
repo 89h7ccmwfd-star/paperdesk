@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T12:21:01-05:00",
+ "updatedAt": "2026-11-20T12:26:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 5293.29,
-   "equity": 10117.27,
+   "equity": 10115.31,
    "realizedPnl": 132.55,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:06:01-05:00",
      "source": "Yahoo 5m",
-     "last": 344.57,
+     "last": 344.43,
      "strategy": "inplay-1"
     }
    ],
@@ -225,7 +225,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9821.97,
+   "equity": 9824.86,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -238,7 +238,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 345.48
+     "last": 345.84
     },
     {
      "symbol": "TMO",
@@ -250,7 +250,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 676.6,
+     "last": 676.91,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -625,7 +625,7 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -1.75,
+  "spyChangePct": -1.72,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
  "publishedAt": 1795194061.7570336,
@@ -4163,7 +4163,7 @@
    ],
    [
     1795194300,
-    448.42
+    448.53
    ],
    [
     1795194600,
@@ -4172,6 +4172,10 @@
    [
     1795194900,
     447.85
+   ],
+   [
+    1795195200,
+    447.5
    ]
   ],
   "2026-11-20:UNH": [
@@ -4301,7 +4305,7 @@
    ],
    [
     1795194300,
-    345.92
+    345.85
    ],
    [
     1795194600,
@@ -4310,6 +4314,10 @@
    [
     1795194900,
     344.57
+   ],
+   [
+    1795195200,
+    344.43
    ]
   ]
  },
@@ -4433,7 +4441,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T12:21:01-05:00",
+  "at": "2026-11-20T12:26:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 9,
   "failed": 0,
