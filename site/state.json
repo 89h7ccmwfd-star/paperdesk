@@ -1,28 +1,14 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T14:36:01-05:00",
+ "updatedAt": "2026-11-20T14:41:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
-   "cash": 5293.29,
-   "equity": 10077.51,
-   "realizedPnl": 132.55,
-   "positions": [
-    {
-     "symbol": "UNH",
-     "side": "Long",
-     "qty": 14,
-     "entry": 345.59,
-     "stop": 341.6,
-     "target": null,
-     "entryFee": 1.0,
-     "openedAt": "2026-11-20T10:06:01-05:00",
-     "source": "Yahoo 5m",
-     "last": 341.73,
-     "strategy": "inplay-1"
-    }
-   ],
+   "cash": 10071.89,
+   "equity": 10071.89,
+   "realizedPnl": 71.89,
+   "positions": [],
    "journal": [
     {
      "timestamp": "2026-11-04T11:40:38-05:00",
@@ -219,13 +205,24 @@
      "pnl": -35.22,
      "source": "Yahoo 5m",
      "reason": "Stop"
+    },
+    {
+     "timestamp": "2026-11-20T14:40:00-05:00",
+     "action": "SELL",
+     "symbol": "UNH",
+     "qty": 14,
+     "price": 341.4,
+     "fee": 1.0,
+     "pnl": -60.66,
+     "source": "Yahoo 5m",
+     "reason": "Stop"
     }
    ]
   },
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9788.58,
+   "equity": 9799.05,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -238,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 343.24
+     "last": 344.52
     },
     {
      "symbol": "TMO",
@@ -250,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 672.47,
+     "last": 673.6,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -625,10 +622,10 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -2.81,
+  "spyChangePct": -2.43,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
- "publishedAt": 1795201561.4973245,
+ "publishedAt": 1795203661.116719,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4280,6 +4277,10 @@
    [
     1795203000,
     443.38
+   ],
+   [
+    1795203300,
+    444.76
    ]
   ],
   "2026-11-20:UNH": [
@@ -4526,13 +4527,17 @@
    [
     1795203000,
     341.73
+   ],
+   [
+    1795203300,
+    342.35
    ]
   ]
  },
  "plan": {
   "phase": "verwalten",
-  "text": "Keine neuen Daytrades mehr heute. Offene Daytrades werden am Stop oder spätestens 15:55 Uhr New York verkauft.",
-  "next": "2026-11-20T15:55:00-05:00",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
   "windowEnd": "2026-11-20T10:35:00-05:00",
   "dayBuys": 2,
   "maxDayTrades": 3
@@ -4540,66 +4545,66 @@
  "metrics": {
   "day": {
    "all": {
-    "trades": 7,
+    "trades": 8,
     "strategy": "alle",
-    "netPnl": 132.55,
-    "returnPct": 1.33,
-    "winRate": 0.4286,
+    "netPnl": 71.89,
+    "returnPct": 0.72,
+    "winRate": 0.375,
     "avgWin": 115.01,
-    "avgLoss": -53.12,
-    "profitFactor": 1.624,
-    "expectancy": 18.94,
+    "avgLoss": -54.63,
+    "profitFactor": 1.263,
+    "expectancy": 8.99,
     "expectancyCI": {
-     "low": -46.152857142857144,
-     "high": 93.83428571428571
+     "low": -47.966249999999995,
+     "high": 78.3875
     },
-    "avgR": 0.084,
-    "sharpe": 2.61,
-    "sortino": 7.42,
-    "maxDrawdown": -212.49,
-    "maxDrawdownPct": -2.05,
-    "recoveryFactor": 0.62,
-    "avgHoldMin": 164.3,
-    "exposurePct": 59.0,
-    "turnover": 6.3,
-    "fees": 14.0,
-    "feeSharePct": 2.5,
-    "slippageCost": 34.87,
+    "avgR": -0.062,
+    "sharpe": 1.41,
+    "sortino": 3.49,
+    "maxDrawdown": -273.15,
+    "maxDrawdownPct": -2.64,
+    "recoveryFactor": 0.26,
+    "avgHoldMin": 178.1,
+    "exposurePct": 73.0,
+    "turnover": 7.27,
+    "fees": 16.0,
+    "feeSharePct": 2.6,
+    "slippageCost": 40.61,
     "days": 5,
     "byMonth": {
-     "2026-11": 132.55
+     "2026-11": 71.89
     }
    },
    "byStrategy": {
     "inplay-1": {
-     "trades": 6,
+     "trades": 7,
      "strategy": "inplay-1",
-     "netPnl": 99.93,
-     "returnPct": 1.0,
-     "winRate": 0.3333,
+     "netPnl": 39.27,
+     "returnPct": 0.39,
+     "winRate": 0.2857,
      "avgWin": 156.21,
-     "avgLoss": -53.12,
-     "profitFactor": 1.47,
-     "expectancy": 16.66,
+     "avgLoss": -54.63,
+     "profitFactor": 1.144,
+     "expectancy": 5.61,
      "expectancyCI": {
-      "low": -57.843333333333334,
-      "high": 106.00333333333333
+      "low": -58.91857142857142,
+      "high": 84.00142857142858
      },
-     "avgR": -0.021,
-     "sharpe": 2.16,
-     "sortino": 6.33,
-     "maxDrawdown": -212.49,
-     "maxDrawdownPct": -2.06,
-     "recoveryFactor": 0.47,
-     "avgHoldMin": 141.0,
-     "exposurePct": 54.2,
-     "turnover": 5.78,
-     "fees": 12.0,
-     "feeSharePct": 2.3,
-     "slippageCost": 34.87,
+     "avgR": -0.173,
+     "sharpe": 0.89,
+     "sortino": 2.27,
+     "maxDrawdown": -273.15,
+     "maxDrawdownPct": -2.65,
+     "recoveryFactor": 0.14,
+     "avgHoldMin": 160.0,
+     "exposurePct": 71.8,
+     "turnover": 6.75,
+     "fees": 14.0,
+     "feeSharePct": 2.4,
+     "slippageCost": 40.61,
      "days": 4,
      "byMonth": {
-      "2026-11": 99.93
+      "2026-11": 39.27
      }
     },
     "vor Versionierung": {
@@ -4649,7 +4654,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T14:36:01-05:00",
+  "at": "2026-11-20T14:41:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 9,
   "failed": 0,
@@ -4978,6 +4983,24 @@
    "reason": "Stop",
    "id": "1795190460-SPGI-15",
    "createdAt": "2026-11-20T11:01:00-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "SELL",
+   "symbol": "UNH",
+   "type": "stop",
+   "executedAt": "2026-11-20T14:40:00-05:00",
+   "requestedQty": 14,
+   "filledQty": 14,
+   "refPrice": 341.6,
+   "fillPrice": 341.4,
+   "costPerShare": 0.2,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Stop",
+   "id": "1795203660-UNH-16",
+   "createdAt": "2026-11-20T14:41:00-05:00"
   }
  ],
  "review": {
