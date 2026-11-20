@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T10:01:02-05:00",
+ "updatedAt": "2026-11-20T10:06:02-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
-   "cash": 5194.44,
-   "equity": 10166.77,
+   "cash": 355.18,
+   "equity": 10166.43,
    "realizedPnl": 167.77,
    "positions": [
     {
@@ -19,7 +19,20 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:01:01-05:00",
      "source": "Yahoo 5m",
-     "last": 452.03,
+     "last": 452.09,
+     "strategy": "inplay-1"
+    },
+    {
+     "symbol": "UNH",
+     "side": "Long",
+     "qty": 14,
+     "entry": 345.59,
+     "stop": 341.6,
+     "target": null,
+     "entryFee": 1.0,
+     "openedAt": "2026-11-20T10:06:01-05:00",
+     "source": "Yahoo 5m",
+     "last": 345.59,
      "strategy": "inplay-1"
     }
    ],
@@ -193,13 +206,28 @@
      "reason": "In Play: Volumen 2.74x, Gap 1.2%, Ausbruch ueber 451.64, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 58%, Schnitt -0.059R, Seed 19. News: 4 Meldungen, keine schwere.",
      "trigger": 451.64,
      "strategy": "inplay-1"
+    },
+    {
+     "timestamp": "2026-11-20T10:06:01-05:00",
+     "action": "BUY",
+     "symbol": "UNH",
+     "qty": 14,
+     "price": 345.59,
+     "stop": 341.6,
+     "target": null,
+     "fee": 1.0,
+     "plannedRisk": 55.86,
+     "source": "Yahoo 5m",
+     "reason": "In Play: Volumen 2.99x, Gap 2.9%, Ausbruch ueber 345.0, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 41%, Schnitt -0.057R, Seed 19. News: 13 Meldungen, keine schwere.",
+     "trigger": 345.0,
+     "strategy": "inplay-1"
     }
    ]
   },
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9904.0,
+   "equity": 9910.2,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -212,7 +240,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.99
+     "last": 349.45
     },
     {
      "symbol": "TMO",
@@ -224,7 +252,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 687.03,
+     "last": 688.07,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -525,6 +553,12 @@
    "symbol": "SPGI",
    "outcome": "gekauft",
    "detail": "In Play: Volumen 2.74x, Gap 1.2%, Ausbruch ueber 451.64, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 58%, Schnitt -0.059R, Seed 19. News: 4 Meldungen, keine schwere."
+  },
+  {
+   "timestamp": "2026-11-20T10:06:01-05:00",
+   "symbol": "UNH",
+   "outcome": "gekauft",
+   "detail": "In Play: Volumen 2.99x, Gap 2.9%, Ausbruch ueber 345.0, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 41%, Schnitt -0.057R, Seed 19. News: 13 Meldungen, keine schwere."
   }
  ],
  "inPlay": {
@@ -562,11 +596,11 @@
     "gap": 0.029,
     "atr": 15.9418,
     "high": 345.0,
-    "done": false,
-    "last": 343.98,
-    "distPct": -0.29,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 345.38,
+    "distPct": 0.11,
+    "status": "gekauft",
+    "why": "Gekauft zu 345.59"
    },
    {
     "symbol": "SPGI",
@@ -593,10 +627,10 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": 0.5,
+  "spyChangePct": 0.44,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
- "publishedAt": 1795186862.32649,
+ "publishedAt": 1795187162.5214617,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4019,7 +4053,7 @@
    ],
    [
     1795185900,
-    450.72
+    450.63
    ],
    [
     1795186200,
@@ -4028,15 +4062,49 @@
    [
     1795186500,
     451.76
+   ],
+   [
+    1795186800,
+    452.09
+   ]
+  ],
+  "2026-11-20:UNH": [
+   [
+    1795185000,
+    343.36
+   ],
+   [
+    1795185300,
+    341.66
+   ],
+   [
+    1795185600,
+    340.04
+   ],
+   [
+    1795185900,
+    340.71
+   ],
+   [
+    1795186200,
+    342.99
+   ],
+   [
+    1795186500,
+    343.98
+   ],
+   [
+    1795186800,
+    345.38
    ]
   ]
  },
  "plan": {
-  "phase": "fenster",
-  "text": "Beobachtet UNH. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
-  "next": "2026-11-20T10:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Offene Daytrades werden am Stop oder spätestens 15:55 Uhr New York verkauft.",
+  "next": "2026-11-20T15:55:00-05:00",
   "windowEnd": "2026-11-20T10:35:00-05:00",
-  "dayBuys": 1,
+  "dayBuys": 2,
   "maxDayTrades": 3
  },
  "metrics": {
@@ -4151,9 +4219,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T10:01:02-05:00",
+  "at": "2026-11-20T10:06:02-05:00",
   "source": "Yahoo chart v8",
-  "requests": 10,
+  "requests": 11,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
@@ -4439,6 +4507,29 @@
    },
    "id": "1795186861-SPGI-13",
    "createdAt": "2026-11-20T10:01:01-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "BUY",
+   "symbol": "UNH",
+   "type": "market",
+   "signalAt": "2026-11-20T10:05:00-05:00",
+   "refPrice": 345.38,
+   "requestedQty": 14,
+   "executedAt": "2026-11-20T10:06:01-05:00",
+   "filledQty": 14,
+   "fillPrice": 345.59,
+   "costPerShare": 0.21,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Ausbruch",
+   "risk": {
+    "stop": 341.6,
+    "plannedRisk": 55.86
+   },
+   "id": "1795187161-UNH-14",
+   "createdAt": "2026-11-20T10:06:01-05:00"
   }
  ],
  "review": {
