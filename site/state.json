@@ -1,27 +1,14 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T10:56:01-05:00",
+ "updatedAt": "2026-11-20T11:01:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
-   "cash": 355.18,
-   "equity": 10129.41,
-   "realizedPnl": 167.77,
+   "cash": 5293.29,
+   "equity": 10126.93,
+   "realizedPnl": 132.55,
    "positions": [
-    {
-     "symbol": "SPGI",
-     "side": "Long",
-     "qty": 11,
-     "entry": 452.03,
-     "stop": 449.28,
-     "target": null,
-     "entryFee": 1.0,
-     "openedAt": "2026-11-20T10:01:01-05:00",
-     "source": "Yahoo 5m",
-     "last": 450.01,
-     "strategy": "inplay-1"
-    },
     {
      "symbol": "UNH",
      "side": "Long",
@@ -32,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:06:01-05:00",
      "source": "Yahoo 5m",
-     "last": 344.58,
+     "last": 345.26,
      "strategy": "inplay-1"
     }
    ],
@@ -221,13 +208,24 @@
      "reason": "In Play: Volumen 2.99x, Gap 2.9%, Ausbruch ueber 345.0, SPY im Plus. Stop 0.25 ATR, kein festes Ziel. Time Machine: Stop zuerst 41%, Schnitt -0.057R, Seed 19. News: 13 Meldungen, keine schwere.",
      "trigger": 345.0,
      "strategy": "inplay-1"
+    },
+    {
+     "timestamp": "2026-11-20T11:00:00-05:00",
+     "action": "SELL",
+     "symbol": "SPGI",
+     "qty": 11,
+     "price": 449.01,
+     "fee": 1.0,
+     "pnl": -35.22,
+     "source": "Yahoo 5m",
+     "reason": "Stop"
     }
    ]
   },
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9848.28,
+   "equity": 9848.12,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -240,7 +238,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 348.59
+     "last": 348.16
     },
     {
      "symbol": "TMO",
@@ -252,7 +250,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 679.47,
+     "last": 679.57,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -627,10 +625,10 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -0.73,
+  "spyChangePct": -0.82,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
- "publishedAt": 1795187162.5214617,
+ "publishedAt": 1795190461.5728953,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4106,6 +4104,10 @@
    [
     1795189800,
     450.01
+   ],
+   [
+    1795190100,
+    449.25
    ]
   ],
   "2026-11-20:UNH": [
@@ -4167,7 +4169,7 @@
    ],
    [
     1795189200,
-    343.64
+    343.77
    ],
    [
     1795189500,
@@ -4176,6 +4178,10 @@
    [
     1795189800,
     344.58
+   ],
+   [
+    1795190100,
+    345.26
    ]
   ]
  },
@@ -4190,66 +4196,66 @@
  "metrics": {
   "day": {
    "all": {
-    "trades": 6,
+    "trades": 7,
     "strategy": "alle",
-    "netPnl": 167.77,
-    "returnPct": 1.68,
-    "winRate": 0.5,
+    "netPnl": 132.55,
+    "returnPct": 1.33,
+    "winRate": 0.4286,
     "avgWin": 115.01,
-    "avgLoss": -59.09,
-    "profitFactor": 1.946,
-    "expectancy": 27.96,
+    "avgLoss": -53.12,
+    "profitFactor": 1.624,
+    "expectancy": 18.94,
     "expectancyCI": {
-     "low": -46.53666666666666,
-     "high": 115.01333333333334
+     "low": -46.152857142857144,
+     "high": 93.83428571428571
     },
-    "avgR": 0.292,
-    "sharpe": 3.62,
-    "sortino": 10.77,
-    "maxDrawdown": -177.27,
-    "maxDrawdownPct": -1.71,
-    "recoveryFactor": 0.95,
-    "avgHoldMin": 181.9,
-    "exposurePct": 70.0,
-    "turnover": 5.31,
-    "fees": 12.0,
-    "feeSharePct": 2.3,
-    "slippageCost": 28.87,
-    "days": 4,
+    "avgR": 0.084,
+    "sharpe": 2.61,
+    "sortino": 7.42,
+    "maxDrawdown": -212.49,
+    "maxDrawdownPct": -2.05,
+    "recoveryFactor": 0.62,
+    "avgHoldMin": 164.3,
+    "exposurePct": 59.0,
+    "turnover": 6.3,
+    "fees": 14.0,
+    "feeSharePct": 2.5,
+    "slippageCost": 34.87,
+    "days": 5,
     "byMonth": {
-     "2026-11": 167.77
+     "2026-11": 132.55
     }
    },
    "byStrategy": {
     "inplay-1": {
-     "trades": 5,
+     "trades": 6,
      "strategy": "inplay-1",
-     "netPnl": 135.15,
-     "returnPct": 1.35,
-     "winRate": 0.4,
+     "netPnl": 99.93,
+     "returnPct": 1.0,
+     "winRate": 0.3333,
      "avgWin": 156.21,
-     "avgLoss": -59.09,
-     "profitFactor": 1.762,
-     "expectancy": 27.03,
+     "avgLoss": -53.12,
+     "profitFactor": 1.47,
+     "expectancy": 16.66,
      "expectancyCI": {
-      "low": -62.367999999999995,
-      "high": 129.964
+      "low": -57.843333333333334,
+      "high": 106.00333333333333
      },
-     "avgR": 0.207,
-     "sharpe": 3.2,
-     "sortino": 10.08,
-     "maxDrawdown": -177.27,
-     "maxDrawdownPct": -1.72,
-     "recoveryFactor": 0.76,
-     "avgHoldMin": 157.4,
-     "exposurePct": 67.3,
-     "turnover": 4.79,
-     "fees": 10.0,
-     "feeSharePct": 2.1,
-     "slippageCost": 28.87,
-     "days": 3,
+     "avgR": -0.021,
+     "sharpe": 2.16,
+     "sortino": 6.33,
+     "maxDrawdown": -212.49,
+     "maxDrawdownPct": -2.06,
+     "recoveryFactor": 0.47,
+     "avgHoldMin": 141.0,
+     "exposurePct": 54.2,
+     "turnover": 5.78,
+     "fees": 12.0,
+     "feeSharePct": 2.3,
+     "slippageCost": 34.87,
+     "days": 4,
      "byMonth": {
-      "2026-11": 135.15
+      "2026-11": 99.93
      }
     },
     "vor Versionierung": {
@@ -4299,7 +4305,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T10:56:01-05:00",
+  "at": "2026-11-20T11:01:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 10,
   "failed": 0,
@@ -4610,6 +4616,24 @@
    },
    "id": "1795187161-UNH-14",
    "createdAt": "2026-11-20T10:06:01-05:00"
+  },
+  {
+   "account": "day",
+   "strategy": "inplay-1",
+   "side": "SELL",
+   "symbol": "SPGI",
+   "type": "stop",
+   "executedAt": "2026-11-20T11:00:00-05:00",
+   "requestedQty": 11,
+   "filledQty": 11,
+   "refPrice": 449.28,
+   "fillPrice": 449.01,
+   "costPerShare": 0.27,
+   "fee": 1.0,
+   "status": "filled",
+   "reason": "Stop",
+   "id": "1795190460-SPGI-15",
+   "createdAt": "2026-11-20T11:01:00-05:00"
   }
  ],
  "review": {
