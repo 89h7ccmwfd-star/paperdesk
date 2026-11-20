@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T12:46:02-05:00",
+ "updatedAt": "2026-11-20T12:51:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 5293.29,
-   "equity": 10115.17,
+   "equity": 10108.31,
    "realizedPnl": 132.55,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:06:01-05:00",
      "source": "Yahoo 5m",
-     "last": 344.42,
+     "last": 343.93,
      "strategy": "inplay-1"
     }
    ],
@@ -225,7 +225,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9800.92,
+   "equity": 9799.41,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -238,7 +238,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 345.84
+     "last": 345.47
     },
     {
      "symbol": "TMO",
@@ -250,7 +250,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 673.49,
+     "last": 673.38,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -625,7 +625,7 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -1.81,
+  "spyChangePct": -1.92,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
  "publishedAt": 1795194061.7570336,
@@ -4183,7 +4183,7 @@
    ],
    [
     1795195800,
-    446.9
+    446.92
    ],
    [
     1795196100,
@@ -4191,7 +4191,11 @@
    ],
    [
     1795196400,
-    446.34
+    446.5
+   ],
+   [
+    1795196700,
+    445.63
    ]
   ],
   "2026-11-20:UNH": [
@@ -4337,7 +4341,7 @@
    ],
    [
     1795195500,
-    344.06
+    344.09
    ],
    [
     1795195800,
@@ -4349,7 +4353,11 @@
    ],
    [
     1795196400,
-    344.42
+    343.76
+   ],
+   [
+    1795196700,
+    343.93
    ]
   ]
  },
@@ -4473,7 +4481,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T12:46:02-05:00",
+  "at": "2026-11-20T12:51:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 9,
   "failed": 0,
