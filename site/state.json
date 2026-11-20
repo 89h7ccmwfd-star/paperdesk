@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T10:51:01-05:00",
+ "updatedAt": "2026-11-20T10:56:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 355.18,
-   "equity": 10146.54,
+   "equity": 10129.41,
    "realizedPnl": 167.77,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:01:01-05:00",
      "source": "Yahoo 5m",
-     "last": 451.44,
+     "last": 450.01,
      "strategy": "inplay-1"
     },
     {
@@ -32,7 +32,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:06:01-05:00",
      "source": "Yahoo 5m",
-     "last": 344.68,
+     "last": 344.58,
      "strategy": "inplay-1"
     }
    ],
@@ -227,7 +227,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9865.28,
+   "equity": 9848.28,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -240,7 +240,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.25
+     "last": 348.59
     },
     {
      "symbol": "TMO",
@@ -252,7 +252,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 681.71,
+     "last": 679.47,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -627,7 +627,7 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -0.55,
+  "spyChangePct": -0.73,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
  "publishedAt": 1795187162.5214617,
@@ -4093,7 +4093,7 @@
    ],
    [
     1795188900,
-    451.47
+    451.56
    ],
    [
     1795189200,
@@ -4102,6 +4102,10 @@
    [
     1795189500,
     451.44
+   ],
+   [
+    1795189800,
+    450.01
    ]
   ],
   "2026-11-20:UNH": [
@@ -4159,7 +4163,7 @@
    ],
    [
     1795188900,
-    344.4
+    344.31
    ],
    [
     1795189200,
@@ -4168,6 +4172,10 @@
    [
     1795189500,
     344.68
+   ],
+   [
+    1795189800,
+    344.58
    ]
   ]
  },
@@ -4291,7 +4299,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T10:51:01-05:00",
+  "at": "2026-11-20T10:56:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 10,
   "failed": 0,
