@@ -1,12 +1,12 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T11:41:01-05:00",
+ "updatedAt": "2026-11-20T11:46:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
    "startingCash": 10000,
    "cash": 5293.29,
-   "equity": 10138.55,
+   "equity": 10141.49,
    "realizedPnl": 132.55,
    "positions": [
     {
@@ -19,7 +19,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-20T10:06:01-05:00",
      "source": "Yahoo 5m",
-     "last": 346.09,
+     "last": 346.3,
      "strategy": "inplay-1"
     }
    ],
@@ -225,7 +225,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9843.29,
+   "equity": 9841.77,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -238,7 +238,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 346.55
+     "last": 346.21
     },
     {
      "symbol": "TMO",
@@ -250,7 +250,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 679.34,
+     "last": 679.22,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -625,7 +625,7 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -1.4,
+  "spyChangePct": -1.52,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
  "publishedAt": 1795190461.5728953,
@@ -4140,6 +4140,10 @@
    [
     1795192500,
     449.55
+   ],
+   [
+    1795192800,
+    448.82
    ]
   ],
   "2026-11-20:UNH": [
@@ -4246,6 +4250,10 @@
    [
     1795192500,
     346.09
+   ],
+   [
+    1795192800,
+    346.3
    ]
   ]
  },
@@ -4369,7 +4377,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T11:41:01-05:00",
+  "at": "2026-11-20T11:46:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 9,
   "failed": 0,
