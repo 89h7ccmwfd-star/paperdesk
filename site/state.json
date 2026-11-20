@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-20T09:51:01-05:00",
+ "updatedAt": "2026-11-20T09:56:01-05:00",
  "status": "Markt offen. In Play heute: MRK, UNP, UNH, SPGI, MA.",
  "accounts": {
   "day": {
@@ -170,7 +170,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9905.46,
+   "equity": 9901.37,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -183,7 +183,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.11
+     "last": 350.11
     },
     {
      "symbol": "TMO",
@@ -195,7 +195,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 687.49,
+     "last": 686.62,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -528,8 +528,8 @@
     "atr": 15.9418,
     "high": 345.0,
     "done": false,
-    "last": 340.71,
-    "distPct": -1.24,
+    "last": 342.99,
+    "distPct": -0.58,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -540,7 +540,7 @@
     "atr": 10.9925,
     "high": 451.6400146484375,
     "done": false,
-    "last": 450.72,
+    "last": 450.74,
     "distPct": -0.2,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
@@ -558,10 +558,10 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": 0.01,
+  "spyChangePct": 0.25,
   "windowEnd": "2026-11-20T10:35:00-05:00"
  },
- "publishedAt": 1795186261.9176288,
+ "publishedAt": 1795186561.1418638,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4090,7 +4090,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-20T09:51:01-05:00",
+  "at": "2026-11-20T09:56:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 8,
   "failed": 0,
