@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-23T11:26:01-05:00",
+ "updatedAt": "2026-11-23T11:31:01-05:00",
  "status": "Markt offen. In Play heute: TSLA, RBLX, ORCL, TXN, SPGI.",
  "accounts": {
   "day": {
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9943.43,
+   "equity": 9935.64,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 348.88
+     "last": 348.38
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 692.98,
+     "last": 692.01,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -652,7 +652,7 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": 0.05,
+  "spyChangePct": -0.03,
   "windowEnd": "2026-11-23T10:35:00-05:00"
  },
  "publishedAt": 1795448161.0835884,
@@ -4780,7 +4780,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-23T11:26:01-05:00",
+  "at": "2026-11-23T11:31:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 6,
   "failed": 0,
