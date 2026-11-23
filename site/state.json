@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-23T10:31:01-05:00",
+ "updatedAt": "2026-11-23T10:36:01-05:00",
  "status": "Markt offen. In Play heute: TSLA, RBLX, ORCL, TXN, SPGI.",
  "accounts": {
   "day": {
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9936.27,
+   "equity": 9955.58,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 351.18
+     "last": 351.7
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 691.3,
+     "last": 693.91,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -572,6 +572,18 @@
    "symbol": "SPGI",
    "outcome": "aussortiert",
    "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+  },
+  {
+   "timestamp": "2026-11-23T10:36:00-05:00",
+   "symbol": "RBLX",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-23T10:36:00-05:00",
+   "symbol": "ORCL",
+   "outcome": "aussortiert",
+   "detail": "Kein Ausbruch in der ersten Stunde"
   }
  ],
  "inPlay": {
@@ -597,11 +609,11 @@
     "gap": 0.1299,
     "atr": 3.2215,
     "high": 54.7599983215332,
-    "done": false,
-    "last": 52.5,
-    "distPct": -4.13,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 52.56,
+    "distPct": -4.01,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    },
    {
     "symbol": "ORCL",
@@ -609,11 +621,11 @@
     "gap": 0.1509,
     "atr": 8.0709,
     "high": 118.69000244140625,
-    "done": false,
-    "last": 116.29,
-    "distPct": -2.02,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 115.96,
+    "distPct": -2.3,
+    "status": "aussortiert",
+    "why": "Kein Ausbruch in der ersten Stunde"
    },
    {
     "symbol": "TXN",
@@ -640,10 +652,10 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": 0.25,
+  "spyChangePct": 0.24,
   "windowEnd": "2026-11-23T10:35:00-05:00"
  },
- "publishedAt": 1795447861.6147437,
+ "publishedAt": 1795448161.0835884,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4649,9 +4661,9 @@
   ]
  },
  "plan": {
-  "phase": "fenster",
-  "text": "Beobachtet RBLX, ORCL. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
-  "next": "2026-11-23T10:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
   "windowEnd": "2026-11-23T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -4768,7 +4780,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-23T10:31:01-05:00",
+  "at": "2026-11-23T10:36:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 8,
   "failed": 0,
