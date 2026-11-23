@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-23T09:30:19-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-23T09:36:19-05:00",
+ "status": "Markt offen. In Play heute: TSLA, RBLX, ORCL, TXN, SPGI.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9770.66,
+   "equity": 9909.72,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 342.68
+     "last": 347.74
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 670.07,
+     "last": 688.49,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -557,75 +557,75 @@
   }
  ],
  "inPlay": {
-  "date": "2026-11-20",
+  "date": "2026-11-23",
   "scanned": 98,
-  "matches": 31,
+  "matches": 14,
   "symbols": [
    {
-    "symbol": "MRK",
-    "rv": 3.44,
-    "gap": 0.0097,
-    "atr": 4.3722,
-    "high": 134.97999572753906,
-    "done": true,
-    "last": 135.35,
-    "distPct": 0.27,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+    "symbol": "TSLA",
+    "rv": 3.04,
+    "gap": 0.0828,
+    "atr": 19.3483,
+    "high": 385.3399963378906,
+    "done": false,
+    "last": 384.49,
+    "distPct": -0.22,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
    {
-    "symbol": "UNP",
-    "rv": 3.2,
-    "gap": 0.0069,
-    "atr": 7.1557,
-    "high": 293.989990234375,
-    "done": true,
-    "last": 294.16,
-    "distPct": 0.06,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+    "symbol": "RBLX",
+    "rv": 2.69,
+    "gap": 0.1299,
+    "atr": 3.2215,
+    "high": 54.7599983215332,
+    "done": false,
+    "last": 53.02,
+    "distPct": -3.18,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
    {
-    "symbol": "UNH",
-    "rv": 2.99,
-    "gap": 0.029,
-    "atr": 15.9418,
-    "high": 345.0,
-    "done": true,
-    "last": 345.38,
-    "distPct": 0.11,
-    "status": "gekauft",
-    "why": "Gekauft zu 345.59"
+    "symbol": "ORCL",
+    "rv": 2.28,
+    "gap": 0.1509,
+    "atr": 8.0709,
+    "high": 118.69000244140625,
+    "done": false,
+    "last": 118.36,
+    "distPct": -0.28,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "TXN",
+    "rv": 2.28,
+    "gap": 0.0934,
+    "atr": 16.5049,
+    "high": 292.1600036621094,
+    "done": false,
+    "last": 288.65,
+    "distPct": -1.2,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
    {
     "symbol": "SPGI",
-    "rv": 2.74,
-    "gap": 0.0122,
-    "atr": 10.9925,
-    "high": 451.6400146484375,
-    "done": true,
-    "last": 451.76,
-    "distPct": 0.03,
-    "status": "gekauft",
-    "why": "Gekauft zu 452.03"
-   },
-   {
-    "symbol": "MA",
-    "rv": 2.32,
-    "gap": 0.0038,
-    "atr": 16.4121,
-    "high": 635.75,
-    "done": true,
-    "last": 636.34,
-    "distPct": 0.09,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+    "rv": 1.74,
+    "gap": 0.0147,
+    "atr": 11.2361,
+    "high": 449.5,
+    "done": false,
+    "last": 447.22,
+    "distPct": -0.51,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -2.82,
-  "windowEnd": "2026-11-20T10:35:00-05:00"
+  "spyChangePct": -0.8,
+  "windowEnd": "2026-11-23T10:35:00-05:00"
  },
- "publishedAt": 1795444219.4443681,
+ "publishedAt": 1795444579.3474746,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4631,9 +4631,9 @@
   ]
  },
  "plan": {
-  "phase": "start",
-  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
-  "next": "2026-11-23T09:35:00-05:00",
+  "phase": "fenster",
+  "text": "Beobachtet TSLA, RBLX, ORCL, TXN, SPGI. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "next": "2026-11-23T10:35:00-05:00",
   "windowEnd": "2026-11-23T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -4750,11 +4750,13 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-23T09:30:19-05:00",
+  "at": "2026-11-23T09:36:19-05:00",
   "source": "Yahoo chart v8",
-  "requests": 5,
-  "failed": 0,
-  "failedSymbols": [],
+  "requests": 208,
+  "failed": 1,
+  "failedSymbols": [
+   "SQ"
+  ],
   "issues": []
  },
  "orders": [
