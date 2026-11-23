@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-23T10:16:02-05:00",
+ "updatedAt": "2026-11-23T10:21:01-05:00",
  "status": "Markt offen. In Play heute: TSLA, RBLX, ORCL, TXN, SPGI.",
  "accounts": {
   "day": {
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9900.13,
+   "equity": 9919.01,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 348.65
+     "last": 349.55
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 686.86,
+     "last": 689.3,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -598,8 +598,8 @@
     "atr": 3.2215,
     "high": 54.7599983215332,
     "done": false,
-    "last": 52.27,
-    "distPct": -4.55,
+    "last": 52.2,
+    "distPct": -4.67,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -610,8 +610,8 @@
     "atr": 8.0709,
     "high": 118.69000244140625,
     "done": false,
-    "last": 115.12,
-    "distPct": -3.01,
+    "last": 116.12,
+    "distPct": -2.16,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -640,10 +640,10 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -0.24,
+  "spyChangePct": -0.01,
   "windowEnd": "2026-11-23T10:35:00-05:00"
  },
- "publishedAt": 1795446962.540735,
+ "publishedAt": 1795447261.1021504,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4768,7 +4768,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-23T10:16:02-05:00",
+  "at": "2026-11-23T10:21:01-05:00",
   "source": "Yahoo chart v8",
   "requests": 8,
   "failed": 0,
