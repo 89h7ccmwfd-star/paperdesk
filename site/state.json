@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-24T09:30:15-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-24T09:36:27-05:00",
+ "status": "Markt offen. In Play heute: GILD, CRWD, NKE, VRTX, ABBV.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9913.2,
+   "equity": 9996.77,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 349.62
+     "last": 347.55
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 688.45,
+     "last": 700.98,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -587,75 +587,75 @@
   }
  ],
  "inPlay": {
-  "date": "2026-11-23",
+  "date": "2026-11-24",
   "scanned": 98,
-  "matches": 14,
+  "matches": 5,
   "symbols": [
    {
-    "symbol": "TSLA",
-    "rv": 3.04,
-    "gap": 0.0828,
-    "atr": 19.3483,
-    "high": 385.3399963378906,
-    "done": true,
-    "last": 386.76,
-    "distPct": 0.37,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+    "symbol": "GILD",
+    "rv": 1.99,
+    "gap": 0.0068,
+    "atr": 4.7293,
+    "high": 173.6199951171875,
+    "done": false,
+    "last": 173.62,
+    "distPct": 0.0,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
    {
-    "symbol": "RBLX",
-    "rv": 2.69,
-    "gap": 0.1299,
-    "atr": 3.2215,
-    "high": 54.7599983215332,
-    "done": true,
-    "last": 52.56,
-    "distPct": -4.01,
-    "status": "aussortiert",
-    "why": "Kein Ausbruch in der ersten Stunde"
+    "symbol": "CRWD",
+    "rv": 1.35,
+    "gap": 0.0075,
+    "atr": 16.6741,
+    "high": 214.79989624023438,
+    "done": false,
+    "last": 213.56,
+    "distPct": -0.58,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
    {
-    "symbol": "ORCL",
-    "rv": 2.28,
-    "gap": 0.1509,
-    "atr": 8.0709,
-    "high": 118.69000244140625,
-    "done": true,
-    "last": 115.96,
-    "distPct": -2.3,
-    "status": "aussortiert",
-    "why": "Kein Ausbruch in der ersten Stunde"
+    "symbol": "NKE",
+    "rv": 1.13,
+    "gap": 0.0098,
+    "atr": 1.7628,
+    "high": 34.7599983215332,
+    "done": false,
+    "last": 34.64,
+    "distPct": -0.35,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
    {
-    "symbol": "TXN",
-    "rv": 2.28,
-    "gap": 0.0934,
-    "atr": 16.5049,
-    "high": 292.1600036621094,
-    "done": true,
-    "last": 294.44,
-    "distPct": 0.78,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+    "symbol": "VRTX",
+    "rv": 1.11,
+    "gap": 0.0069,
+    "atr": 15.2741,
+    "high": 551.1199951171875,
+    "done": false,
+    "last": 551.12,
+    "distPct": 0.0,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
    {
-    "symbol": "SPGI",
-    "rv": 1.74,
-    "gap": 0.0147,
-    "atr": 11.2361,
-    "high": 449.5,
-    "done": true,
-    "last": 449.53,
-    "distPct": 0.01,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+    "symbol": "ABBV",
+    "rv": 1.04,
+    "gap": 0.0073,
+    "atr": 7.1757,
+    "high": 291.95989990234375,
+    "done": false,
+    "last": 291.41,
+    "distPct": -0.19,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": 0.02,
-  "windowEnd": "2026-11-23T10:35:00-05:00"
+  "spyChangePct": -0.13,
+  "windowEnd": "2026-11-24T10:35:00-05:00"
  },
- "publishedAt": 1795530615.2149084,
+ "publishedAt": 1795530987.4286253,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4673,9 +4673,9 @@
   ]
  },
  "plan": {
-  "phase": "start",
-  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
-  "next": "2026-11-24T09:35:00-05:00",
+  "phase": "fenster",
+  "text": "Beobachtet GILD, CRWD, NKE, VRTX, ABBV. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "next": "2026-11-24T10:35:00-05:00",
   "windowEnd": "2026-11-24T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -4792,11 +4792,13 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-24T09:30:15-05:00",
+  "at": "2026-11-24T09:36:27-05:00",
   "source": "Yahoo chart v8",
-  "requests": 5,
-  "failed": 0,
-  "failedSymbols": [],
+  "requests": 208,
+  "failed": 1,
+  "failedSymbols": [
+   "SQ"
+  ],
   "issues": []
  },
  "orders": [
