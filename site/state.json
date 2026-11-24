@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-24T10:36:01-05:00",
+ "updatedAt": "2026-11-24T10:41:01-05:00",
  "status": "Markt offen. In Play heute: GILD, CRWD, NKE, VRTX, ABBV.",
  "accounts": {
   "day": {
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9972.98,
+   "equity": 9964.11,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 352.35
+     "last": 351.52
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 696.21,
+     "last": 695.18,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -682,7 +682,7 @@
     "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": 0.19,
+  "spyChangePct": 0.11,
   "windowEnd": "2026-11-24T10:35:00-05:00"
  },
  "publishedAt": 1795534561.865635,
@@ -4822,9 +4822,9 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-24T10:36:01-05:00",
+  "at": "2026-11-24T10:41:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 7,
+  "requests": 6,
   "failed": 0,
   "failedSymbols": [],
   "issues": []
