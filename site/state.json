@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-24T09:36:27-05:00",
+ "updatedAt": "2026-11-24T09:41:01-05:00",
  "status": "Markt offen. In Play heute: GILD, CRWD, NKE, VRTX, ABBV.",
  "accounts": {
   "day": {
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9996.77,
+   "equity": 10030.06,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 347.55
+     "last": 350.65
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 700.98,
+     "last": 704.85,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -584,6 +584,30 @@
    "symbol": "ORCL",
    "outcome": "aussortiert",
    "detail": "Kein Ausbruch in der ersten Stunde"
+  },
+  {
+   "timestamp": "2026-11-24T09:41:01-05:00",
+   "symbol": "GILD",
+   "outcome": "aussortiert",
+   "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+  },
+  {
+   "timestamp": "2026-11-24T09:41:01-05:00",
+   "symbol": "NKE",
+   "outcome": "aussortiert",
+   "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+  },
+  {
+   "timestamp": "2026-11-24T09:41:01-05:00",
+   "symbol": "VRTX",
+   "outcome": "aussortiert",
+   "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
+  },
+  {
+   "timestamp": "2026-11-24T09:41:01-05:00",
+   "symbol": "ABBV",
+   "outcome": "aussortiert",
+   "detail": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
   }
  ],
  "inPlay": {
@@ -597,11 +621,11 @@
     "gap": 0.0068,
     "atr": 4.7293,
     "high": 173.6199951171875,
-    "done": false,
-    "last": 173.62,
-    "distPct": 0.0,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 174.88,
+    "distPct": 0.73,
+    "status": "aussortiert",
+    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    },
    {
     "symbol": "CRWD",
@@ -610,8 +634,8 @@
     "atr": 16.6741,
     "high": 214.79989624023438,
     "done": false,
-    "last": 213.56,
-    "distPct": -0.58,
+    "last": 209.6,
+    "distPct": -2.42,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -621,11 +645,11 @@
     "gap": 0.0098,
     "atr": 1.7628,
     "high": 34.7599983215332,
-    "done": false,
-    "last": 34.64,
-    "distPct": -0.35,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 35.04,
+    "distPct": 0.81,
+    "status": "aussortiert",
+    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    },
    {
     "symbol": "VRTX",
@@ -633,11 +657,11 @@
     "gap": 0.0069,
     "atr": 15.2741,
     "high": 551.1199951171875,
-    "done": false,
-    "last": 551.12,
-    "distPct": 0.0,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 556.92,
+    "distPct": 1.05,
+    "status": "aussortiert",
+    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    },
    {
     "symbol": "ABBV",
@@ -645,17 +669,17 @@
     "gap": 0.0073,
     "atr": 7.1757,
     "high": 291.95989990234375,
-    "done": false,
-    "last": 291.41,
-    "distPct": -0.19,
-    "status": "wartet",
-    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+    "done": true,
+    "last": 293.85,
+    "distPct": 0.65,
+    "status": "aussortiert",
+    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
    }
   ],
-  "spyChangePct": -0.13,
+  "spyChangePct": -0.08,
   "windowEnd": "2026-11-24T10:35:00-05:00"
  },
- "publishedAt": 1795530987.4286253,
+ "publishedAt": 1795531261.5515292,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4674,7 +4698,7 @@
  },
  "plan": {
   "phase": "fenster",
-  "text": "Beobachtet GILD, CRWD, NKE, VRTX, ABBV. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "text": "Beobachtet CRWD. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
   "next": "2026-11-24T10:35:00-05:00",
   "windowEnd": "2026-11-24T10:35:00-05:00",
   "dayBuys": 0,
@@ -4792,13 +4816,11 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-24T09:36:27-05:00",
+  "at": "2026-11-24T09:41:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 208,
-  "failed": 1,
-  "failedSymbols": [
-   "SQ"
-  ],
+  "requests": 11,
+  "failed": 0,
+  "failedSymbols": [],
   "issues": []
  },
  "orders": [
