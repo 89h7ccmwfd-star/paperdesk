@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-25T09:30:25-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-25T09:36:18-05:00",
+ "status": "Markt offen. In Play heute: keine.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9972.74,
+   "equity": 9846.39,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 354.19
+     "last": 350.48
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 695.65,
+     "last": 678.66,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -617,73 +617,12 @@
   }
  ],
  "inPlay": {
-  "date": "2026-11-24",
+  "date": "2026-11-25",
   "scanned": 98,
-  "matches": 5,
-  "symbols": [
-   {
-    "symbol": "GILD",
-    "rv": 1.99,
-    "gap": 0.0068,
-    "atr": 4.7293,
-    "high": 173.6199951171875,
-    "done": true,
-    "last": 174.88,
-    "distPct": 0.73,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
-   },
-   {
-    "symbol": "CRWD",
-    "rv": 1.35,
-    "gap": 0.0075,
-    "atr": 16.6741,
-    "high": 214.79989624023438,
-    "done": true,
-    "last": 209.19,
-    "distPct": -2.61,
-    "status": "aussortiert",
-    "why": "Kein Ausbruch in der ersten Stunde"
-   },
-   {
-    "symbol": "NKE",
-    "rv": 1.13,
-    "gap": 0.0098,
-    "atr": 1.7628,
-    "high": 34.7599983215332,
-    "done": true,
-    "last": 35.04,
-    "distPct": 0.81,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
-   },
-   {
-    "symbol": "VRTX",
-    "rv": 1.11,
-    "gap": 0.0069,
-    "atr": 15.2741,
-    "high": 551.1199951171875,
-    "done": true,
-    "last": 556.92,
-    "distPct": 1.05,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
-   },
-   {
-    "symbol": "ABBV",
-    "rv": 1.04,
-    "gap": 0.0073,
-    "atr": 7.1757,
-    "high": 291.95989990234375,
-    "done": true,
-    "last": 293.85,
-    "distPct": 0.65,
-    "status": "aussortiert",
-    "why": "Ausbruch, aber Gesamtmarkt (SPY) unter Eroeffnung"
-   }
-  ],
-  "spyChangePct": 0.15,
-  "windowEnd": "2026-11-24T10:35:00-05:00"
+  "matches": 0,
+  "symbols": [],
+  "spyChangePct": -0.47,
+  "windowEnd": "2026-11-25T10:35:00-05:00"
  },
  "publishedAt": 1795617025.0614445,
  "bars": {
@@ -4715,9 +4654,9 @@
   ]
  },
  "plan": {
-  "phase": "start",
-  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
-  "next": "2026-11-25T09:35:00-05:00",
+  "phase": "verwalten",
+  "text": "Keine neuen Daytrades mehr heute. Der Bot wartet auf den nächsten Handelstag.",
+  "next": null,
   "windowEnd": "2026-11-25T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -4834,11 +4773,13 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-25T09:30:25-05:00",
+  "at": "2026-11-25T09:36:18-05:00",
   "source": "Yahoo chart v8",
-  "requests": 5,
-  "failed": 0,
-  "failedSymbols": [],
+  "requests": 203,
+  "failed": 1,
+  "failedSymbols": [
+   "SQ"
+  ],
   "issues": []
  },
  "orders": [
