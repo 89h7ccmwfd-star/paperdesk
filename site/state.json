@@ -1,7 +1,7 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-27T09:30:14-05:00",
- "status": "Markt offen, gerade keine neuen Einstiege erlaubt.",
+ "updatedAt": "2026-11-27T09:36:31-05:00",
+ "status": "Markt offen. In Play heute: C, NOW, SHOP, NFLX, RBLX.",
  "accounts": {
   "day": {
    "startingCash": 10000,
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9903.93,
+   "equity": 9895.71,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 355.45
+     "last": 357.85
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 685.46,
+     "last": 683.6,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -617,14 +617,75 @@
   }
  ],
  "inPlay": {
-  "date": "2026-11-25",
+  "date": "2026-11-27",
   "scanned": 98,
-  "matches": 0,
-  "symbols": [],
-  "spyChangePct": 1.91,
-  "windowEnd": "2026-11-25T10:35:00-05:00"
+  "matches": 5,
+  "symbols": [
+   {
+    "symbol": "C",
+    "rv": 1.61,
+    "gap": 0.018,
+    "atr": 3.4225,
+    "high": 116.1500015258789,
+    "done": false,
+    "last": 115.94,
+    "distPct": -0.18,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "NOW",
+    "rv": 1.39,
+    "gap": 0.0118,
+    "atr": 4.5782,
+    "high": 94.56999969482422,
+    "done": false,
+    "last": 94.41,
+    "distPct": -0.17,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "SHOP",
+    "rv": 1.37,
+    "gap": 0.043,
+    "atr": 8.1439,
+    "high": 142.16000366210938,
+    "done": false,
+    "last": 140.6,
+    "distPct": -1.1,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "NFLX",
+    "rv": 1.06,
+    "gap": 0.0104,
+    "atr": 1.94,
+    "high": 60.93000030517578,
+    "done": false,
+    "last": 60.89,
+    "distPct": -0.07,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   },
+   {
+    "symbol": "RBLX",
+    "rv": 1.01,
+    "gap": 0.0226,
+    "atr": 3.471,
+    "high": 57.900001525878906,
+    "done": false,
+    "last": 57.57,
+    "distPct": -0.57,
+    "status": "wartet",
+    "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
+   }
+  ],
+  "spyChangePct": -0.38,
+  "windowEnd": "2026-11-27T10:35:00-05:00"
  },
- "publishedAt": 1795789814.0562851,
+ "publishedAt": 1795790191.8779693,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4654,9 +4715,9 @@
   ]
  },
  "plan": {
-  "phase": "start",
-  "text": "Der erste 5-Minuten-Balken läuft. Danach steht die Tagesliste fest.",
-  "next": "2026-11-27T09:35:00-05:00",
+  "phase": "fenster",
+  "text": "Beobachtet C, NOW, SHOP, NFLX, RBLX. Gekauft wird beim ersten 5-Minuten-Schluss über dem Auslöser, wenn der Gesamtmarkt (SPY) im Plus ist.",
+  "next": "2026-11-27T10:35:00-05:00",
   "windowEnd": "2026-11-27T10:35:00-05:00",
   "dayBuys": 0,
   "maxDayTrades": 3
@@ -4773,11 +4834,13 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-27T09:30:14-05:00",
+  "at": "2026-11-27T09:36:31-05:00",
   "source": "Yahoo chart v8",
-  "requests": 5,
-  "failed": 0,
-  "failedSymbols": [],
+  "requests": 208,
+  "failed": 1,
+  "failedSymbols": [
+   "SQ"
+  ],
   "issues": []
  },
  "orders": [
