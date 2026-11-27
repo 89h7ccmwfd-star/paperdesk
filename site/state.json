@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-27T09:36:31-05:00",
+ "updatedAt": "2026-11-27T09:41:01-05:00",
  "status": "Markt offen. In Play heute: C, NOW, SHOP, NFLX, RBLX.",
  "accounts": {
   "day": {
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9895.71,
+   "equity": 9876.43,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 357.85
+     "last": 356.4
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 683.6,
+     "last": 681.26,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -628,8 +628,8 @@
     "atr": 3.4225,
     "high": 116.1500015258789,
     "done": false,
-    "last": 115.94,
-    "distPct": -0.18,
+    "last": 115.9,
+    "distPct": -0.22,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -640,8 +640,8 @@
     "atr": 4.5782,
     "high": 94.56999969482422,
     "done": false,
-    "last": 94.41,
-    "distPct": -0.17,
+    "last": 93.92,
+    "distPct": -0.69,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -652,8 +652,8 @@
     "atr": 8.1439,
     "high": 142.16000366210938,
     "done": false,
-    "last": 140.6,
-    "distPct": -1.1,
+    "last": 140.7,
+    "distPct": -1.03,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -664,8 +664,8 @@
     "atr": 1.94,
     "high": 60.93000030517578,
     "done": false,
-    "last": 60.89,
-    "distPct": -0.07,
+    "last": 60.81,
+    "distPct": -0.2,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -676,16 +676,16 @@
     "atr": 3.471,
     "high": 57.900001525878906,
     "done": false,
-    "last": 57.57,
-    "distPct": -0.57,
+    "last": 57.76,
+    "distPct": -0.24,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -0.38,
+  "spyChangePct": -0.58,
   "windowEnd": "2026-11-27T10:35:00-05:00"
  },
- "publishedAt": 1795790191.8779693,
+ "publishedAt": 1795790461.920018,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4834,13 +4834,11 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-27T09:36:31-05:00",
+  "at": "2026-11-27T09:41:01-05:00",
   "source": "Yahoo chart v8",
-  "requests": 208,
-  "failed": 1,
-  "failedSymbols": [
-   "SQ"
-  ],
+  "requests": 11,
+  "failed": 0,
+  "failedSymbols": [],
   "issues": []
  },
  "orders": [
