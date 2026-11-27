@@ -1,6 +1,6 @@
 {
  "currency": "USD",
- "updatedAt": "2026-11-27T09:56:02-05:00",
+ "updatedAt": "2026-11-27T10:01:02-05:00",
  "status": "Markt offen. In Play heute: C, NOW, SHOP, NFLX, RBLX.",
  "accounts": {
   "day": {
@@ -222,7 +222,7 @@
   "swing": {
    "startingCash": 10000,
    "cash": 4394.81,
-   "equity": 9865.91,
+   "equity": 9842.17,
    "realizedPnl": -50.11,
    "positions": [
     {
@@ -235,7 +235,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-05T15:28:37-05:00",
      "source": "Yahoo 5m",
-     "last": 356.39
+     "last": 355.86
     },
     {
      "symbol": "TMO",
@@ -247,7 +247,7 @@
      "entryFee": 1.0,
      "openedAt": "2026-11-09T09:46:12-05:00",
      "source": "Yahoo 5m",
-     "last": 679.76,
+     "last": 676.52,
      "strategy": "swing-reclaim-1"
     }
    ],
@@ -628,8 +628,8 @@
     "atr": 3.4225,
     "high": 116.1500015258789,
     "done": false,
-    "last": 115.43,
-    "distPct": -0.62,
+    "last": 115.25,
+    "distPct": -0.78,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -640,8 +640,8 @@
     "atr": 4.5782,
     "high": 94.56999969482422,
     "done": false,
-    "last": 93.28,
-    "distPct": -1.36,
+    "last": 92.93,
+    "distPct": -1.74,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -652,8 +652,8 @@
     "atr": 8.1439,
     "high": 142.16000366210938,
     "done": false,
-    "last": 141.15,
-    "distPct": -0.71,
+    "last": 141.25,
+    "distPct": -0.64,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -664,8 +664,8 @@
     "atr": 1.94,
     "high": 60.93000030517578,
     "done": false,
-    "last": 60.33,
-    "distPct": -0.98,
+    "last": 60.41,
+    "distPct": -0.85,
     "status": "wartet",
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    },
@@ -682,10 +682,10 @@
     "why": "Noch kein 5-Minuten-Schluss über dem Auslöser"
    }
   ],
-  "spyChangePct": -0.61,
+  "spyChangePct": -0.8,
   "windowEnd": "2026-11-27T10:35:00-05:00"
  },
- "publishedAt": 1795791362.3598235,
+ "publishedAt": 1795791662.2614362,
  "bars": {
   "2026-11-04:V": [
    [
@@ -4834,7 +4834,7 @@
   }
  },
  "dataQuality": {
-  "at": "2026-11-27T09:56:02-05:00",
+  "at": "2026-11-27T10:01:02-05:00",
   "source": "Yahoo chart v8",
   "requests": 11,
   "failed": 0,
